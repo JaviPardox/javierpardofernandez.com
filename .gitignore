@@ -18,6 +18,7 @@
 /frontend/.env.test.local
 /frontend/.env.production.local
 /backend/.venv
+/backend/__pycache__
 
 /frontend/npm-debug.log*
 /frontend/yarn-debug.log*
