@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <div className="text-xl font-bold">Your Name</div>
-          <div className="hidden md:flex space-x-4">
+          <div className="hidden md:flex space-x-4 mx-auto">
             <Link to="/" className="hover:text-white">Home</Link>
             <Link to="/about" className="hover:text-white">About</Link>
             <Link to="/portfolio" className="hover:text-white">Portfolio</Link>
