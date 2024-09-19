@@ -7,11 +7,12 @@ module.exports = {
     extend: {
       colors: {
         'openai-dark': '#050505',
-        'openai-light': '#c5c5d2',
+        'openai-light': '#ffffff',
         'openai-hover': '#1a1a1a',
       },
       fontFamily: {
         sans: ['Söhne', 'sans-serif'],
+        mono: ['Söhne Mono', 'monospace'],
       },
     },
   },
