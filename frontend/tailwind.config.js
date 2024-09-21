@@ -10,6 +10,7 @@ module.exports = {
         'openai-light': '#ffffff',
         'openai-hover': '#1a1a1a',
         'openai-content': '#0a0a0a',
+        'openai-center-content': '#18181b'
       },
       fontFamily: {
         sans: ['Söhne', 'sans-serif'],

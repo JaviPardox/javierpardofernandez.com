@@ -6,7 +6,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="sticky top-0 z-50 flex justify-center">
-      <div className="inline-block bg-openai-dark rounded-lg px-6 py-3">
+      <div className="inline-block bg-zinc-800/90 rounded-full px-6 py-3 ring-1 ring-white/10">
         <div className="flex items-center space-x-4">
           <div className="hidden md:flex space-x-4">
             <Link to="/" className="hover:text-white">Home</Link>

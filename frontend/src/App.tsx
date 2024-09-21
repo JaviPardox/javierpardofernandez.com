@@ -10,9 +10,9 @@ import Contact from './pages/Contact';
 const App: React.FC = () => {
   return (
     <Router>
-      <div className="min-h-screen bg-openai-dark text-openai-light">
-      <div className="fixed inset-0 bg-gray-900 -z-10 max-w-7xl mx-auto"></div>
-        <div className="min-h-screen bg-gray-900 max-w-7xl mx-auto">
+      <div className="bg-openai-dark text-openai-light">
+      <div className="ring-1 ring-zinc-300/20 fixed inset-0 bg-openai-center-content z-0 max-w-[76rem] mx-auto"></div>
+        <div className="min-h-screen bg-openai-center-content max-w-[76rem] mx-auto relative z-10">
           <div className="px-4 sm:px-6 lg:px-8">
             <div className="pt-4">
               <Navbar />
