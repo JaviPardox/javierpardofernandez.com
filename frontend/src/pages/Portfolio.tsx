@@ -23,21 +23,26 @@ const Portfolio: React.FC = () => {
     fetchProjects();
   }, []);
 
-  if (loading) return <div>Loading projects...</div>;
-  if (error) return <div>{error}</div>;
+  if (loading) return <div className="text-center">Loading projects...</div>;
+  if (error) return <div className="text-red-500 text-center">{error}</div>;
 
   return (
     <div>
-      <h1>My Projects</h1>
+      <h1 className="text-4xl font-bold mb-6">My Projects</h1>
       {projects.length > 0 ? (
-        projects.map((project) => (
-          <div key={project.id}>
-            <h2>{project.title}</h2>
-            <p>{project.description}</p>
-          </div>
-        ))
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {projects.map((project) => (
+            <div key={project.id} className="bg-openai-hover p-6 rounded-lg">
+              <h2 className="text-2xl font-semibold mb-2">{project.title}</h2>
+              <p className="mb-4">{project.description}</p>
+              <button className="bg-openai-dark text-white px-4 py-2 rounded hover:bg-opacity-80 transition duration-300">
+                Learn More
+              </button>
+            </div>
+          ))}
+        </div>
       ) : (
-        <p>No projects found.</p>
+        <p className="text-center">No projects found.</p>
       )}
     </div>
   );

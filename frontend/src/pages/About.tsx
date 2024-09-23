@@ -19,13 +19,13 @@ const About: React.FC = () => {
 
   return (
     <div>
-      <h1>About Me</h1>
-      <p>I'm a passionate software developer with experience in React, TypeScript, and Python. I love creating efficient and user-friendly web applications.</p>
-      <h2>Skills</h2>
+      <h1 className="text-4xl font-bold mb-6">About Me</h1>
+      <p className="mb-6 text-lg">I'm a passionate software developer with experience in React, TypeScript, and Python. I love creating efficient and user-friendly web applications.</p>
+      <h2 className="text-2xl font-semibold mb-4">Skills</h2>
       {skills.length > 0 ? (
-        <ul>
+        <ul className="grid grid-cols-2 gap-2">
           {skills.map((skill, index) => (
-            <li key={index}>{skill}</li>
+            <li key={index} className="bg-openai-hover p-2 rounded">{skill}</li>
           ))}
         </ul>
       ) : (
