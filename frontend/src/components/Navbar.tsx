@@ -5,14 +5,14 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 flex justify-center">
-      <div className="inline-block bg-zinc-800/90 rounded-full px-6 py-3 ring-1 ring-white/10">
+    <nav className="sticky top-6 z-50 flex justify-center">
+      <div className="inline-block bg-zinc-800/90 rounded-full px-5 py-0.5 ring-1 ring-white/10 text-sm font-light text-zinc-200">
         <div className="flex items-center space-x-4">
           <div className="hidden md:flex space-x-4">
-            <Link to="/" className="hover:text-white">Home</Link>
-            <Link to="/about" className="hover:text-white">About</Link>
-            <Link to="/portfolio" className="hover:text-white">Portfolio</Link>
-            <Link to="/contact" className="hover:text-white">Contact</Link>
+            <Link to="/" className="hover:text-teal-400 px-1.5 py-2">Home</Link>
+            <Link to="/about" className="hover:text-teal-400 px-1.5 py-2">About</Link>
+            <Link to="/portfolio" className="hover:text-teal-400 px-1.5 py-2">Portfolio</Link>
+            <Link to="/contact" className="hover:text-teal-400 px-1.5 py-2">Contact</Link>
           </div>
           <div className="md:hidden">
             <button onClick={() => setIsOpen(!isOpen)} className="text-openai-light focus:outline-none">
