@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const [activeLink, setActiveLink] = useState<string | null>(null);
 
   const handleClickOutside = (event: Event) => {
     if (menuRef.current && !menuRef.current.contains(event.target as HTMLElement)) {
@@ -18,20 +19,43 @@ const Navbar: React.FC = () => {
     };
   }, []);
 
+  const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>, linkName: string) => {
+    if (activeLink !== linkName) {
+      setActiveLink(linkName);
+    }
+  };
+
+
+
   return (
-    <nav className="sticky top-6 z-50 flex justify-center">
-      <div className="w-full flex justify-center">
-        <div className="inline-block bg-zinc-800/90 rounded-full px-5 py-0.5 ring-1 ring-white/10 text-sm font-light text-zinc-200">
+    <nav className="sticky top-6 z-50 flex">
+      <div className="w-full flex md:justify-center justify-end">
+        <div className="inline-block bg-zinc-800/90 rounded-full pl-5 pr-4 py-0.5 ring-1 ring-white/10 text-sm font-light text-zinc-200 hover:ring-white/20">
           <div className="flex items-center justify-between">
             <div className="hidden md:flex space-x-4">
-              <Link to="/" className="hover:text-teal-400 px-1.5 py-2">Home</Link>
-              <Link to="/about" className="hover:text-teal-400 px-1.5 py-2">About</Link>
-              <Link to="/portfolio" className="hover:text-teal-400 px-1.5 py-2">Portfolio</Link>
-              <Link to="/contact" className="hover:text-teal-400 px-1.5 py-2">Contact</Link>
+              <Link to="/" className={`relative block transition hover:text-teal-400 px-1.5 py-2 nav-link ${activeLink === 'home' ? 'text-teal-400' : ''}`} onClick={(e) => handleLinkClick(e, 'home')}>
+              Home
+              <span className={`absolute inset-x-0 -bottom-[0.2rem] h-px bg-gradient-to-r from-teal-400/0 via-teal-400/40 to-teal-400/0 transition-opacity duration-300 ease-in-out ${activeLink === 'home' ? 'opacity-100' : 'opacity-0'}`}></span>
+              </Link>
+              <Link to="/about" className={`relative block transition hover:text-teal-400 px-1.5 py-2 nav-link ${activeLink === 'about' ? 'text-teal-400' : ''}`} onClick={(e) => handleLinkClick(e, 'about')}>
+              About
+              <span className={`absolute inset-x-0 -bottom-[0.2rem] h-px bg-gradient-to-r from-teal-400/0 via-teal-400/40 to-teal-400/0 transition-opacity duration-300 ease-in-out ${activeLink === 'about' ? 'opacity-100' : 'opacity-0'}`}></span>
+              </Link>
+              <Link to="/portfolio" className={`relative block transition hover:text-teal-400 px-1.5 py-2 nav-link ${activeLink === 'portfolio' ? 'text-teal-400' : ''}`} onClick={(e) => handleLinkClick(e, 'portfolio')}>
+              Portfolio
+              <span className={`absolute inset-x-0 -bottom-[0.2rem] h-px bg-gradient-to-r from-teal-400/0 via-teal-400/40 to-teal-400/0 transition-opacity duration-300 ease-in-out ${activeLink === 'portfolio' ? 'opacity-100' : 'opacity-0'}`}></span>
+              </Link>
+              <Link to="/contact" className={`relative block transition hover:text-teal-400 px-1.5 py-2 nav-link ${activeLink === 'contact' ? 'text-teal-400' : ''}`} onClick={(e) => handleLinkClick(e, 'contact')}>
+              Contact
+              <span className={`absolute inset-x-0 -bottom-[0.2rem] h-px bg-gradient-to-r from-teal-400/0 via-teal-400/40 to-teal-400/0 transition-opacity duration-300 ease-in-out ${activeLink === 'contact' ? 'opacity-100' : 'opacity-0'}`}></span>
+              </Link>
             </div>
-            <div className="md:hidden">
-              <button onClick={() => setIsOpen(!isOpen)} className="text-openai-light focus:outline-none">
+            <div className="md:hidden py-2">
+              <button onClick={() => setIsOpen(!isOpen)} className="text-zinc-200 flex items-center focus:outline-none hover:text-teal-400">
                 {isOpen ? 'Menu' : 'Menu'}
+                <svg viewBox="0 0 8 6" aria-hidden="true" className="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-400">
+                  <path d="M1.75 1.75 4 4.25l2.25-2.5" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
               </button>
             </div>
           </div>
@@ -40,7 +64,7 @@ const Navbar: React.FC = () => {
       {isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
           <div className="container mx-auto px-4 py-8 rounded-3xl bg-zinc-900 ring-1 ring-zinc-800">
-            <div className="flex flex-col space-y-4 text-white" ref={menuRef}>
+            <div className="flex flex-col space-y-4 text-zinc-200" ref={menuRef}>
               <Link to="/" className="text-sm hover:text-teal-400" onClick={() => setIsOpen(false)}>Home</Link>
               <Link to="/about" className="text-sm hover:text-teal-400" onClick={() => setIsOpen(false)}>About</Link>
               <Link to="/portfolio" className="text-sm hover:text-teal-400" onClick={() => setIsOpen(false)}>Portfolio</Link>
