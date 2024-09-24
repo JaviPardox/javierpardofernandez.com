@@ -25,8 +25,6 @@ const Navbar: React.FC = () => {
     }
   };
 
-
-
   return (
     <nav className="sticky top-6 z-50 flex">
       <div className="w-full flex md:justify-center justify-end">
@@ -63,11 +61,22 @@ const Navbar: React.FC = () => {
       </div>
       {isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40">
-          <div className="container mx-auto px-4 py-8 rounded-3xl bg-zinc-900 ring-1 ring-zinc-800">
-            <div className="flex flex-col space-y-4 text-zinc-200" ref={menuRef}>
+          <div className="container mx-auto px-4 py-8 rounded-3xl bg-zinc-900 ring-1 ring-zinc-800 mt-8">
+            <div className="flex flex-row-reverse items-center justify-between px-4">
+              <button aria-label="Close menu" className="-m-1 p-1" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 text-zinc-500 dark:text-zinc-400">
+                  <path d="m17.25 6.75-10.5 10.5M6.75 6.75l10.5 10.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </button>
+              <h2 className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Navigation</h2>
+            </div>
+            <div className="flex flex-col space-y-3 text-zinc-200 pt-6 pl-4" ref={menuRef}>
               <Link to="/" className="text-sm hover:text-teal-400" onClick={() => setIsOpen(false)}>Home</Link>
+              <span className="block h-px mr-4 bg-gradient-to-r from-teal-400/40 via-teal-400/20 to-teal-400/40"></span>
               <Link to="/about" className="text-sm hover:text-teal-400" onClick={() => setIsOpen(false)}>About</Link>
+              <span className="block h-px mr-4 bg-gradient-to-r from-teal-400/40 via-teal-400/20 to-teal-400/40"></span>
               <Link to="/portfolio" className="text-sm hover:text-teal-400" onClick={() => setIsOpen(false)}>Portfolio</Link>
+              <span className="block h-px mr-4 bg-gradient-to-r from-teal-400/40 via-teal-400/20 to-teal-400/40"></span>
               <Link to="/contact" className="text-sm hover:text-teal-400" onClick={() => setIsOpen(false)}>Contact</Link>
             </div>
           </div>
