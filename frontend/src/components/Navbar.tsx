@@ -77,12 +77,12 @@ const Navbar: React.FC = () => {
       {isOpen && (
         <div
           className={`fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40 transition-all duration-300 ${
-            isAnimating ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            isAnimating ? 'opacity-100 scale-100' : 'opacity-0 scale-100'
           }`}
         >          
           <div ref={menuRef}
             className={`container mx-auto px-4 py-8 rounded-3xl bg-zinc-900 ring-1 ring-zinc-800 mt-8 transition-all duration-300 ${
-              isAnimating ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+              isAnimating ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
             }`}
           >
           <div className="flex flex-row-reverse items-center justify-between px-4">
