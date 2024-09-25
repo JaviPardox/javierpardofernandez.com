@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
@@ -7,19 +7,24 @@ const Navbar: React.FC = () => {
   const [activeLink, setActiveLink] = useState<string | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  const handleClickOutside = (event: Event) => {
+  const closeNavbar = useCallback(() => {
+    setIsAnimating(false);
+    setTimeout(() => setIsOpen(false), 300); // Ensure it closes after the animation completes
+  }, []);
+  
+
+  const handleClickOutside = useCallback((event: Event) => {
     if (menuRef.current && !menuRef.current.contains(event.target as HTMLElement)) {
-      setIsAnimating(false);
-      setTimeout(() => setIsOpen(false), 300);
+      closeNavbar(); 
     }
-  };
+  }, [menuRef, closeNavbar]);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [handleClickOutside]);
 
   useEffect(() => {
     if (isOpen) {
@@ -81,7 +86,7 @@ const Navbar: React.FC = () => {
             }`}
           >
           <div className="flex flex-row-reverse items-center justify-between px-4">
-              <button aria-label="Close menu" className="-m-1 p-1" type="button">
+              <button aria-label="Close menu" className="-m-1 p-1" type="button" onClick={() => closeNavbar()}>
                 <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 text-zinc-500 dark:text-zinc-400">
                   <path d="m17.25 6.75-10.5 10.5M6.75 6.75l10.5 10.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
@@ -89,13 +94,13 @@ const Navbar: React.FC = () => {
               <h2 className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Navigation</h2>
             </div>
             <div className="flex flex-col space-y-3 text-zinc-200 pt-6 pl-4">
-              <Link to="/" className="text-sm hover:text-teal-400" onClick={() => setIsOpen(false)}>Home</Link>
+              <Link to="/" className="text-sm hover:text-teal-400" onClick={() => closeNavbar()}>Home</Link>
               <span className="block h-px mr-4 bg-gradient-to-r from-teal-400/40 via-teal-400/20 to-teal-400/40"></span>
-              <Link to="/about" className="text-sm hover:text-teal-400" onClick={() => setIsOpen(false)}>About</Link>
+              <Link to="/about" className="text-sm hover:text-teal-400" onClick={() => closeNavbar()}>About</Link>
               <span className="block h-px mr-4 bg-gradient-to-r from-teal-400/40 via-teal-400/20 to-teal-400/40"></span>
-              <Link to="/portfolio" className="text-sm hover:text-teal-400" onClick={() => setIsOpen(false)}>Portfolio</Link>
+              <Link to="/portfolio" className="text-sm hover:text-teal-400" onClick={() => closeNavbar()}>Portfolio</Link>
               <span className="block h-px mr-4 bg-gradient-to-r from-teal-400/40 via-teal-400/20 to-teal-400/40"></span>
-              <Link to="/contact" className="text-sm hover:text-teal-400" onClick={() => setIsOpen(false)}>Contact</Link>
+              <Link to="/contact" className="text-sm hover:text-teal-400" onClick={() => closeNavbar()}>Contact</Link>
             </div>
           </div>
         </div>
