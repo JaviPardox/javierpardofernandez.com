@@ -13,7 +13,7 @@ const App: React.FC = () => {
       <div className="ring-1 ring-zinc-300/20 fixed inset-0 bg-openai-center-content z-0 max-w-[76rem] mx-auto"></div>
         <div className="min-h-screen bg-openai-center-content max-w-[76rem] mx-auto relative z-10">
           <div className="px-4 sm:px-6 lg:px-8">
-            <div className="pt-4">
+            <div className="pt-1">
               <Navbar />
               <main className="p-4 sm:p-6 lg:p-8">
                 <Routes>

@@ -9,7 +9,7 @@ const Home: React.FC = () => {
           {/* Your image goes here */}
         </div>
       </div>
-      <h1 className="text-5xl font-bold mb-6 mt-9">Welcome to My Portfolio</h1>
+      <h1 className="text-5xl font-bold mb-6 mt-9 text-zinc-100">Welcome to My Portfolio</h1>
       <p className="text-xl mb-8">
         I'm a software developer passionate about creating amazing web
         applications.
