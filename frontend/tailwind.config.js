@@ -15,6 +15,11 @@ module.exports = {
       fontFamily: {
         sans: ['Söhne', 'sans-serif'],
         mono: ['Söhne Mono', 'monospace'],
+        inter: ['Inter', 'sans-serif'],
+      },
+      fontSize: {
+        '4.5xl': '2.5rem',
+        '4.82xl': '2.82rem',
       },
     },
   },
