@@ -1,5 +1,6 @@
 import React from "react";
 import SocialIcon from "../components/SocialIcon";
+import Card from '../components/Card';
 
 const Home: React.FC = () => {
   return (
@@ -21,7 +22,6 @@ const Home: React.FC = () => {
           technologies that empower regular people to explore space on their own
           terms.
         </p>
-        {/* hacer componentes */}
         <div className="mt-6 flex gap-6">
           <SocialIcon
             href="#"
@@ -45,7 +45,18 @@ const Home: React.FC = () => {
           />
         </div>
       </div>
-      <div className="mt-16 sm:mt-20"></div>
+      <div className="mt-16 sm:mt-20">
+        <div className="-my-4 flex justify-center gap-5 py-4 sm:gap-8">
+          <Card rotation={2} />
+          <Card rotation={-2} />
+          <Card rotation={2} />
+          <Card rotation={2} />
+          <Card rotation={-2} />
+        </div>
+      </div>
+      <div className="sm:px-8 mt-24 md:mt-28">
+       {/* next */}
+      </div>
       <button className="bg-openai-hover text-white px-6 py-3 rounded-md hover:bg-opacity-80 transition duration-300">
         View My Work
       </button>
