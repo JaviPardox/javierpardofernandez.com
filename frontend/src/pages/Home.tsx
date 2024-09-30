@@ -16,7 +16,7 @@ const Home: React.FC = () => {
         <h1 className="text-4.82xl mb-6 mt-7 text-zinc-100 font-inter font-bold tracking-tight leading-[3.5rem]">
           Software designer, founder, and amateur astronaut.
         </h1>
-        <p className="mt-6 text-base text-zinc-400 leading-relaxed leading-[1.75rem]">
+        <p className="mt-6 text-base text-zinc-400 leading-relaxed leading-[1.78rem]">
           I'm Spencer, a software designer and entrepreneur based in New York
           City. I'm the founder and CEO of Planetaria, where we develop
           technologies that empower regular people to explore space on their own
@@ -46,7 +46,7 @@ const Home: React.FC = () => {
         </div>
       </div>
       <div className="mt-16 sm:mt-20">
-        <div className="-my-4 flex justify-center gap-5 py-4 sm:gap-8">
+        <div className="-my-4 flex justify-center gap-5 py-4 sm:gap-8"> {/* needs img */}
           <Card rotation={2} />
           <Card rotation={-2} />
           <Card rotation={2} />
