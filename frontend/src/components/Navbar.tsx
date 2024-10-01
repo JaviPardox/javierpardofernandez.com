@@ -34,6 +34,23 @@ const Navbar: React.FC = () => {
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    // Function to close menu on large screen
+    const handleResize = () => {
+      if (window.innerWidth >= 768 && isOpen) {
+        closeNavbar();
+      }
+    };
+
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup event listener on unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isOpen, closeNavbar]);
+
   const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>, linkName: string) => {
     if (activeLink !== linkName) {
       setActiveLink(linkName);
@@ -81,7 +98,7 @@ const Navbar: React.FC = () => {
           }`}
         >          
           <div ref={menuRef}
-            className={`container mx-auto px-4 py-8 rounded-3xl bg-zinc-900 ring-1 ring-zinc-800 mt-8 transition-all duration-300 ${
+            className={`mx-auto px-4 py-8 rounded-3xl bg-zinc-900 ring-1 ring-zinc-800 mt-8 mx-3 transition-all duration-300 ${
               isAnimating ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
             }`}
           >
