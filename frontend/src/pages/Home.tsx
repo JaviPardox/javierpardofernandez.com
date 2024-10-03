@@ -8,7 +8,10 @@ const Home: React.FC = () => {
     <div className="text-left px-8">
       <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]"></div>
       <div className="pb-0">
-        <a className="h-16 w-16 rounded-full backdrop-blur bg-zinc-800/90 ring-white/10" href="/">
+        <a
+          className="h-16 w-16 rounded-full backdrop-blur bg-zinc-800/90 ring-white/10"
+          href="/"
+        >
           <AvatarImage />
         </a>
       </div>
@@ -70,7 +73,7 @@ const Home: React.FC = () => {
         <div className="-my-4 flex justify-center gap-5 py-4 sm:gap-8">
           {" "}
           {/* needs img */}
-          <Card rotation={2} />
+          <Card rotation={2} imageFolder="/img/avatar" imageName="avatar"/>
           <Card rotation={-2} />
           <Card rotation={2} />
           <Card rotation={2} />
