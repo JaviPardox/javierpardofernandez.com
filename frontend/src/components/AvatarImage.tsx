@@ -3,7 +3,7 @@ import React from 'react';
 const AvatarImage: React.FC = (props) => {
   return (
     <img
-      alt=""
+      alt="javier pardo fernandez"
       fetchPriority="high"
       width="512"
       height="512"
