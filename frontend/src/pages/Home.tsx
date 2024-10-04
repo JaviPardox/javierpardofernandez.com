@@ -74,10 +74,10 @@ const Home: React.FC = () => {
           {" "}
           {/* needs img */}
           <Card rotation={2} imageFolder="/img/avatar" imageName="avatar"/>
-          <Card rotation={-2} />
-          <Card rotation={2} />
-          <Card rotation={2} />
-          <Card rotation={-2} />
+          <Card rotation={-2} imageFolder="/img/cards/card1" imageName="card1"/>
+          <Card rotation={2} imageFolder="/img/cards/card2" imageName="card2"/>
+          <Card rotation={2} imageFolder="/img/cards/card3" imageName="card3"/>
+          <Card rotation={-2} imageFolder="/img/cards/card4" imageName="card4"/>
         </div>
       </div>
       <div className="sm:px-8 mt-24 md:mt-28">{/* next */}</div>
