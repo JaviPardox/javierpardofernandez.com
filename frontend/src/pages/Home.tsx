@@ -71,8 +71,6 @@ const Home: React.FC = () => {
       </div>
       <div className="mt-16 sm:mt-20">
         <div className="-my-4 flex justify-center gap-5 py-4 sm:gap-8">
-          {" "}
-          {/* needs img */}
           <Card rotation={2} imageFolder="/img/avatar" imageName="avatar"/>
           <Card rotation={-2} imageFolder="/img/cards/card1" imageName="card1"/>
           <Card rotation={2} imageFolder="/img/cards/card2" imageName="card2"/>
@@ -80,7 +78,11 @@ const Home: React.FC = () => {
           <Card rotation={-2} imageFolder="/img/cards/card4" imageName="card4"/>
         </div>
       </div>
-      <div className="sm:px-8 mt-24 md:mt-28">{/* next */}</div>
+      <div className="sm:px-8 mt-24 md:mt-28">
+        <h2 className="text-4.82xl mb-6 mt-7 text-zinc-100 font-inter font-bold tracking-tight leading-[3.5rem]">
+          What I can offer
+        </h2>
+      </div>
       <button className="bg-openai-hover text-white px-6 py-3 rounded-md hover:bg-opacity-80 transition duration-300">
         View My Work
       </button>
