@@ -88,8 +88,11 @@ const Home: React.FC = () => {
         </div>
       </div>
       <div className="mt-24 md:mt-28">
-        <h2 className="text-4xl mb-6 mt-7 text-zinc-100 font-inter font-bold tracking-tight leading-[3.5rem]">
-          What I can offer
+        <h2 className="text-3xl mb-6 mt-7 text-zinc-100 font-inter font-bold tracking-tight leading-[3.5rem]">
+          <span className="relative inline-block">
+            What I can offer
+            <span className="absolute inset-x-0 -bottom-[0rem] h-px bg-gradient-to-r from-teal-400/10 via-teal-400/40 to-teal-400/10 ease-in-out"></span>
+          </span>
         </h2>
         <WhatIOfferList />
       </div>
