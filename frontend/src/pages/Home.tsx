@@ -2,6 +2,7 @@ import React from "react";
 import SocialIcon from "../components/SocialIcon";
 import Card from "../components/Card";
 import AvatarImage from "../components/AvatarImage";
+import WhatIOfferList from "../components/WhatIOfferList";
 
 const Home: React.FC = () => {
   return (
@@ -71,19 +72,28 @@ const Home: React.FC = () => {
       </div>
       <div className="mt-16 sm:mt-20">
         <div className="-my-4 flex justify-center gap-5 py-4 sm:gap-8">
-          {" "}
-          {/* needs img */}
-          <Card rotation={2} imageFolder="/img/avatar" imageName="avatar"/>
-          <Card rotation={-2} imageFolder="/img/cards/card1" imageName="card1"/>
-          <Card rotation={2} imageFolder="/img/cards/card2" imageName="card2"/>
-          <Card rotation={2} imageFolder="/img/cards/card3" imageName="card3"/>
-          <Card rotation={-2} imageFolder="/img/cards/card4" imageName="card4"/>
+          <Card rotation={2} imageFolder="/img/avatar" imageName="avatar" />
+          <Card
+            rotation={-2}
+            imageFolder="/img/cards/card1"
+            imageName="card1"
+          />
+          <Card rotation={2} imageFolder="/img/cards/card2" imageName="card2" />
+          <Card rotation={2} imageFolder="/img/cards/card3" imageName="card3" />
+          <Card
+            rotation={-2}
+            imageFolder="/img/cards/card4"
+            imageName="card4"
+          />
         </div>
       </div>
-      <div className="sm:px-8 mt-24 md:mt-28">{/* next */}</div>
-      <button className="bg-openai-hover text-white px-6 py-3 rounded-md hover:bg-opacity-80 transition duration-300">
-        View My Work
-      </button>
+      <div className="mt-24 md:mt-28">
+          <h2 className="relative text-4xl mb-6 mt-7 text-zinc-100 font-inter font-semibold tracking-tight leading-[3.5rem]">
+            What I can offer
+            <span className="absolute inset-x-0 -bottom-[0rem] h-[1.5px] bg-gradient-to-r from-zinc-800/90 via-zin-800/90 to-zinc-800/90 ease-in-out"></span>
+          </h2>
+        <WhatIOfferList />
+      </div>
     </div>
   );
 };
