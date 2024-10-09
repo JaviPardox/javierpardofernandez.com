@@ -1,7 +1,8 @@
+import React, { useState } from 'react';
 import WhatIOfferListItem from './WhatIOfferListItem';
 import { FaTools, FaCode, FaFire, FaChartLine, FaCommentAlt, FaLightbulb } from 'react-icons/fa';
 
-const WhatIOfferList = () => {
+const WhatIOfferList: React.FC = () => {
   return (
     <ul className="grid grid-cols-1 gap-x-12 gap-y-12 md:gap-y-16 sm:grid-cols-2 lg:grid-cols-3 text-zinc-400 mt-10">
       <WhatIOfferListItem
