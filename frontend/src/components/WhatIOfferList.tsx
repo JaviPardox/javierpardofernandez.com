@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import WhatIOfferListItem from './WhatIOfferListItem';
 import { FaTools, FaCode, FaFire, FaChartLine, FaCommentAlt, FaLightbulb } from 'react-icons/fa';
 
