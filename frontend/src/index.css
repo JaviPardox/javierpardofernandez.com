@@ -17,11 +17,6 @@ html {
   overflow-x: hidden;
 }
 
-* {
-  border: none;
-  outline: none;
-}
-
 /* Ensure the app takes up full height */
 #root {
   min-height: 100vh;
