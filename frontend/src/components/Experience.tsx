@@ -16,7 +16,7 @@ const ExperienceSection: React.FC = () => {
   useEffect(() => {
     const fetchExperience = async () => {
       try {
-        const response = await axios.get<WorkExperienceItem>('http://localhost:8000/jobb-info');
+        const response = await axios.get<WorkExperienceItem>('http://localhost:8000/job-info');
         setExperience(response.data);
         setLoading(false);
       } catch (error) {
