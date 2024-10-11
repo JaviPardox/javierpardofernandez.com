@@ -1,52 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DevIconGroup from "./DevIconGroup";
 import HashtagList from "./HashtagList";
 import BriefcaseIconWork from "./BriefcaseIconWork";
 import CompanyAndDateInfo from "./CompanyAndDateInfo";
 import JobTitleAndDescription from "./JobTitleAndDescription";
+import axios from 'axios';
+import { WorkExperienceItem } from '../types';
 
 const ExperienceSection: React.FC = () => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [experience, setExperience] = useState<WorkExperienceItem | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const hashtags = ["Leadership", "Architecture", "Backend", "Frontend"];
+  useEffect(() => {
+    const fetchExperience = async () => {
+      try {
+        const response = await axios.get<WorkExperienceItem>('http://localhost:8000/jobb-info');
+        setExperience(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching experience:', error);
+        setError('Failed to fetch job experience. Please try again later.');
+        setLoading(false);
+      }
+    };
 
-  const icons = [
-    {
-      tooltipId: "1085",
-      content: ".NET 6",
-      iconClass: "devicon-dotnetcore-plain",
-    },
-    {
-      tooltipId: "1086",
-      content: ".NET Framework 4.7.2",
-      iconClass: "devicon-dot-net-plain",
-    },
-    {
-      tooltipId: "1087",
-      content: "MS SQL Server 2019",
-      iconClass: "devicon-microsoftsqlserver-plain",
-    },
-    {
-      tooltipId: "1088",
-      content: "React 16",
-      iconClass: "devicon-react-plain",
-    },
-    { tooltipId: "1089", content: "Redux", iconClass: "devicon-redux-plain" },
-  ];
+    fetchExperience();
+  }, []);
 
-  const companyAndDateInfo = {
-    url: "https://fabrity.com",
-    companyName: "FABRITY",
-    date: "March 2022 - Present"
-  };
-
-  const jobPosition = "Software Architect";
-  const jobDescription = [
-    "As a lead software architect for FastAPP, a low-code enterprise platform I help product owners translate their business requirements into clean, robust and extensible technical solutions.",
-    "As a competence leader in the area of .NET, I help backend programmers hone their skills by supporting them in their everyday work.",
-    "As a leader of an internal knowledge-sharing programme, I organize monthly meetings where passion-driven people can share their knowledge with the rest of the company.",
-    "Furthermore, I do technical interviews and serve as a conference speaker on behalf of Fabrity."
-  ];
+  if (loading) return <div className="text-center">Loading job experience...</div>;
+  if (error) return <div className="text-red-500 text-center">{error}</div>;
+  if (!experience) return <div className="text-red-500 text-center">Error - Data fetching not executed</div>;
 
   return (
     <div className="md:border-l md:pl-6 md:border-zinc-700/40">
@@ -54,7 +39,7 @@ const ExperienceSection: React.FC = () => {
         <article className="lg:grid md:grid-cols-4 lg:items-baseline">
           <div className="relative">
             <BriefcaseIconWork />
-            <CompanyAndDateInfo info={companyAndDateInfo}/>
+            <CompanyAndDateInfo info={experience.companyAndDateInfo}/>
           </div>
           <div
             className="md:col-span-3 group relative flex flex-col items-start"
@@ -62,9 +47,9 @@ const ExperienceSection: React.FC = () => {
             onMouseLeave={() => setIsHovered(false)}
           >
             <span className="hidden lg:block absolute -inset-x-4 -inset-y-6 z-[-1] scale-95 bg-zinc-800/50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl"></span>
-            <JobTitleAndDescription position={jobPosition} description={jobDescription} />
-            <HashtagList items={hashtags} />
-            <DevIconGroup isHovered={isHovered} icons={icons} />
+            <JobTitleAndDescription position={experience.jobPosition} description={experience.jobDescription} />
+            <HashtagList items={experience.hashtags} />
+            <DevIconGroup isHovered={isHovered} icons={experience.icons} />
           </div>
         </article>
       </div>
