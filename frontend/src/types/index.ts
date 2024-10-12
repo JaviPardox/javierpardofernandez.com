@@ -22,3 +22,7 @@ export interface WorkExperienceItem {
   jobPosition: string;
   jobDescription: string[];
 }
+
+export interface WorkExperience {
+  data: WorkExperienceItem[];
+}
