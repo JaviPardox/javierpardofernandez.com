@@ -15,7 +15,7 @@ export interface CompanyAndDateInfo {
   date: string;
 }
 
-// KEYS NEED TO MATCH!!!
+// KEYS NEED TO MATCH WITH BACKEND!!!
 export interface WorkExperienceItem {
   hashtags: string[];
   icons: IconItem[];
