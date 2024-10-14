@@ -1,6 +1,6 @@
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel, HttpUrl, ValidationError, field_validator
 from typing import List
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 
 router = APIRouter()
@@ -21,64 +21,79 @@ class WorkExperienceItem(BaseModel):
     jobPosition: str
     jobDescription: List[str]
     
+    @field_validator('hashtags')
+    def check_hashtags(cls, v):
+        if not isinstance(v, list):
+            raise ValueError('Hashtags must be a list.')
+        
+        for hashtag in v:
+            if not hashtag:  # Check if the hashtag is empty
+                raise ValueError('Hashtag cannot be empty.')
+        return v
+    
+    @field_validator('icons')
+    def check_icons(cls, v):
+        if not isinstance(v, list):
+            raise ValueError('Icons must be a list.')
+        
+        for icon in v:
+            if not isinstance(icon, IconItem):
+                raise ValueError('Each icon must be an IconItem instance.')
+            if not icon.content or not icon.iconClass:
+                raise ValueError('Icon content and iconClass cannot be empty.')
+        return v
+
+    @field_validator('companyAndDateInfo')
+    def check_company_and_date_info(cls, v):
+        if not isinstance(v, CompanyAndDateInfo):
+            raise ValueError('companyAndDateInfo must be an instance of CompanyAndDateInfo.')
+        if not v.url:
+            raise ValueError('URL cannot be empty.')
+        if not v.companyName:
+            raise ValueError('Company name cannot be empty.')
+        if not v.date:
+            raise ValueError('Date cannot be empty.')
+        return v
+
+    @field_validator('jobPosition')
+    def check_job_position(cls, v):
+        if not v:
+            raise ValueError('Job position cannot be empty.')
+        return v
+
+    @field_validator('jobDescription')
+    def check_job_description(cls, v):
+        if not isinstance(v, list):
+            raise ValueError('Job description must be a list.')
+        
+        for description in v:
+            if not description:
+                raise ValueError('Job description cannot be empty.')
+        return v
+    
 class WorkExperience(BaseModel):
     data: List[WorkExperienceItem]
     
     @classmethod
-    def create(cls) -> "WorkExperience":
-    
-        experience_1 = WorkExperienceItem(
-        hashtags = ["Leadership", "Architecture", "Backend", "Frontend"],
-        icons = [
-            IconItem(content=".NET 6", iconClass="devicon-dotnetcore-plain"),
-            IconItem(content=".NET Framework 4.7.2", iconClass="devicon-dot-net-plain"),
-            IconItem(content="MS SQL Server 2019", iconClass="devicon-microsoftsqlserver-plain"),
-            IconItem(content="React 16", iconClass="devicon-react-plain"),
-            IconItem(content="Redux", iconClass="devicon-redux-plain")
-        ],
-        companyAndDateInfo = CompanyAndDateInfo(
-            url="https://fabrity.com",
-            companyName="FABRITY",
-            date="March 2022 - Present"
-        ),
-        jobPosition = "Software Architect",
-        jobDescription = [
-            "As a lead software architect for FastAPP, a low-code enterprise platform I help product owners translate their business requirements into clean, robust and extensible technical solutions.",
-            "As a competence leader in the area of .NET, I help backend programmers hone their skills by supporting them in their everyday work.",
-            "As a leader of an internal knowledge-sharing programme, I organize monthly meetings where passion-driven people can share their knowledge with the rest of the company.",
-            "Furthermore, I do technical interviews and serve as a conference speaker on behalf of Fabrity."
-        ]
-        )
+    def create_from_file(cls, file_name: str) -> "WorkExperience":
+            file_path = f"data/{file_name}"  # Adjusted path
+            try:
+                with open(file_path, 'r') as file:
+                    json_data = file.read()
+                return cls.model_validate_json(json_data)
+            except ValidationError as e:
+                raise HTTPException(status_code=422, detail=f"Validation Error: {e}")
+            except FileNotFoundError:
+                raise HTTPException(status_code=404, detail="The file was not found.")
+            except Exception as e:
+                raise HTTPException(status_code=500, detail=f"Unexpected error: {e}")
         
-        experience_2 = WorkExperienceItem(
-        hashtags = ["Leadership", "Architecture", "Backend", "Frontend"],
-        icons = [
-            IconItem(content=".NET 6", iconClass="devicon-dotnetcore-plain"),
-            IconItem(content=".NET Framework 4.7.2", iconClass="devicon-dot-net-plain"),
-            IconItem(content="MS SQL Server 2019", iconClass="devicon-microsoftsqlserver-plain"),
-            IconItem(content="React 16", iconClass="devicon-react-plain"),
-            IconItem(content="Redux", iconClass="devicon-redux-plain")
-        ],
-        companyAndDateInfo = CompanyAndDateInfo(
-            url="https://fabrity.com",
-            companyName="FABRITY",
-            date="March 2022 - Present"
-        ),
-        jobPosition = "Software Architect",
-        jobDescription = [
-            "As a lead software architect for FastAPP, a low-code enterprise platform I help product owners translate their business requirements into clean, robust and extensible technical solutions.",
-            "As a competence leader in the area of .NET, I help backend programmers hone their skills by supporting them in their everyday work.",
-            "As a leader of an internal knowledge-sharing programme, I organize monthly meetings where passion-driven people can share their knowledge with the rest of the company.",
-            "Furthermore, I do technical interviews and serve as a conference speaker on behalf of Fabrity"
-        ]
-        )
-        
-        return cls(data=[experience_1, experience_2])
-        
-
 
 @router.get("/job-info", response_model=WorkExperience)
 def get_job_info():
-    
-    work_experience_data = WorkExperience.create()
-    return work_experience_data
+    try:
+        work_experience = WorkExperience.create_from_file('work_experience.json')
+        return work_experience
+    except HTTPException as e:
+        raise e
+
