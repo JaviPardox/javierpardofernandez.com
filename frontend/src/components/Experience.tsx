@@ -8,7 +8,7 @@ import axios from "axios";
 import { WorkExperience } from "../types";
 
 const ExperienceSection: React.FC = () => {
-  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [workExperience, setWorkExperience] = useState<WorkExperience | null>(
     null
   );
@@ -53,9 +53,10 @@ const ExperienceSection: React.FC = () => {
               <CompanyAndDateInfo info={experience.companyAndDateInfo} />
             </div>
             <div
+              key={index} // Good for react optimization
               className="md:col-span-3 group relative flex flex-col items-start"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
             >
               <span className="hidden lg:block absolute -inset-x-4 -inset-y-6 z-[-1] scale-95 bg-zinc-800/50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl"></span>
               <JobTitleAndDescription
@@ -63,7 +64,10 @@ const ExperienceSection: React.FC = () => {
                 description={experience.jobDescription}
               />
               <HashtagList items={experience.hashtags} />
-              <DevIconGroup isHovered={isHovered} icons={experience.icons} />
+              <DevIconGroup
+                isHovered={hoveredIndex === index}
+                icons={experience.icons}
+              />
             </div>
           </article>
         ))}
