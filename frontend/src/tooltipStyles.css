@@ -1,0 +1,42 @@
+.custom-tooltip {
+    background-color: rgba(34, 34, 34, 0.9); /* Slightly translucent background */
+    color: #f4f4f5df;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    
+    /* Smooth transition for opacity */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .custom-tooltip.show {
+    opacity: 1;
+  }
+  
+  .custom-tooltip-arrow {
+    background-color: rgba(34, 34, 34, 0.9); /* Match the tooltip background */
+    width: 8px;
+    height: 8px;
+    transform: rotate(45deg);
+  }
+  
+  /* Position the arrow for different placements */
+  .react-tooltip__place-top .custom-tooltip-arrow {
+    bottom: -4px;
+  }
+  
+  .react-tooltip__place-bottom .custom-tooltip-arrow {
+    top: -4px;
+  }
+  
+  .react-tooltip__place-left .custom-tooltip-arrow {
+    right: -4px;
+  }
+  
+  .react-tooltip__place-right .custom-tooltip-arrow {
+    left: -4px;
+  }
