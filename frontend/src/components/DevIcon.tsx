@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 
@@ -10,23 +10,20 @@ interface IconProps {
 
 
 const DevIcon: React.FC<IconProps> = ({ content, iconClass, isHovered }) => {
-  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   return (
     <>
       <i
-        data-tooltip-id={`tooltip-${content}`}  // Use data-tooltip-id
+        data-tooltip-id={`tooltip-${content}`}
+        data-tooltip-delay-show={200}
         className={`${iconClass} transition-colors ${isHovered ? 'colored' : ''}`}
-        onMouseEnter={() => setIsTooltipVisible(true)}
-        onMouseLeave={() => setIsTooltipVisible(false)}
       ></i>
       <ReactTooltip
         id={`tooltip-${content}`}  // Set the tooltip id to match data-tooltip-id
         content={content}
         place="top"
-        className={`custom-tooltip ${isTooltipVisible ? 'show' : ''}`}
+        className="custom-tooltip"
         classNameArrow="custom-tooltip-arrow"
-        delayHide={300} 
       />
     </>
   );
