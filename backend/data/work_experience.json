@@ -1,0 +1,49 @@
+{
+    "data": [
+      {
+        "hashtags": ["Leadership", "Architecture", "Backend", "Frontend"],
+        "icons": [
+          { "content": ".NET 6", "iconClass": "devicon-dotnetcore-plain" },
+          { "content": ".NET Framework 4.7.2", "iconClass": "devicon-dot-net-plain" },
+          { "content": "MS SQL Server 2019", "iconClass": "devicon-microsoftsqlserver-plain" },
+          { "content": "React 16", "iconClass": "devicon-react-plain" },
+          { "content": "Redux", "iconClass": "devicon-redux-plain" }
+        ],
+        "companyAndDateInfo": {
+          "url": "https://fabrity.com",
+          "companyName": "FABRITY",
+          "date": "March 2022 - Present"
+        },
+        "jobPosition": "Software Architect",
+        "jobDescription": [
+          "As a lead software architect for FastAPP, a low-code enterprise platform I help product owners translate their business requirements into clean, robust and extensible technical solutions.",
+          "As a competence leader in the area of .NET, I help backend programmers hone their skills by supporting them in their everyday work.",
+          "As a leader of an internal knowledge-sharing programme, I organize monthly meetings where passion-driven people can share their knowledge with the rest of the company.",
+          "Furthermore, I do technical interviews and serve as a conference speaker on behalf of Fabrity."
+        ]
+      },
+      {
+        "hashtags": ["Leadership", "Architecture", "Backend", "Frontend"],
+        "icons": [
+          { "content": ".NET 6", "iconClass": "devicon-dotnetcore-plain" },
+          { "content": ".NET Framework 4.7.2", "iconClass": "devicon-dot-net-plain" },
+          { "content": "MS SQL Server 2019", "iconClass": "devicon-microsoftsqlserver-plain" },
+          { "content": "React 16", "iconClass": "devicon-react-plain" },
+          { "content": "Redux", "iconClass": "devicon-redux-plain" }
+        ],
+        "companyAndDateInfo": {
+          "url": "https://fabrity.com",
+          "companyName": "FABRITY",
+          "date": "March 2022 - Present"
+        },
+        "jobPosition": "Software Architect",
+        "jobDescription": [
+          "As a lead software architect for FastAPP, a low-code enterprise platform I help product owners translate their business requirements into clean, robust and extensible technical solutions.",
+          "As a competence leader in the area of .NET, I help backend programmers hone their skills by supporting them in their everyday work.",
+          "As a leader of an internal knowledge-sharing programme, I organize monthly meetings where passion-driven people can share their knowledge with the rest of the company.",
+          "Furthermore, I do technical interviews and serve as a conference speaker on behalf of Fabrity."
+        ]
+      }
+    ]
+  }
+  

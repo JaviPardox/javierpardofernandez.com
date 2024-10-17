@@ -1,0 +1,41 @@
+/* Increased specificity by using a more specific selector */
+/* So it overrides react tooltips default*/
+html:not(#✨) {
+    --rt-transition-show-delay: 0.4s;
+    --rt-transition-closing-delay: 0.4s;
+  }
+
+.react-tooltip.custom-tooltip {
+    background-color: rgba(34, 34, 34, 0.9);
+    color: #f4f4f5df;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .react-tooltip.custom-tooltip .custom-tooltip-arrow {
+    background-color: rgba(34, 34, 34, 0.9);
+    width: 8px;
+    height: 8px;
+    transform: rotate(45deg);
+  }
+  
+  /* Position the arrow for different placements */
+  .react-tooltip.custom-tooltip.react-tooltip__place-top .custom-tooltip-arrow {
+    bottom: -4px;
+  }
+  
+  .react-tooltip.custom-tooltip.react-tooltip__place-bottom .custom-tooltip-arrow {
+    top: -4px;
+  }
+  
+  .react-tooltip.custom-tooltip.react-tooltip__place-left .custom-tooltip-arrow {
+    right: -4px;
+  }
+  
+  .react-tooltip.custom-tooltip.react-tooltip__place-right .custom-tooltip-arrow {
+    left: -4px;
+  }

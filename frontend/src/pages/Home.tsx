@@ -3,6 +3,7 @@ import SocialIcon from "../components/SocialIcon";
 import Card from "../components/Card";
 import AvatarImage from "../components/AvatarImage";
 import WhatIOfferList from "../components/WhatIOfferList";
+import ExperienceSection from "../components/Experience";
 
 const Home: React.FC = () => {
   return (
@@ -88,11 +89,18 @@ const Home: React.FC = () => {
         </div>
       </div>
       <div className="mt-24 md:mt-28">
-          <h2 className="relative text-4xl mb-6 mt-7 text-zinc-100 font-inter font-semibold tracking-tight leading-[3.5rem]">
-            What I can offer
-            <span className="absolute inset-x-0 -bottom-[0rem] h-[1.5px] bg-gradient-to-r from-zinc-800/90 via-zin-800/90 to-zinc-800/90 ease-in-out"></span>
-          </h2>
+        <h2 className="relative text-4xl mb-6 mt-7 text-zinc-100 font-inter font-semibold tracking-tight leading-[3.5rem]">
+          What I can offer
+          <span className="absolute inset-x-0 -bottom-[0rem] h-[1.5px] bg-gradient-to-r from-zinc-800/90 via-zin-800/90 to-zinc-800/90 ease-in-out"></span>
+        </h2>
         <WhatIOfferList />
+      </div>
+      <div className="mt-24 md:mt-28">
+        <h2 className="relative text-4xl mb-10 mt-7 text-zinc-100 font-inter font-semibold tracking-tight leading-[3.5rem]">
+          My experience so far
+          <span className="absolute inset-x-0 -bottom-[0rem] h-[1.5px] bg-gradient-to-r from-zinc-800/90 via-zin-800/90 to-zinc-800/90 ease-in-out"></span>
+        </h2>
+        <ExperienceSection />
       </div>
     </div>
   );

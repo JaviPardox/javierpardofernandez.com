@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Add these global styles */
+@import './tooltipStyles.css';
+
 body {
   margin: 0;
   padding: 0;
@@ -17,12 +18,7 @@ html {
   overflow-x: hidden;
 }
 
-* {
-  border: none;
-  outline: none;
-}
-
-/* Ensure the app takes up full height */
+/* Might have to change this */
 #root {
   min-height: 100vh;
   display: flex;
