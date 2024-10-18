@@ -222,33 +222,42 @@ const Navbar: React.FC = () => {
               <Link
                 to="/"
                 className="text-sm hover:text-teal-400"
-                onClick={() => closeNavbar()}
+                onClick={(e) => {
+                  handleLinkClick(e, "home");
+                  closeNavbar();
+                }}
               >
                 Home
               </Link>
               <span className="block h-px mr-4 bg-gradient-to-r from-teal-400/40 via-teal-400/20 to-teal-400/40"></span>
               <Link
-                to="/about"
+                to="/"
                 className="text-sm hover:text-teal-400"
-                onClick={() => closeNavbar()}
+                onClick={(e) => {
+                  handleLinkClick(e, "offer");
+                  closeNavbar();
+                }}
               >
-                About
+                Offer
               </Link>
               <span className="block h-px mr-4 bg-gradient-to-r from-teal-400/40 via-teal-400/20 to-teal-400/40"></span>
               <Link
-                to="/portfolio"
+                to="/"
                 className="text-sm hover:text-teal-400"
-                onClick={() => closeNavbar()}
+                onClick={(e) => {
+                  handleLinkClick(e, "experience");
+                  closeNavbar();
+                }}
               >
-                Portfolio
+                Experience
               </Link>
               <span className="block h-px mr-4 bg-gradient-to-r from-teal-400/40 via-teal-400/20 to-teal-400/40"></span>
               <Link
-                to="/contact"
+                to="/blog"
                 className="text-sm hover:text-teal-400"
                 onClick={() => closeNavbar()}
               >
-                Contact
+                Blog
               </Link>
             </div>
           </div>
