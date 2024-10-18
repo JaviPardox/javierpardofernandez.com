@@ -7,7 +7,7 @@ import ExperienceSection from "../components/Experience";
 
 const Home: React.FC = () => {
   return (
-    <div className="text-left px-8">
+    <div className="text-left px-8" id="home">
       <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]"></div>
       <div className="pb-0">
         <a
@@ -88,14 +88,14 @@ const Home: React.FC = () => {
           />
         </div>
       </div>
-      <div className="mt-24 md:mt-28">
+      <div className="mt-24 md:mt-28" id="offer">
         <h2 className="relative text-4xl mb-6 mt-7 text-zinc-100 font-inter font-semibold tracking-tight leading-[3.5rem]">
           What I can offer
           <span className="absolute inset-x-0 -bottom-[0rem] h-[1.5px] bg-gradient-to-r from-zinc-800/90 via-zin-800/90 to-zinc-800/90 ease-in-out"></span>
         </h2>
         <WhatIOfferList />
       </div>
-      <div className="mt-24 md:mt-28">
+      <div className="mt-24 md:mt-28" id="experience">
         <h2 className="relative text-4xl mb-10 mt-7 text-zinc-100 font-inter font-semibold tracking-tight leading-[3.5rem]">
           My experience so far
           <span className="absolute inset-x-0 -bottom-[0rem] h-[1.5px] bg-gradient-to-r from-zinc-800/90 via-zin-800/90 to-zinc-800/90 ease-in-out"></span>
