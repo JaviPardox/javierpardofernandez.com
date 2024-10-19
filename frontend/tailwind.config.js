@@ -21,6 +21,10 @@ module.exports = {
         '4.5xl': '2.5rem',
         '4.82xl': '2.82rem',
       },
+      padding: {
+        '10p': '10%',
+        '20p': '20%',
+      },
     },
   },
   plugins: [],
