@@ -86,12 +86,12 @@ const Navbar: React.FC = () => {
             behavior: "smooth",
           });
         }
-      }, 0); // Delay to allow for navigation to complete
+      }, 300); // Delay to allow for navigation to complete
     }
   };
 
   return (
-    <nav className="sticky top-6 z-50 flex">
+    <nav className="fixed top-7 left-0 z-50 w-full md:pr-0 pr-10p">
       <div className="w-full flex md:justify-center justify-end">
         <div className="inline-block bg-zinc-800/90 rounded-full pl-5 pr-4 py-0.5 ring-1 ring-white/10 text-sm font-light text-zinc-200 hover:ring-white/20">
           <div className="flex items-center justify-between">
@@ -182,7 +182,7 @@ const Navbar: React.FC = () => {
       </div>
       {isOpen && (
         <div
-          className={`fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40 transition-all duration-300 ${
+          className={`fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40 transition-all duration-300 px-10p ${
             isAnimating ? "opacity-100 scale-100" : "opacity-0 scale-100"
           }`}
         >
