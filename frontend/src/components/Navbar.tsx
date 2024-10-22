@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const [activeLink, setActiveLink] = useState<string | null>(null);
+  const [activeLink, setActiveLink] = useState<string | null>("home");
   const [isAnimating, setIsAnimating] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -64,15 +64,16 @@ const Navbar: React.FC = () => {
     linkName: string
   ) => {
     event.preventDefault(); // Prevent default anchor behavior
-    if (activeLink !== linkName) {
-      setActiveLink(linkName);
-    }
 
     if (linkName === "home") {
+      setActiveLink("home"); //añadir un poco de delay a estas dos opciones?
       navigate("/");
       window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
     } else if (linkName === "blog") {
+      setActiveLink("blog");
       navigate("/blog");
+      return;
     } else {
       navigate("/");
       setTimeout(() => {
@@ -90,6 +91,34 @@ const Navbar: React.FC = () => {
       }, 300); // Delay to allow for navigation to complete
     }
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.location.pathname === "/blog") return;
+      const sections = ["home", "offer", "experience"];
+      let currentSection = "home";
+
+      sections.forEach((section) => {
+        const sectionElement = document.getElementById(section);
+        if (sectionElement) {
+          const rect = sectionElement.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            currentSection = section;
+          }
+        }
+      });
+
+      setActiveLink(currentSection);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
 
   useEffect(() => {
     const handleScroll = () => {

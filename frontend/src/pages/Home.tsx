@@ -7,7 +7,7 @@ import ExperienceSection from "../components/Experience";
 
 const Home: React.FC = () => {
   return (
-    <div className="text-left px-8" id="home">
+    <div className="text-left px-8">
       <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]"></div>
       <div className="pb-0">
         <a
@@ -17,7 +17,7 @@ const Home: React.FC = () => {
           <AvatarImage />
         </a>
       </div>
-      <div className="max-w-2xl">
+      <div className="max-w-2xl" id="home">
         <h1 className="text-4.82xl mb-6 mt-7 text-zinc-100 font-inter font-bold tracking-tight leading-[3.5rem]">
           Software designer, founder, and amateur astronaut.
         </h1>
