@@ -77,14 +77,13 @@ const Navbar: React.FC = () => {
     } else {
       navigate("/");
       setTimeout(() => {
-        if (linkName === "offer") {
+        if (linkName === "offer" || linkName === "experience") {
+          const element = document.getElementById(linkName);
+          const offset = 100;
+          const elementPosition = element?.offsetTop || 0;
+          
           window.scrollTo({
-            top: document.getElementById("offer")?.offsetTop || 0,
-            behavior: "smooth",
-          });
-        } else if (linkName === "experience") {
-          window.scrollTo({
-            top: document.getElementById("experience")?.offsetTop || 0,
+            top: elementPosition - offset,
             behavior: "smooth",
           });
         }
@@ -96,19 +95,24 @@ const Navbar: React.FC = () => {
     const handleScroll = () => {
       if (window.location.pathname === "/blog") return;
       const sections = ["home", "offer", "experience"];
-      let currentSection = "home";
+      let maxVisibleSection = "home";
+      let maxVisibleArea = 0;
 
       sections.forEach((section) => {
         const sectionElement = document.getElementById(section);
         if (sectionElement) {
           const rect = sectionElement.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            currentSection = section;
+          const visibleHeight = Math.min(rect.bottom, window.innerHeight) - 
+                              Math.max(rect.top, 0);
+          
+          if (visibleHeight > maxVisibleArea) {
+            maxVisibleArea = visibleHeight;
+            maxVisibleSection = section;
           }
         }
       });
 
-      setActiveLink(currentSection);
+      setActiveLink(maxVisibleSection);
     };
 
     window.addEventListener("scroll", handleScroll);
