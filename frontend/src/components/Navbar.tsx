@@ -98,6 +98,16 @@ const Navbar: React.FC = () => {
       let maxVisibleSection = "home";
       let maxVisibleArea = 0;
 
+      // Fixing home highlighting
+      const homeThreshold = 350;
+      const scrollPosition = window.scrollY;
+
+      // If we're near the top, always show home as active
+      if (scrollPosition < homeThreshold) {
+        setActiveLink("home");
+        return;
+      }
+
       sections.forEach((section) => {
         const sectionElement = document.getElementById(section);
         if (sectionElement) {
