@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const About: React.FC = () => {
+const Blog: React.FC = () => {
   const [skills, setSkills] = useState<string[]>([]);
 
   useEffect(() => {
@@ -35,4 +35,4 @@ const About: React.FC = () => {
   );
 }
 
-export default About;
+export default Blog;
