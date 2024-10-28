@@ -1,4 +1,6 @@
 import React from "react";
+import { usePageLoading } from '../hooks/usePageLoading';
+
 import SocialIcon from "../components/SocialIcon";
 import Card from "../components/Card";
 import AvatarImage from "../components/AvatarImage";
@@ -6,6 +8,8 @@ import WhatIOfferList from "../components/WhatIOfferList";
 import ExperienceSection from "../components/Experience";
 
 const Home: React.FC = () => {
+  usePageLoading();
+
   return (
     <div className="text-left px-8">
       <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))] pb-10"></div>
