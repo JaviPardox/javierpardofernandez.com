@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from '../store/hooks';
 import { useLocation } from 'react-router-dom';
-import SlidingLoadingScreen from './SlidingLoadingScreen';
+import FadingLoadingScreen from './FadingLoadingScreen';
 
 const PageTransitions: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const isLoading = useAppSelector((state) => state.loading.isLoading);
@@ -37,13 +37,13 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({ children }) 
     <>
       <style>
         {`
-          @keyframes slideInOut {
-            0% { transform: translateY(100%); }
-            50% { transform: translateY(0); }
-            100% { transform: translateY(-100%) }
+          @keyframes fadeInOut {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
           }
-          .animate-slideInOut {
-            animation: slideInOut 1.4s ease-in-out forwards;
+          .animate-fadeInOut {
+            animation: fadeInOut 1.4s ease-in-out forwards;
           }
         `}
       </style>
@@ -57,7 +57,7 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({ children }) 
         >
           {currentChildren}
         </div>
-        {showLoadingScreen && <SlidingLoadingScreen />}
+        {showLoadingScreen && <FadingLoadingScreen />}
       </div>
     </>
   );

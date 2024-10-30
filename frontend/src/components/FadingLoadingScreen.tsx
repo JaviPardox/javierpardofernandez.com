@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-const SlidingLoadingScreen = () => {
-  const [isExiting, setIsExiting] = useState(false);
-
-  useEffect(() => {
-    // Start exit animation immediately
-    setIsExiting(true);
-  }, []);
-
+const FadingLoadingScreen = () => {
   return (
     <div 
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-white transition-all duration-700
-        ${isExiting ? 'animate-slideInOut' : ''}`}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-white transition-opacity duration-700
+        animate-fadeInOut"
     >
       <div className="relative flex flex-col items-center gap-4">
         {/* Custom loading animation */}
@@ -44,4 +37,4 @@ const SlidingLoadingScreen = () => {
   );
 };
 
-export default SlidingLoadingScreen;
+export default FadingLoadingScreen;
