@@ -14,8 +14,8 @@ const App: React.FC = () => {
     <Provider store={store}>
       <Router>
       <div className="flex flex-col min-h-screen">
-        <Navbar />
-          <PageTransitions>
+        <PageTransitions>
+          <Navbar />  
             <ResponsiveCenterLayout>
               <main className="p-4 sm:p-6 lg:p-8">
                 <Routes>
