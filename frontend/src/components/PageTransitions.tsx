@@ -3,6 +3,11 @@ import { useAppSelector } from '../store/hooks';
 import { useLocation } from 'react-router-dom';
 import FadingLoadingScreen from './FadingLoadingScreen';
 
+
+const FADE_DURATION = 1000;  // How long each fade animation takes
+const LOADING_EXTRA_TIME = 2000;  // Additional time to show loading screen after isLoading becomes false
+const CONTENT_READY_TIME = 500;  // Time it takes for the content to be labeled as ready
+
 const PageTransitions: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const isLoading = useAppSelector((state) => state.loading.isLoading);
   const [showLoadingScreen, setShowLoadingScreen] = useState(true);
@@ -10,21 +15,28 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({ children }) 
   const location = useLocation();
 
   useEffect(() => {
-    // Start the content fade-in
-    const contentReadyTimer = setTimeout(() => {
-      setIsContentReady(true);
-    }, 2000);
+    let contentReadyTimer: NodeJS.Timeout;
+    let loadingScreenTimer: NodeJS.Timeout;
 
-    // Remove loading screen after fade-out animation completes
-    const loadingScreenTimer = setTimeout(() => {
-      setShowLoadingScreen(false);
-    }, 2700); // 2000ms delay + 700ms for fade out
+    if (isLoading) {
+      setShowLoadingScreen(true);
+      setIsContentReady(false);
+    } else {
+      // When loading finishes, start transition sequence
+      contentReadyTimer = setTimeout(() => {
+        setIsContentReady(true);
+      }, CONTENT_READY_TIME);
+
+      loadingScreenTimer = setTimeout(() => {
+        setShowLoadingScreen(false);
+      }, LOADING_EXTRA_TIME + FADE_DURATION);
+    }
 
     return () => {
       clearTimeout(contentReadyTimer);
       clearTimeout(loadingScreenTimer);
     };
-  }, []);
+  }, [location.pathname, isLoading]);
 
   return (
     <>
@@ -36,8 +48,8 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({ children }) 
           }
           .animate-fadeOut {
             opacity: 1;
-            animation: fadeOut 0.7s ease-in-out forwards;
-            animation-delay: 2s;
+            animation: fadeOut ${FADE_DURATION}ms ease-in-out forwards;
+            animation-delay: ${LOADING_EXTRA_TIME}ms;
           }
           @keyframes fadeIn {
             from { opacity: 0; }
@@ -45,8 +57,8 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({ children }) 
           }
           .content-fade-in {
             opacity: 0;
-            animation: fadeIn 0.7s ease-in-out forwards;
-            animation-delay: 2s;
+            animation: fadeIn ${FADE_DURATION}ms ease-in-out forwards;
+            animation-delay: ${LOADING_EXTRA_TIME}ms;
           }
           @keyframes contentFadeIn {
             from { opacity: 0; }
@@ -54,17 +66,17 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({ children }) 
           }
           .animate-contentFadeIn {
             opacity: 0;
-            animation: contentFadeIn 0.7s ease-in-out forwards;
+            animation: contentFadeIn ${FADE_DURATION}ms ease-in-out forwards;
           }
         `}
       </style>
       <div className="relative flex-1">
-        {isContentReady && (
-          <div className="min-h-[calc(100vh-4rem)] content-fade-in">
-            {children}
-          </div>
-        )}
-        {showLoadingScreen && (
+        <div 
+          className={`min-h-[calc(100vh-4rem)] ${isContentReady && !isLoading ? 'content-fade-in' : 'opacity-0'}`}
+        >
+          {children}
+        </div>
+        {(showLoadingScreen || isLoading) && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black animate-fadeOut">
             <FadingLoadingScreen />
           </div>
