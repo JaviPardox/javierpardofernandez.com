@@ -8,7 +8,7 @@ import WhatIOfferList from "../components/WhatIOfferList";
 import ExperienceSection from "../components/Experience";
 
 const Home: React.FC = () => {
-  usePageLoading();
+  usePageLoading(500);
 
   return (
     <div className="text-left px-8">
