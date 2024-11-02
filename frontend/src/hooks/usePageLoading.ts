@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useAppDispatch } from '../store/hooks';
 import { setLoading } from '../store/loadingSlice';
 
-export const usePageLoading = () => {
+export const usePageLoading = (loadingTime: number = 1500) => {
   const dispatch = useAppDispatch();
   const location = useLocation();
 
@@ -12,11 +12,11 @@ export const usePageLoading = () => {
 
     const timer = setTimeout(() => {
       dispatch(setLoading(false));
-    }, 1500);
+    }, loadingTime);
 
     return () => {
       clearTimeout(timer);
       dispatch(setLoading(false));
     };
-  }, [location.pathname, dispatch]);
+  }, [location.pathname, dispatch, loadingTime]);
 };
