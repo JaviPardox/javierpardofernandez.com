@@ -87,7 +87,7 @@ const Navbar: React.FC = () => {
             behavior: "smooth",
           });
         }
-      }, 300); // Delay to allow for navigation to complete
+      }, 100); // Delay to allow for navigation to complete
     }
   };
 
