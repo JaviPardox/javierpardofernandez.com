@@ -1,5 +1,5 @@
 import React from "react";
-import { usePageLoading } from '../hooks/usePageLoading';
+//import { usePageLoading } from '../hooks/usePageLoading';
 
 import SocialIcon from "../components/SocialIcon";
 import Card from "../components/Card";
@@ -8,7 +8,6 @@ import WhatIOfferList from "../components/WhatIOfferList";
 import ExperienceSection from "../components/Experience";
 
 const Home: React.FC = () => {
-  usePageLoading(500);
 
   return (
     <div className="text-left px-8">
