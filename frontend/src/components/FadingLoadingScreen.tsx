@@ -1,33 +1,13 @@
 import React from 'react';
+import { PulseLoader, ClipLoader, BeatLoader, RingLoader, HashLoader } from 'react-spinners';
 
 const FadingLoadingScreen = () => {
   return (
     <div className="relative flex flex-col items-center gap-4 animate-contentFadeIn">
-      {/* Custom loading animation */}
-      <div className="relative w-24 h-24">
-        <div className="absolute inset-0 border-8 border-gray-800 rounded-full" />
-        <div 
-          className="absolute inset-0 border-8 border-blue-500 rounded-full animate-spin" 
-          style={{ clipPath: 'polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%)' }} 
-        />
-      </div>
       <div className="flex flex-col items-center gap-2">
-        <p className="text-2xl font-medium text-white">Loading</p>
-        <div className="flex gap-1">
-          <div 
-            className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" 
-            style={{ animationDelay: '0ms' }} 
-          />
-          <div 
-            className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" 
-            style={{ animationDelay: '150ms' }} 
-          />
-          <div 
-            className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" 
-            style={{ animationDelay: '300ms' }} 
-          />
-        </div>
+        <p className="text-2xl font-light text-zinc">Welcome</p>
       </div>
+      <HashLoader color="#14b8a6" size={65} />
     </div>
   );
 };
