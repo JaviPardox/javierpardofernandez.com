@@ -34,7 +34,7 @@ const ExperienceSection: React.FC = () => {
           resource: resourceId, 
           error: "Failed to fetch job experience. Please try again later." 
         }));
-        setErrorMessage("Failed to fetch job experience. Please try again later.");
+        setErrorMessage((error as Error).message);
         setLoading(false);
       } finally {
         dispatch(finishLoading(resourceId));
