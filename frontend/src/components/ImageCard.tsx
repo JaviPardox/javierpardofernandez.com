@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from 'react-redux';
-import { startLoading, finishLoading } from '../store/loadingSlice';
+import { startLoading, finishLoading, setError } from '../store/loadingSlice';
 
 interface ImageCardProps {
   imageFolder: string; // Path to the folder containing image versions
@@ -45,6 +45,7 @@ const ImageCard: React.FC<ImageCardProps> = ({ imageFolder, imageName }) => {
       })
       .catch((error) => {
         console.error(`Failed to load image: ${fallbackSrc}`, error);
+        dispatch(setError(error))
         dispatch(finishLoading(resourceId));
       });
 
