@@ -3,7 +3,6 @@
 
 import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../store/hooks";
-import { useLocation } from "react-router-dom";
 import FadingLoadingScreen from "./FadingLoadingScreen";
 
 const FADE_DURATION = 1000; // How long each fade animation takes
@@ -17,7 +16,6 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({
   const [showLoadingScreen, setShowLoadingScreen] = useState(true);
   const [isContentReady, setIsContentReady] = useState(false);
   const [fadeOutLoadingScreen, setfadeOutLoadingScreen] = useState(false);
-  const location = useLocation();
 
   useEffect(() => {
     let fadeOutTimer: NodeJS.Timeout;
@@ -46,7 +44,7 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({
       clearTimeout(unmountTimer);
       clearTimeout(contentFadeinTimer);
     };
-  }, [location.pathname, isLoading]);
+  }, [isLoading]);
 
   return (
     <>
@@ -80,7 +78,7 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({
         </div>
         {showLoadingScreen && (
           <div
-            className={`fixed inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-${FADE_DURATION} ${
+            className={`fixed inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-1000 ${
               fadeOutLoadingScreen ? "opacity-0" : "opacity-100"
             }`}
           >
