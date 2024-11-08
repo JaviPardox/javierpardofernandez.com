@@ -1,12 +1,15 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const [activeLink, setActiveLink] = useState<string | null>("home");
   const [isAnimating, setIsAnimating] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const [activeLink, setActiveLink] = useState<string | null>(
+    location.pathname === '/blog' ? 'blog' : 'home'
+  );
 
   const closeNavbar = useCallback(() => {
     setIsAnimating(false);
@@ -87,12 +90,14 @@ const Navbar: React.FC = () => {
             behavior: "smooth",
           });
         }
-      }, 100); // Delay to allow for navigation to complete
+      }, 300); // Delay to allow for navigation to complete
     }
   };
 
   useEffect(() => {
     const handleScroll = () => {
+      // Handle blog page separately
+      // So that when going to blog, home does not get highlighted
       if (window.location.pathname === "/blog") return;
       const sections = ["home", "offer", "experience"];
       let maxVisibleSection = "home";
