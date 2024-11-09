@@ -26,6 +26,16 @@ html {
   flex-direction: column;
 }
 
+/* By setting a min-height, we ensure that the sections reserve enough space in the layout from the start. 
+This prevents sudden layout shifts and ensures that scrollTo positions calculated using offsetTop remain accurate. */
+#offer {
+  min-height: 500px;
+}
+
+#experience {
+  min-height: 1000px;
+}
+
 @font-face {
   font-family: 'Söhne';
   src: url('../public/fonts/Sohne-Extraleicht.woff2') format('woff2'),

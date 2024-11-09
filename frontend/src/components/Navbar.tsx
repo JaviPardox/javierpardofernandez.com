@@ -68,30 +68,73 @@ const Navbar: React.FC = () => {
   ) => {
     event.preventDefault(); // Prevent default anchor behavior
 
+    const currentPath = window.location.pathname;
+
     if (linkName === "home") {
-      setActiveLink("home"); //añadir un poco de delay a estas dos opciones?
-      navigate("/");
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (currentPath !== "/") {
+        setActiveLink("home");
+        navigate("/");
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
       return;
     } else if (linkName === "blog") {
-      setActiveLink("blog");
-      navigate("/blog");
+      if (currentPath !== "/blog") {
+        setActiveLink("blog");
+        navigate("/blog");
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
       return;
     } else {
-      navigate("/");
-      setTimeout(() => {
-        if (linkName === "offer" || linkName === "experience") {
-          const element = document.getElementById(linkName);
-          const offset = 100;
-          const elementPosition = element?.offsetTop || 0;
-          
-          window.scrollTo({
-            top: elementPosition - offset,
-            behavior: "smooth",
-          });
-        }
-      }, 300); // Delay to allow for navigation to complete
+      setActiveLink(linkName);
+      if (currentPath !== "/") {
+        navigate("/");
+        waitForElementToRender(linkName); // Observe and scroll after navigation
+      } else {
+        scrollToSection(linkName); // Directly scroll if already on "/"
+      }
     }
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 100;
+      const elementPosition = element.offsetTop;
+
+      console.log(`Scrolling to ${sectionId}:`, {
+        offsetTop: elementPosition,
+        scrollTo: elementPosition - offset,
+      });
+
+      window.scrollTo({
+        top: elementPosition - offset,
+        behavior: "smooth",
+      });
+    }
+    else {
+      console.warn(`Element with ID '${sectionId}' not found.`);
+    }
+  };
+
+  const waitForElementToRender = (sectionId: string) => {
+    const observer = new MutationObserver(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        console.log(`Target section ${sectionId} rendered.`);
+        observer.disconnect();
+        scrollToSection(sectionId);
+      }
+    });
+  
+    // Observe changes in the DOM
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+  
+    console.warn(`Observer started for ${sectionId}`);
   };
 
   useEffect(() => {
