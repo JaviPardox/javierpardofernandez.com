@@ -21,10 +21,13 @@ const ExperienceSection: React.FC = () => {
 
   useEffect(() => {
     const fetchExperience = async () => {
+      const backendPort = process.env.REACT_APP_BACKEND_PORT;
+      const serverIP = process.env.REACT_APP_SERVER_IP;
       dispatch(startLoading(resourceId));
+
       try {
         const response = await axios.get<WorkExperience>(
-          "http://localhost:8000/job-info"
+          `http://${serverIP}:${backendPort}/job-info`
         );
         setWorkExperience(response.data);
         setLoading(false);
