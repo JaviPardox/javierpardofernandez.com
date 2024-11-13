@@ -36,6 +36,16 @@ This prevents sudden layout shifts and ensures that scrollTo positions calculate
   min-height: 1000px;
 }
 
+.no-scroll {
+  overflow: hidden;
+  height: 100%;
+}
+
+html.no-scroll, body.no-scroll {
+  overflow: hidden;
+  height: 100%;
+}
+
 @font-face {
   font-family: 'Söhne';
   src: url('../public/fonts/Sohne-Extraleicht.woff2') format('woff2'),
