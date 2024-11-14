@@ -87,7 +87,6 @@ const Navbar: React.FC = () => {
       }
       return;
     } else {
-      setActiveLink(linkName);
       if (currentPath !== "/") {
         navigate("/");
         waitForElementToRender(linkName); // Observe and scroll after navigation
