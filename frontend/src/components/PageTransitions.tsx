@@ -24,8 +24,11 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({
     let scrollTimer: NodeJS.Timeout;
 
     const html = document.documentElement;
-    html.classList.add('no-scroll');
-    document.body.classList.add('no-scroll');
+
+    if (showLoadingScreen) { //dependency?
+      html.classList.add('no-scroll');
+      document.body.classList.add('no-scroll');
+    }
 
     if (!isLoading) {
       console.log("Loading completed, proceeding to content")
@@ -54,7 +57,7 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({
       clearTimeout(unmountTimer);
       clearTimeout(contentFadeinTimer);
       clearTimeout(scrollTimer);
-      
+
       html.classList.remove('no-scroll');
       document.body.classList.remove('no-scroll');
     };
