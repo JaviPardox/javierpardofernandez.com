@@ -1,21 +1,20 @@
 import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from routes.work_experience import router as work_experience_router
-from dotenv import load_dotenv
-
-load_dotenv()
-
-backend_port = os.getenv("BACKEND_PORT", "8000")
-frontend_port = os.getenv("FRONTEND_PORT", "3000")
-server_ip = os.getenv("SERVER_IP", "localhost")
+from routes.images import router as images_router
+from config import FRONTEND_PORT, SERVER_IP
 
 app = FastAPI()
 
 app.include_router(work_experience_router)
+app.include_router(images_router)
+app.mount("/images", StaticFiles(directory="./data/img/cards"), name="images")
+
 
 allowed_origins = [
-    f"http://{server_ip}:{frontend_port}",
+    f"http://{SERVER_IP}:{FRONTEND_PORT}",
     "http://localhost:3000"
 ]
 
