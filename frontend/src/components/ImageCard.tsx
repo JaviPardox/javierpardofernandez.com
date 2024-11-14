@@ -1,72 +1,85 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useDispatch } from 'react-redux';
 import { startLoading, finishLoading, setError } from '../store/loadingSlice';
 
 interface ImageCardProps {
-  imageFolder: string; // Path to the folder containing image versions
-  imageName: string; // Image name (without extension)
+  imageId: string;
 }
 
-const ImageCard: React.FC<ImageCardProps> = ({ imageFolder, imageName }) => {
+const ImageCard: React.FC<ImageCardProps> = ({ imageId }) => {
+  const [imageSources, setImageSources] = useState<{
+    srcSet: string;
+    fallbackSrc: string;
+  } | null>(null);
+  const [localError, setLocalError] = useState<string | null>(null);
   const dispatch = useDispatch();
-  const resourceId = `image-${imageFolder}-${imageName}`;
+  const resourceId = `image-${imageId}`;
 
   const resolutions = [
     16, 32, 48, 64, 96, 128, 256, 384, 640, 750, 828, 1080, 1200, 1920, 2048,
     3840,
-  ];
+  ]; //dependency?
 
-  // Dynamically generate srcSet string
-  const srcSet = resolutions
-    .map((size) => `${imageFolder}/${imageName}-${size}.jpeg ${size}w`)
-    .join(", ");
-
-  // Fallback image (largest version)
-  const fallbackSrc = `${imageFolder}/${imageName}-3840.jpeg`;
-
+  const backendPort = process.env.REACT_APP_BACKEND_PORT;
+  const serverIP = process.env.REACT_APP_SERVER_IP;
   useEffect(() => {
-    // Start loading state
     dispatch(startLoading(resourceId));
+    const fetchImageUrls = async () => {
+      try {
+        const response = await axios.get(
+          `http://${serverIP}:${backendPort}/images/${imageId}/urls`
+        );
+        
+        const imageUrls = response.data.urls;
+        const srcSet = resolutions
+          .map((size) => {
+            const url = imageUrls[size];
+            return url ? `${url} ${size}w` : '';
+          })
+          .filter(Boolean)
+          .join(', ');
 
-    // Preload the largest image to track loading state
-    const img = new Image();
-    img.src = fallbackSrc;
-    
-    // Create a promise that resolves when the image loads
-    const loadPromise = new Promise((resolve, reject) => {
-      img.onload = resolve; // Called when image loads successfully
-      img.onerror = reject; // Called if image fails to load
-    });
-
-    // Handle both success and failure
-    loadPromise
-      .then(() => {
+        setImageSources({
+          srcSet,
+          fallbackSrc: imageUrls[3840] || imageUrls[Object.keys(imageUrls).pop()!],
+        });
+      } catch (err) {
+        const errorMessage = err instanceof Error ? err.message : 'Failed to load image';
+        dispatch(setError({ resource: resourceId, error: errorMessage }))
         dispatch(finishLoading(resourceId));
-      })
-      .catch((error) => {
-        console.error(`Failed to load image: ${fallbackSrc}`, error);
-        dispatch(setError(error))
+        setLocalError(errorMessage);
+      } finally {
         dispatch(finishLoading(resourceId));
-      });
+      }
+    };
 
-    // Cleanup function
-    // In case component stops mounting
+    fetchImageUrls();
+
     return () => {
       dispatch(finishLoading(resourceId));
     };
-  }, [fallbackSrc, dispatch, resourceId]);
+  }, [imageId, backendPort, serverIP, dispatch, resourceId]);
+
+  if (localError || !imageSources) {
+    return (
+      <div className="absolute inset-0 h-full w-full bg-zinc-800 flex items-center justify-center">
+        <span className="text-red-500">Failed to load image</span>
+      </div>
+    );
+  }
 
   return (
     <img
-      src={fallbackSrc}
-      srcSet={srcSet}
-      alt="javier pardo fernandez"
+      src={imageSources.fallbackSrc}
+      srcSet={imageSources.srcSet}
+      alt="javier pardo fernandez" // Consider passing alt text as a prop
       className="absolute inset-0 h-full w-full object-cover"
       loading="lazy"
       width="5760"
       height="3840"
       decoding="async"
-      style={{ color: "transparent" }}
+      style={{ color: 'transparent' }}
       sizes="(min-width: 640px) 18rem, 11rem"
     />
   );

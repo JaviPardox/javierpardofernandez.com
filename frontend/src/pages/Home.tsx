@@ -75,18 +75,16 @@ const Home: React.FC = () => {
       </div>
       <div className="mt-16 sm:mt-20">
         <div className="-my-4 flex justify-center gap-5 py-4 sm:gap-8">
-          <Card rotation={2} imageFolder="/img/avatar" imageName="avatar" />
+          <Card rotation={2} imageId="avatar" />
           <Card
             rotation={-2}
-            imageFolder="/img/cards/card1"
-            imageName="card1"
+            imageId="card1"
           />
-          <Card rotation={2} imageFolder="/img/cards/card2" imageName="card2" />
-          <Card rotation={2} imageFolder="/img/cards/card3" imageName="card3" />
+          <Card rotation={2} imageId="card2" />
+          <Card rotation={2} imageId="card3" />
           <Card
             rotation={-2}
-            imageFolder="/img/cards/card4"
-            imageName="card4"
+            imageId="card4"
           />
         </div>
       </div>
