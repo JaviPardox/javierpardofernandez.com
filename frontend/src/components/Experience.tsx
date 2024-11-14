@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useAppDispatch } from "../store/hooks";
+import { startLoading, finishLoading, setError } from '../store/loadingSlice';
 import DevIconGroup from "./DevIconGroup";
 import HashtagList from "./HashtagList";
 import BriefcaseIconWork from "./BriefcaseIconWork";
@@ -13,25 +15,44 @@ const ExperienceSection: React.FC = () => {
     null
   );
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setErrorMessage] = useState<string | null>(null);
+  const dispatch = useAppDispatch();
+  const resourceId: string = 'experience-section';
 
   useEffect(() => {
     const fetchExperience = async () => {
+      const backendPort = process.env.REACT_APP_BACKEND_PORT;
+      const serverIP = process.env.REACT_APP_SERVER_IP;
+      dispatch(startLoading(resourceId));
+
       try {
         const response = await axios.get<WorkExperience>(
-          "http://localhost:8000/job-info"
+          `http://${serverIP}:${backendPort}/job-info`
         );
         setWorkExperience(response.data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching experience:", error);
-        setError("Failed to fetch job experience. Please try again later.");
+        dispatch(setError({
+          resource: resourceId, 
+          error: "Failed to fetch job experience. Please try again later." 
+        }));
+        setErrorMessage((error as Error).message);
         setLoading(false);
+      } finally {
+        dispatch(finishLoading(resourceId));
       }
     };
 
     fetchExperience();
-  }, []);
+
+    // Cleanup function
+    // In case component stops mounting
+    return () => {
+      dispatch(finishLoading(resourceId));
+    };
+    
+  }, [dispatch]);
 
   if (loading)
     return <div className="text-center">Loading job experience...</div>;

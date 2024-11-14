@@ -1,4 +1,6 @@
 import React from "react";
+//import { usePageLoading } from '../hooks/usePageLoading';
+
 import SocialIcon from "../components/SocialIcon";
 import Card from "../components/Card";
 import AvatarImage from "../components/AvatarImage";
@@ -6,16 +8,16 @@ import WhatIOfferList from "../components/WhatIOfferList";
 import ExperienceSection from "../components/Experience";
 
 const Home: React.FC = () => {
+
   return (
     <div className="text-left px-8">
-      <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]"></div>
+      <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))] pb-10"></div>
       <div className="pb-0">
-        <a
-          className="h-16 w-16 rounded-full backdrop-blur bg-zinc-800/90 ring-white/10"
-          href="/"
-        >
-          <AvatarImage />
-        </a>
+        <div className="h-16 w-16 rounded-full backdrop-blur bg-zinc-800/90 ring-2 ring-white/50">
+          <a href="/">
+            <AvatarImage />
+          </a>
+        </div>
       </div>
       <div className="max-w-2xl" id="home">
         <h1 className="text-4.82xl mb-6 mt-7 text-zinc-100 font-inter font-bold tracking-tight leading-[3.5rem]">
@@ -73,18 +75,16 @@ const Home: React.FC = () => {
       </div>
       <div className="mt-16 sm:mt-20">
         <div className="-my-4 flex justify-center gap-5 py-4 sm:gap-8">
-          <Card rotation={2} imageFolder="/img/avatar" imageName="avatar" />
+          <Card rotation={2} imageId="avatar" />
           <Card
             rotation={-2}
-            imageFolder="/img/cards/card1"
-            imageName="card1"
+            imageId="card1"
           />
-          <Card rotation={2} imageFolder="/img/cards/card2" imageName="card2" />
-          <Card rotation={2} imageFolder="/img/cards/card3" imageName="card3" />
+          <Card rotation={2} imageId="card2" />
+          <Card rotation={2} imageId="card3" />
           <Card
             rotation={-2}
-            imageFolder="/img/cards/card4"
-            imageName="card4"
+            imageId="card4"
           />
         </div>
       </div>

@@ -26,3 +26,5 @@
 /frontend/yarn-error.log*
 
 .DS_Store
+*storybook.log
+.env

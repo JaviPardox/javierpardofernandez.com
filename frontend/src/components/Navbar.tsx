@@ -1,12 +1,15 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const [activeLink, setActiveLink] = useState<string | null>("home");
   const [isAnimating, setIsAnimating] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const [activeLink, setActiveLink] = useState<string | null>(
+    location.pathname === '/blog' ? 'blog' : 'home'
+  );
 
   const closeNavbar = useCallback(() => {
     setIsAnimating(false);
@@ -65,34 +68,78 @@ const Navbar: React.FC = () => {
   ) => {
     event.preventDefault(); // Prevent default anchor behavior
 
+    const currentPath = window.location.pathname;
+
     if (linkName === "home") {
-      setActiveLink("home"); //añadir un poco de delay a estas dos opciones?
-      navigate("/");
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (currentPath !== "/") {
+        setActiveLink("home");
+        navigate("/");
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
       return;
     } else if (linkName === "blog") {
-      setActiveLink("blog");
-      navigate("/blog");
+      if (currentPath !== "/blog") {
+        setActiveLink("blog");
+        navigate("/blog");
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
       return;
     } else {
-      navigate("/");
-      setTimeout(() => {
-        if (linkName === "offer" || linkName === "experience") {
-          const element = document.getElementById(linkName);
-          const offset = 100;
-          const elementPosition = element?.offsetTop || 0;
-          
-          window.scrollTo({
-            top: elementPosition - offset,
-            behavior: "smooth",
-          });
-        }
-      }, 300); // Delay to allow for navigation to complete
+      if (currentPath !== "/") {
+        navigate("/");
+        waitForElementToRender(linkName); // Observe and scroll after navigation
+      } else {
+        scrollToSection(linkName); // Directly scroll if already on "/"
+      }
     }
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 100;
+      const elementPosition = element.offsetTop;
+
+      console.log(`Scrolling to ${sectionId}:`, {
+        offsetTop: elementPosition,
+        scrollTo: elementPosition - offset,
+      });
+
+      window.scrollTo({
+        top: elementPosition - offset,
+        behavior: "smooth",
+      });
+    }
+    else {
+      console.warn(`Element with ID '${sectionId}' not found.`);
+    }
+  };
+
+  const waitForElementToRender = (sectionId: string) => {
+    const observer = new MutationObserver(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        console.log(`Target section ${sectionId} rendered.`);
+        observer.disconnect();
+        scrollToSection(sectionId);
+      }
+    });
+  
+    // Observe changes in the DOM
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+  
+    console.warn(`Observer started for ${sectionId}`);
   };
 
   useEffect(() => {
     const handleScroll = () => {
+      // Handle blog page separately
+      // So that when going to blog, home does not get highlighted
       if (window.location.pathname === "/blog") return;
       const sections = ["home", "offer", "experience"];
       let maxVisibleSection = "home";
@@ -152,7 +199,7 @@ const Navbar: React.FC = () => {
   }, []);
 
   return (
-    <nav className={`fixed left-0 z-50 w-full md:pr-0 pr-10p transition-all duration-300 ${scrolled ? 'bg-zinc-800/30 backdrop-blur-lg py-4 top-0' : 'bg-transparent top-7'}`}>
+    <nav className={`fixed left-0 z-50 w-full md:pr-0 pr-10p transition-all duration-300 ${scrolled ? 'bg-zinc-800/30 backdrop-blur-lg py-5 top-0' : 'bg-transparent top-8'}`}>
       <div className="w-full flex md:justify-center justify-end">
         <div className="inline-block bg-zinc-800/90 rounded-full pl-5 pr-4 py-0.5 ring-1 ring-white/10 text-sm font-light text-zinc-200 hover:ring-white/20">
           <div className="flex items-center justify-between">
