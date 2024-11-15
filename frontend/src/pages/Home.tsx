@@ -10,7 +10,7 @@ import ExperienceSection from "../components/Experience";
 const Home: React.FC = () => {
 
   return (
-    <div className="text-left px-8">
+    <div className="text-left sm:px-8 ">
       <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))] pb-10"></div>
       <div className="pb-0">
         <div className="h-16 w-16 rounded-full backdrop-blur bg-zinc-800/90 ring-2 ring-white/50">
@@ -20,7 +20,7 @@ const Home: React.FC = () => {
         </div>
       </div>
       <div className="max-w-2xl" id="home">
-        <h1 className="text-4.82xl mb-6 mt-7 text-zinc-100 font-inter font-bold tracking-tight leading-[3.5rem]">
+        <h1 className="text-4xl sm:text-4.82xl mb-6 mt-7 text-zinc-100 font-inter font-bold tracking-tight leading-[2.5rem] sm:leading-[3.5rem]">
           Software designer, founder, and amateur astronaut.
         </h1>
         <p className="mt-6 text-base text-zinc-400 leading-relaxed leading-[1.78rem]">
@@ -89,16 +89,19 @@ const Home: React.FC = () => {
         </div>
       </div>
       <div className="mt-24 md:mt-28" id="offer">
-        <h2 className="relative text-4xl mb-6 mt-7 text-zinc-100 font-inter font-semibold tracking-tight leading-[3.5rem]">
-          What I can offer
-          <span className="absolute inset-x-0 -bottom-[0rem] h-[1.5px] bg-gradient-to-r from-zinc-800/90 via-zin-800/90 to-zinc-800/90 ease-in-out"></span>
+        <h2 className="relative text-4xl mb-6 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
+          <span className="keyword">function</span> <span className="function-name">WhatIOffer</span><span className="parentheses">&#40;&#41;</span>
+          <span className="sm:hidden"><br /></span>
+          <span className="braces">&#123;</span>
+          <span className="keyword">return</span> <span className="string">&quot;Expertise&quot;</span><span className="semicolon">;</span><span className="braces">&#125;</span><span className="cursor"></span>
         </h2>
         <WhatIOfferList />
       </div>
       <div className="mt-24 md:mt-28" id="experience">
-        <h2 className="relative text-4xl mb-10 mt-7 text-zinc-100 font-inter font-semibold tracking-tight leading-[3.5rem]">
-          My experience so far
-          <span className="absolute inset-x-0 -bottom-[0rem] h-[1.5px] bg-gradient-to-r from-zinc-800/90 via-zin-800/90 to-zinc-800/90 ease-in-out"></span>
+        <h2 className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
+        <span className="keyword">class</span> <span className="class-name">Experience</span><span className="keyword">:</span><br />
+            &nbsp;&nbsp;<span className="keyword">def</span> <span className="function-name">__init__</span><span className="parentheses">&#40;self&#41;</span>:<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;<span className="keyword">super</span><span className="parentheses">&#40;&#41;</span><span className="cursor"></span>
         </h2>
         <ExperienceSection />
       </div>
