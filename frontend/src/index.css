@@ -108,11 +108,11 @@ h2.code-themed {
 
 .cursor {
   display: inline-block;
-  width: 2px; /* A very thin cursor */
-  height: 1em; /* Matches the height of the text */
-  background-color: #d4d4d4; /* The color of the cursor */
-  animation: blink-caret 1s infinite step-end; /* The blinking effect */
-  position: relative; /* Allows precise positioning */
+  width: 2px;
+  height: 1em;
+  background-color: #d4d4d4;
+  animation: blink-caret 1s infinite step-end;
+  position: relative;
   top: 0.25em;
 }
 
@@ -120,6 +120,16 @@ h2.code-themed {
   50% {
     opacity: 0;
   }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 @font-face {
