@@ -2,14 +2,24 @@ import { useEffect } from "react";
 import Card from "../components/Card";
 
 const CardCarrousel: React.FC = () => {
-  useEffect(() => {
-    const container = document.querySelector(".overflow-x-auto");
-    const cards = container?.querySelectorAll(".card-item");
-    const middleCard = cards?.[Math.floor((cards?.length || 0) / 2)];
 
-    if (middleCard) {
-      middleCard.scrollIntoView({ behavior: "auto", inline: "center" });
-    }
+  useEffect(() => {
+    // Use a small delay to ensure the carousel centers after any navigation scrolling
+
+      const container = document.querySelector(".overflow-x-auto");
+      const cards = container?.querySelectorAll(".card-item");
+      const middleCard = cards?.[Math.floor((cards?.length || 0) / 2)] as HTMLElement;
+
+      if (container && middleCard) {
+        const containerWidth = container.clientWidth;
+        const cardOffset = middleCard.offsetLeft;
+        const cardWidth = middleCard.clientWidth;
+        const scrollPosition = cardOffset - (containerWidth - cardWidth) / 2;
+        
+        // Use scrollLeft instead of scrollIntoView to avoid affecting page scroll
+        container.scrollLeft = scrollPosition;
+      }
+
   }, []);
 
   return (
