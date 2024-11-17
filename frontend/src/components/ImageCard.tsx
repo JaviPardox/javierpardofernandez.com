@@ -12,6 +12,7 @@ const ImageCard: React.FC<ImageCardProps> = ({ imageId }) => {
     srcSet: string;
     fallbackSrc: string;
   } | null>(null);
+  const [isLoadingLocal, setIsLoadingLocal] = useState(true);
   const [localError, setLocalError] = useState<string | null>(null);
   const dispatch = useDispatch();
   const resourceId = `image-${imageId}`;
@@ -24,6 +25,7 @@ const ImageCard: React.FC<ImageCardProps> = ({ imageId }) => {
   const backendPort = process.env.REACT_APP_BACKEND_PORT;
   const serverIP = process.env.REACT_APP_SERVER_IP;
   useEffect(() => {
+    setIsLoadingLocal(true)
     dispatch(startLoading(resourceId));
     const fetchImageUrls = async () => {
       try {
@@ -47,10 +49,10 @@ const ImageCard: React.FC<ImageCardProps> = ({ imageId }) => {
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Failed to load image';
         dispatch(setError({ resource: resourceId, error: errorMessage }))
-        dispatch(finishLoading(resourceId));
         setLocalError(errorMessage);
       } finally {
         dispatch(finishLoading(resourceId));
+        setIsLoadingLocal(false);
       }
     };
 
@@ -58,8 +60,15 @@ const ImageCard: React.FC<ImageCardProps> = ({ imageId }) => {
 
     return () => {
       dispatch(finishLoading(resourceId));
+      setIsLoadingLocal(false);
     };
   }, [imageId, backendPort, serverIP, dispatch, resourceId]);
+
+  if (isLoadingLocal) {
+    return (
+      <div className="absolute inset-0 h-full w-full bg-zinc-700 animate-pulse" />
+    );
+  }
 
   if (localError || !imageSources) {
     return (
