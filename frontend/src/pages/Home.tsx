@@ -85,7 +85,7 @@ const Home: React.FC = () => {
       </div>
       <div className="mt-24 md:mt-28" id="experience">
         <h2 className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
-        <span className="keyword">class</span> <span className="class-name">Experience</span><span className="keyword">:</span><br />
+        <span className="keyword">class</span> <span className="class-name">Experience</span><span className="parentheses">:</span><br />
             &nbsp;&nbsp;<span className="keyword">def</span> <span className="function-name">__init__</span><span className="parentheses">&#40;self&#41;</span>:<br />
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="keyword">super</span><span className="parentheses">&#40;&#41;</span><span className="cursor"></span>
         </h2>
