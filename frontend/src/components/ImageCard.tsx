@@ -44,7 +44,7 @@ const ImageCard: React.FC<ImageCardProps> = ({ imageId }) => {
 
         setImageSources({
           srcSet,
-          fallbackSrc: imageUrls[3840] || imageUrls[Object.keys(imageUrls).pop()!],
+          fallbackSrc: imageUrls[640] || imageUrls[Object.keys(imageUrls).pop()!],
         });
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Failed to load image';
