@@ -77,7 +77,7 @@ const Home: React.FC = () => {
       <div className="mt-24 md:mt-28" id="offer">
         <h2 className="relative text-4xl mb-6 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
           <span className="keyword">function</span> <span className="function-name">WhatIOffer</span><span className="parentheses">&#40;&#41;</span>
-          <span className="sm:hidden"><br /></span>
+          <span className="lg:hidden"><br /></span>
           <span className="braces">&#123;</span>
           <span className="keyword">return</span> <span className="string">&quot;Expertise&quot;</span><span className="semicolon">;</span><span className="braces">&#125;</span><span className="cursor"></span>
         </h2>
