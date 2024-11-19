@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { smoothScrollTo } from "../utils/smoothScrollTo"
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,6 +62,7 @@ const Navbar: React.FC = () => {
   }, [isOpen, closeNavbar]);
 
   const navigate = useNavigate();
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
   const handleLinkClick = (
     event: React.MouseEvent<HTMLAnchorElement>,
@@ -75,7 +77,11 @@ const Navbar: React.FC = () => {
         setActiveLink("home");
         navigate("/");
       } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        if (isSafari) {
+          smoothScrollTo(0, 600);
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
       }
       return;
     } else if (linkName === "blog") {
@@ -83,7 +89,11 @@ const Navbar: React.FC = () => {
         setActiveLink("blog");
         navigate("/blog");
       } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        if (isSafari) {
+          smoothScrollTo(0, 600);
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
       }
       return;
     } else {
@@ -106,11 +116,14 @@ const Navbar: React.FC = () => {
         offsetTop: elementPosition,
         scrollTo: elementPosition - offset,
       });
-
-      window.scrollTo({
-        top: elementPosition - offset,
-        behavior: "smooth",
-      });
+      if (isSafari) {
+        smoothScrollTo(elementPosition - offset, 600);
+      } else {
+        window.scrollTo({
+          top: elementPosition - offset,
+          behavior: "smooth",
+        });
+      }
     }
     else {
       console.warn(`Element with ID '${sectionId}' not found.`);
