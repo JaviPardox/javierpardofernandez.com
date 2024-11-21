@@ -38,12 +38,23 @@ const Navbar: React.FC = () => {
     };
   }, [handleClickOutside]);
 
+  const html = document.documentElement;
   useEffect(() => {
     if (isOpen) {
+      html.classList.add('no-scroll');
+      document.body.classList.add('no-scroll');
       setTimeout(() => setIsAnimating(true), 0); // Delay to trigger open transition
     } else {
       setIsAnimating(false); // Reset when closing
+      html.classList.remove('no-scroll');
+      document.body.classList.remove('no-scroll');
     }
+
+    return () => {
+      html.classList.remove('no-scroll');
+      document.body.classList.remove('no-scroll');
+    };
+
   }, [isOpen]);
 
   useEffect(() => {
