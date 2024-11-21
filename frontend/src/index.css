@@ -45,6 +45,11 @@ html.no-scroll, body.no-scroll {
   height: 100%;
 }
 
+.backdrop-blur-lg {
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
 .code-themed {
   font-family: 'Courier New', Courier, monospace;
   background-color: #343434;

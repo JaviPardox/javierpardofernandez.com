@@ -11,6 +11,8 @@ const Navbar: React.FC = () => {
   const [activeLink, setActiveLink] = useState<string | null>(
     location.pathname === '/blog' ? 'blog' : 'home'
   );
+  const [isMdViewport, setIsMdViewport] = useState(window.innerWidth >= 768);
+
 
   const closeNavbar = useCallback(() => {
     setIsAnimating(false);
@@ -211,8 +213,43 @@ const Navbar: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMdViewport(window.innerWidth >= 768);
+    };
+
+    // Event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
-    <nav className={`fixed left-0 z-50 w-full md:pr-0 pr-10p transition-all duration-300 ${scrolled ? 'bg-zinc-800/30 backdrop-blur-lg py-5 top-0' : 'bg-transparent top-8'}`}>
+    <nav
+          style={{
+            position: 'fixed',
+            left: 0,
+            zIndex: 50,
+            width: '100%',
+            paddingRight: isMdViewport ? '0' : '10%',
+            transition: 'all 0.3s',
+            ...(scrolled
+              ? {
+                  backgroundColor: 'transparent',
+                  WebkitBackdropFilter: 'blur(16px)',
+                  backdropFilter: 'blur(16px)',
+                  paddingTop: '1.25rem',
+                  paddingBottom: '1.25rem',
+                  top: 0,
+                }
+              : {
+                  backgroundColor: 'transparent',
+                  top: '2rem',
+                }),
+          }}
+        >
       <div className="w-full flex md:justify-center justify-end">
         <div className="inline-block bg-zinc-800/90 rounded-full pl-5 pr-4 py-0.5 ring-1 ring-white/10 text-sm font-light text-zinc-200 hover:ring-white/20">
           <div className="flex items-center justify-between">
