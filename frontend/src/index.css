@@ -35,14 +35,22 @@ This prevents sudden layout shifts and ensures that scrollTo positions calculate
   min-height: 1000px;
 }
 
-.no-scroll {
+.no-scroll-height {
   overflow: hidden;
   height: 100%;
 }
 
-html.no-scroll, body.no-scroll {
+html.no-scroll-height, body.no-scroll-height {
   overflow: hidden;
   height: 100%;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+html.no-scroll, body.no-scroll {
+  overflow: hidden;
 }
 
 .backdrop-blur-lg {
