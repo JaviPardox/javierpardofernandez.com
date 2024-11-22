@@ -55,7 +55,7 @@ const Navbar: React.FC = () => {
       document.body.classList.remove('no-scroll');
     };
 
-  }, [isOpen]);
+  }, [isOpen, html.classList]);
 
   useEffect(() => {
     // Function to close menu on large screen
@@ -239,28 +239,32 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-          style={{
-            position: 'fixed',
-            left: 0,
-            zIndex: 50,
-            width: '100%',
-            paddingRight: isMdViewport ? '0' : '10%',
-            transition: 'all 0.3s',
-            ...(scrolled
-              ? {
-                  backgroundColor: 'transparent',
-                  WebkitBackdropFilter: 'blur(16px)',
-                  backdropFilter: 'blur(16px)',
-                  paddingTop: '1.25rem',
-                  paddingBottom: '1.25rem',
-                  top: 0,
-                }
-              : {
-                  backgroundColor: 'transparent',
-                  top: '2rem',
-                }),
-          }}
-        >
+      style={{
+        position: 'fixed',
+        left: 0,
+        zIndex: 50,
+        width: '100%',
+        paddingRight: isMdViewport ? '0' : '10%',
+        paddingTop: scrolled ? '1.25rem' : '2rem',
+        paddingBottom: scrolled ? '1.25rem' : '2rem',
+        transition: 'padding 0.3s ease-in-out', // Only padding transitions
+        overflow: 'hidden',
+      }}
+    >
+    <div
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        background: 'linear-gradient(to bottom, rgba(24, 24, 27, 1), rgba(24, 24, 27, 0.6), rgba(24, 24, 27, 0))',
+        opacity: scrolled ? 1 : 0, // Transition this property
+        transition: 'opacity 0.3s ease-in-out',
+        pointerEvents: 'none', // Ensure it doesn't interfere with clicks
+        zIndex: -1, // Place behind content
+      }}
+    />
       <div className="w-full flex md:justify-center justify-end">
         <div className="inline-block bg-zinc-800/90 rounded-full pl-5 pr-4 py-0.5 ring-1 ring-white/10 text-sm font-light text-zinc-200 hover:ring-white/20">
           <div className="flex items-center justify-between">
@@ -351,9 +355,19 @@ const Navbar: React.FC = () => {
       </div>
       {isOpen && (
         <div
-          className={`fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40 transition-all duration-300 px-10p ${
+          className={`fixed inset-0 z-40 transition-all duration-300 px-10p ${
             isAnimating ? "opacity-100 scale-100" : "opacity-0 scale-100"
           }`}
+          style={{
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            position: 'fixed',
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            WebkitBackdropFilter: 'blur(4px)',
+            backdropFilter: 'blur(3px)',
+          }}
         >
           <div
             ref={menuRef}
