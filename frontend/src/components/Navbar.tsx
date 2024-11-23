@@ -250,7 +250,7 @@ const Navbar: React.FC = () => {
         paddingRight: isMdViewport ? '0' : '10%',
         paddingTop: scrolled ? '1.25rem' : '2rem',
         paddingBottom: scrolled ? '1.25rem' : '2rem',
-        transition: 'padding 0.3s ease-in-out', // Only padding transitions
+        transition: 'padding 0.3s ease-in-out',
         overflow: 'hidden',
       }}
     >
@@ -258,10 +258,16 @@ const Navbar: React.FC = () => {
         position: 'absolute',
         left: '10%',
       }}>
-      <svg width="40" height="40" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="45" fill="rgba(20, 184, 166, 0.9)" />
-        <text x="50%" y="55%" textAnchor="middle" fill="#ffffff" fontSize="36" fontWeight="300" dy=".3em">JPF</text>
-      </svg>
+        <img
+          src="/jpf-logo-transparent.png"
+          alt="JPF Logo"
+          style={{
+            width: '40px',
+            height: '40px',
+            objectFit: 'contain',
+            marginRight: '1rem'
+          }}
+        />
       </div>
     <div
       style={{
@@ -271,10 +277,10 @@ const Navbar: React.FC = () => {
         width: '100%',
         height: '100%',
         background: 'linear-gradient(to bottom, rgba(24, 24, 27, 1), rgba(24, 24, 27, 0.6), rgba(24, 24, 27, 0))',
-        opacity: scrolled ? 1 : 0, // Transition this property
+        opacity: scrolled ? 1 : 0,
         transition: 'opacity 0.3s ease-in-out',
         pointerEvents: 'none', // Ensure it doesn't interfere with clicks
-        zIndex: -1, // Place behind content
+        zIndex: -1,
       }}
     />
       <div className="w-full flex md:justify-center justify-end">
