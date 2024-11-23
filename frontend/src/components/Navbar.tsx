@@ -244,6 +244,9 @@ const Navbar: React.FC = () => {
         left: 0,
         zIndex: 50,
         width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         paddingRight: isMdViewport ? '0' : '10%',
         paddingTop: scrolled ? '1.25rem' : '2rem',
         paddingBottom: scrolled ? '1.25rem' : '2rem',
@@ -251,6 +254,15 @@ const Navbar: React.FC = () => {
         overflow: 'hidden',
       }}
     >
+      <div style={{
+        position: 'absolute',
+        left: '10%',
+      }}>
+      <svg width="40" height="40" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="45" fill="rgba(20, 184, 166, 0.9)" />
+        <text x="50%" y="55%" textAnchor="middle" fill="#ffffff" fontSize="36" fontWeight="300" dy=".3em">JPF</text>
+      </svg>
+      </div>
     <div
       style={{
         position: 'absolute',
