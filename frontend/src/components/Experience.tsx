@@ -65,7 +65,7 @@ const ExperienceSection: React.FC = () => {
     );
 
   return (
-    <div className="md:border-l md:pl-6 md:border-zinc-700/40">
+    <div className="md:border-l md:pl-6 md:border-zinc-700/40 mt-12">
       <div className="flex flex-col space-y-12 md:space-y-16">
         {workExperience.data.map((experience, index) => (
           <article className="lg:grid md:grid-cols-4 lg:items-baseline">

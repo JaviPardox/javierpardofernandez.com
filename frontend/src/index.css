@@ -16,7 +16,6 @@ body {
 
 html {
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
 
 /* Might have to change this */
@@ -36,14 +35,108 @@ This prevents sudden layout shifts and ensures that scrollTo positions calculate
   min-height: 1000px;
 }
 
-.no-scroll {
+.no-scroll-height {
   overflow: hidden;
   height: 100%;
 }
 
-html.no-scroll, body.no-scroll {
+html.no-scroll-height, body.no-scroll-height {
   overflow: hidden;
   height: 100%;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+html.no-scroll, body.no-scroll {
+  overflow: hidden;
+}
+
+.code-themed {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #343434;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  white-space: pre;
+  color: #d4d4d4;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+h2.code-themed {
+  font-size: 1.5rem;
+  margin: 20px 0;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.keyword {
+  color: #569cd6;
+}
+
+.function-name {
+  color: #dcdcaa;
+}
+
+.parentheses,
+.braces,
+.semicolon {
+  color: #d4d4d4;
+}
+
+.string {
+  color: #ce9178;
+}
+
+.class-name {
+  color: #4ec9b0;
+}
+
+.code-themed:hover {
+  cursor: text;
+  background-color: #1F1F1F;
+}
+
+.code-themed:hover .keyword {
+  color: #82aaff;
+}
+
+.code-themed:hover .function-name {
+  color: #ffcb6b;
+}
+
+.code-themed:hover .string {
+  color: #f77669;
+}
+
+.code-themed:hover .class-name {
+  color: #33ffeb;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: #d4d4d4;
+  animation: blink-caret 1s infinite step-end;
+  position: relative;
+  top: 0.25em;
+}
+
+@keyframes blink-caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 @font-face {

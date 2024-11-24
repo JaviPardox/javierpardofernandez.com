@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { smoothScrollTo } from "../utils/smoothScrollTo"
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,6 +11,8 @@ const Navbar: React.FC = () => {
   const [activeLink, setActiveLink] = useState<string | null>(
     location.pathname === '/blog' ? 'blog' : 'home'
   );
+  const [isMdViewport, setIsMdViewport] = useState(window.innerWidth >= 768);
+
 
   const closeNavbar = useCallback(() => {
     setIsAnimating(false);
@@ -35,13 +38,24 @@ const Navbar: React.FC = () => {
     };
   }, [handleClickOutside]);
 
+  const html = document.documentElement;
   useEffect(() => {
     if (isOpen) {
+      html.classList.add('no-scroll');
+      document.body.classList.add('no-scroll');
       setTimeout(() => setIsAnimating(true), 0); // Delay to trigger open transition
     } else {
       setIsAnimating(false); // Reset when closing
+      html.classList.remove('no-scroll');
+      document.body.classList.remove('no-scroll');
     }
-  }, [isOpen]);
+
+    return () => {
+      html.classList.remove('no-scroll');
+      document.body.classList.remove('no-scroll');
+    };
+
+  }, [isOpen, html.classList]);
 
   useEffect(() => {
     // Function to close menu on large screen
@@ -61,6 +75,7 @@ const Navbar: React.FC = () => {
   }, [isOpen, closeNavbar]);
 
   const navigate = useNavigate();
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
   const handleLinkClick = (
     event: React.MouseEvent<HTMLAnchorElement>,
@@ -75,7 +90,11 @@ const Navbar: React.FC = () => {
         setActiveLink("home");
         navigate("/");
       } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        if (isSafari) {
+          smoothScrollTo(0, 600);
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
       }
       return;
     } else if (linkName === "blog") {
@@ -83,7 +102,11 @@ const Navbar: React.FC = () => {
         setActiveLink("blog");
         navigate("/blog");
       } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        if (isSafari) {
+          smoothScrollTo(0, 600);
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
       }
       return;
     } else {
@@ -106,11 +129,14 @@ const Navbar: React.FC = () => {
         offsetTop: elementPosition,
         scrollTo: elementPosition - offset,
       });
-
-      window.scrollTo({
-        top: elementPosition - offset,
-        behavior: "smooth",
-      });
+      if (isSafari) {
+        smoothScrollTo(elementPosition - offset, 600);
+      } else {
+        window.scrollTo({
+          top: elementPosition - offset,
+          behavior: "smooth",
+        });
+      }
     }
     else {
       console.warn(`Element with ID '${sectionId}' not found.`);
@@ -198,8 +224,65 @@ const Navbar: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMdViewport(window.innerWidth >= 768);
+    };
+
+    // Event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
-    <nav className={`fixed left-0 z-50 w-full md:pr-0 pr-10p transition-all duration-300 ${scrolled ? 'bg-zinc-800/30 backdrop-blur-lg py-5 top-0' : 'bg-transparent top-8'}`}>
+    <nav
+      style={{
+        position: 'fixed',
+        left: 0,
+        zIndex: 50,
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingRight: isMdViewport ? '0' : '10%',
+        paddingTop: scrolled ? '1.25rem' : '2rem',
+        paddingBottom: scrolled ? '1.25rem' : '2rem',
+        transition: 'padding 0.3s ease-in-out',
+        overflow: 'hidden',
+      }}
+    >
+      <div style={{
+        position: 'absolute',
+        left: '10%',
+      }}>
+        <img
+          src="/jpf-logo-transparent.png"
+          alt="JPF Logo"
+          style={{
+            width: '40px',
+            height: '40px',
+            objectFit: 'contain',
+            marginRight: '1rem'
+          }}
+        />
+      </div>
+    <div
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        background: 'linear-gradient(to bottom, rgba(24, 24, 27, 1), rgba(24, 24, 27, 0.6), rgba(24, 24, 27, 0))',
+        opacity: scrolled ? 1 : 0,
+        transition: 'opacity 0.3s ease-in-out',
+        pointerEvents: 'none', // Ensure it doesn't interfere with clicks
+        zIndex: -1,
+      }}
+    />
       <div className="w-full flex md:justify-center justify-end">
         <div className="inline-block bg-zinc-800/90 rounded-full pl-5 pr-4 py-0.5 ring-1 ring-white/10 text-sm font-light text-zinc-200 hover:ring-white/20">
           <div className="flex items-center justify-between">
@@ -290,9 +373,19 @@ const Navbar: React.FC = () => {
       </div>
       {isOpen && (
         <div
-          className={`fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40 transition-all duration-300 px-10p ${
+          className={`fixed inset-0 z-40 transition-all duration-300 px-10p ${
             isAnimating ? "opacity-100 scale-100" : "opacity-0 scale-100"
           }`}
+          style={{
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            position: 'fixed',
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            WebkitBackdropFilter: 'blur(4px)',
+            backdropFilter: 'blur(3px)',
+          }}
         >
           <div
             ref={menuRef}

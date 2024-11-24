@@ -26,8 +26,8 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({
     const html = document.documentElement;
 
     if (showLoadingScreen) { //dependency?
-      html.classList.add('no-scroll');
-      document.body.classList.add('no-scroll');
+      html.classList.add('no-scroll-height');
+      document.body.classList.add('no-scroll-height');
     }
 
     if (!isLoading) {
@@ -44,8 +44,8 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({
             setIsContentReady(true);
 
             scrollTimer = setTimeout(() => {
-              html.classList.remove('no-scroll');
-              document.body.classList.remove('no-scroll');
+              html.classList.remove('no-scroll-height');
+              document.body.classList.remove('no-scroll-height');
             }, FADE_DURATION);
           }, START_CONTENT_FADE_IN);
         }, FADE_DURATION);
@@ -58,8 +58,8 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({
       clearTimeout(contentFadeinTimer);
       clearTimeout(scrollTimer);
 
-      html.classList.remove('no-scroll');
-      document.body.classList.remove('no-scroll');
+      html.classList.remove('no-scroll-height');
+      document.body.classList.remove('no-scroll-height');
     };
   }, [isLoading]);
 
