@@ -1,39 +1,57 @@
-import React, { useState, useEffect } from 'react';
-//import { usePageLoading } from '../hooks/usePageLoading';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { BlogPreview as BlogPreviewType } from "../types/index";
+import BlogPreview from "../components/BlogPreview";
 
 const Blog: React.FC = () => {
-  const [skills, setSkills] = useState<string[]>([]);
+  const [previews, setPreviews] = useState<BlogPreviewType[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchSkills = async () => {
+    const fetchPreviews = async () => {
+      const backendPort = process.env.REACT_APP_BACKEND_PORT;
+      const serverIP = process.env.REACT_APP_SERVER_IP;
       try {
-        const response = await axios.get<string[]>('http://localhost:8000/api/skills');
-        setSkills(response.data);
-      } catch (error) {
-        console.error('Error fetching skills:', error);
+        const response = await axios.get<BlogPreviewType[]>(
+          `http://${serverIP}:${backendPort}/blog/preview`
+        );
+        console.log(response.data);
+        setPreviews(response.data);
+      } catch (err) {
+        setError((err as Error).message);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchSkills();
+    fetchPreviews();
   }, []);
 
   return (
-    <div>
-      <h1 className="text-4xl font-bold mb-6">About Me</h1>
-      <p className="mb-6 text-lg">I'm a passionate software developer with experience in React, TypeScript, and Python. I love creating efficient and user-friendly web applications.</p>
-      <h2 className="text-2xl font-semibold mb-4">Skills</h2>
-      {skills.length > 0 ? (
-        <ul className="grid grid-cols-2 gap-2">
-          {skills.map((skill, index) => (
-            <li key={index} className="bg-openai-hover p-2 rounded">{skill}</li>
+    <div className="text-left sm:px-8 ">
+      <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))] pb-10"></div>
+      <h1 className="text-4xl sm:text-4.82xl mb-6 mt-7 text-zinc-100 font-inter font-bold tracking-tight leading-[2.5rem] sm:leading-[3.5rem]">
+        Writing on software design, company building, and the aerospace
+        industry.
+      </h1>
+      <p className="mt-6 text-base text-zinc-400">
+        All of my long-form thoughts on programming, leadership, product design,
+        and more, collected in chronological order.
+      </p>
+      <div className="mt-16 sm:mt-20">
+        {loading && <div>Loading...</div>}
+        {error && <div>{error}</div>}
+        <div className="md:border-l md:pl-6 md:border-zinc-700/40">
+          <div className="flex max-w-3xl flex-col space-y-16">
+          {!loading && !error && previews.map((preview) => (
+            <BlogPreview key={preview.id} preview={preview} />
           ))}
-        </ul>
-      ) : (
-        <p>Loading skills...</p>
-      )}
+          </div>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default Blog;

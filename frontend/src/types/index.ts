@@ -27,3 +27,10 @@ export interface WorkExperienceItem {
 export interface WorkExperience {
   data: WorkExperienceItem[];
 }
+
+export interface BlogPreview {
+  id: string;
+  date: string;
+  title: string;
+  preview_text: string;
+}
