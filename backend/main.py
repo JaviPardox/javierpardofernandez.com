@@ -4,12 +4,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from routes.work_experience import router as work_experience_router
 from routes.images import router as images_router
+from routes.blog import router as blog_router
 from config import FRONTEND_PORT, SERVER_IP
 
 app = FastAPI()
 
 app.include_router(work_experience_router)
 app.include_router(images_router)
+app.include_router(blog_router)
 app.mount("/images", StaticFiles(directory="./data/img/cards"), name="images")
 
 
