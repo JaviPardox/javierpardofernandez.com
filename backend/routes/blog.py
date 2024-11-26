@@ -44,12 +44,17 @@ class BlogPost(BlogPreview):
     def from_json_file(cls, file_name: str, post_id: str) -> "BlogPost":
         file_path = f"data/{file_name}"
         with open(file_path, 'r') as file:
-            json_data = file.read()
-        posts = cls.model_validate_json(json_data)["posts"]
-        if post_id not in posts:
+            data = json.load(file)
+        
+        posts = data.get("posts", {})
+        post_data = posts.get(post_id)
+    
+        if not post_data:
             raise ValueError("Blog post not found")
-        return cls(**posts[post_id])
 
+        return cls.model_validate(post_data)
+
+# add erros and validators
 
 @router.get("/blog/preview", response_model=List[BlogPreview])
 async def get_blog_previews():
