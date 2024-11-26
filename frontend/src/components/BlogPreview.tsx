@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { BlogPreview as BlogPreviewType } from '../types/index';
 
 interface BlogPreviewProps {
@@ -6,15 +7,21 @@ interface BlogPreviewProps {
 }
 
 const BlogPreview: React.FC<BlogPreviewProps> = ({ preview }) => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+      navigate(`/articles/${preview.id}`);
+    };
+  
   return (
     <article className="md:grid md:grid-cols-4 md:items-baseline">
       <div className="md:col-span-3 group relative flex flex-col items-start">
         <h2 className="text-base font-semibold tracking-tight text-zinc-100">
           <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl bg-zinc-800/50"></div>
-          <a href={`/articles/${preview.id}`}>
+          <button onClick={handleClick}>
             <span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
             <span className="relative z-10">{preview.title}</span>
-          </a>
+          </button>
         </h2>
         <time
           className="md:hidden relative z-10 order-first mb-3 flex items-center text-sm text-zinc-500 pl-3.5"
