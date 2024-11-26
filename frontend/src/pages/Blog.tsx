@@ -16,7 +16,6 @@ const Blog: React.FC = () => {
         const response = await axios.get<BlogPreviewType[]>(
           `http://${serverIP}:${backendPort}/blog/preview`
         );
-        console.log(response.data);
         setPreviews(response.data);
       } catch (err) {
         setError((err as Error).message);
