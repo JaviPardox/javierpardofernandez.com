@@ -34,3 +34,15 @@ export interface BlogPreview {
   title: string;
   preview_text: string;
 }
+
+export interface BlogContentBlock {
+  type: 'title' | 'smallTitle' | 'paragraph' | 'image' | 'code' | 'dottedList' | 'numberedList';
+  content: string | string[];
+}
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  date: string;
+  content: BlogContentBlock[];
+}
