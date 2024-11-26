@@ -2,19 +2,20 @@
     "previews": [
       {
         "id": "1",
-        "date": "2024-04-27",
+        "date": "September 27, 2024",
         "title": "FastAPI and Blog Routes",
         "preview_text": "Learn how to structure FastAPI routes for your blog application..."
       },
       {
         "id": "2",
-        "date": "2024-04-27",
+        "date": "September 27, 2024",
         "title": "FastAPI and Blog Routes",
         "preview_text": "Learn how to structure FastAPI routes for your blog application..."
       }
     ],
     "posts": {
       "1": {
+        "id": "1",
         "date": "2024-04-27",
         "title": "FastAPI and Blog Routes",
         "preview_text": "Learn how to structure FastAPI routes for your blog application...",
@@ -23,7 +24,9 @@
           {"type": "text", "content": "FastAPI makes routing easy and efficient..."},
           {"type": "code_block", "content": "from fastapi import FastAPI"},
           {"type": "dotted_list", "content": ["Step 1: Define your models", "Step 2: Create routes"]},
-          {"type": "image", "content": "https://example.com/fastapi.png"}
+          {"type": "image", "content": "https://example.com/fastapi.png"},
+          {"type": "numbered_list", "content": ["Step 1: Define your models", "Step 2: Create routes"]},
+          {"type": "small_title", "content": "FastAPI Blog Structure"}
         ]
       }
     }
