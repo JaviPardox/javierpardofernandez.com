@@ -36,7 +36,7 @@ export interface BlogPreview {
 }
 
 export interface BlogContentBlock {
-  type: 'title' | 'smallTitle' | 'paragraph' | 'image' | 'code' | 'dottedList' | 'numberedList';
+  type: 'small_title' | 'text' | 'image' | 'code_block' | 'dotted_list' | 'numbered_list';
   content: string | string[];
 }
 
@@ -44,5 +44,5 @@ export interface BlogPost {
   id: string;
   title: string;
   date: string;
-  content: BlogContentBlock[];
+  content_blocks: BlogContentBlock[];
 }
