@@ -58,7 +58,7 @@ const BlogPost: React.FC = () => {
         return (
           <pre
             key={index}
-            className="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto my-7"
+            className="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto my-7 text-sm"
           >
             <code>{block.content}</code>
           </pre>
@@ -98,7 +98,7 @@ const BlogPost: React.FC = () => {
 
   return (
     <article>
-      <div className="text-left sm:px-8 ">
+      <div className="text-left sm:px-8">
         <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))] pb-10"></div>
         {loading && <div>Loading...</div>}
         {error && <div>{error}</div>}
