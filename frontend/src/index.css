@@ -123,6 +123,15 @@ h2.code-themed {
   top: 0.25em;
 }
 
+li::marker {
+  color: #e4e4e7;
+  font-size: 0.9rem;
+}
+
+li {
+  padding-left: 1rem;
+}
+
 @keyframes blink-caret {
   50% {
     opacity: 0;
