@@ -143,11 +143,6 @@ li {
   display: none;
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
 @font-face {
   font-family: 'Söhne';
   src: url('../public/fonts/Sohne-Extraleicht.woff2') format('woff2'),
