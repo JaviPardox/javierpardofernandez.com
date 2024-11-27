@@ -17,9 +17,9 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({ preview }) => {
     <article className="md:grid md:grid-cols-4 md:items-baseline">
       <div className="md:col-span-3 group relative flex flex-col items-start">
         <h2 className="text-base font-semibold tracking-tight text-zinc-100">
-          <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl bg-zinc-800/50"></div>
+          <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 rounded-2xl bg-zinc-800/50"></div>
           <button onClick={handleClick}>
-            <span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
+            <span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 rounded-2xl"></span>
             <span className="relative z-10">{preview.title}</span>
           </button>
         </h2>
