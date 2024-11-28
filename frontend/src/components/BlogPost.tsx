@@ -101,7 +101,7 @@ const BlogPost: React.FC = () => {
       <div className="text-left sm:px-8">
         <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))] pb-10"></div>
         {loading && (
-          <div className="flex justify-center items-center h-full mt-40">
+          <div className="flex justify-center items-center pt-[25vh]">
             <div
               className="w-16 h-16 border-8 rounded-full animate-spin"
               style={{

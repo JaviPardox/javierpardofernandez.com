@@ -45,7 +45,7 @@ const Blog: React.FC = () => {
       </p>
       <div className="mt-16 sm:mt-20">
         {loading && (
-          <div className="flex justify-center items-center h-full">
+          <div className="flex justify-center items-center sm:pt-[15vh] pt-[5vh]">
             <div
               className="w-16 h-16 border-8 rounded-full animate-spin"
               style={{
