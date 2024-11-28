@@ -100,8 +100,20 @@ const BlogPost: React.FC = () => {
     <article>
       <div className="text-left sm:px-8">
         <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))] pb-10"></div>
-        {loading && <div>Loading...</div>}
-        {error && <div>{error}</div>}
+        {loading && (
+          <div className="flex justify-center items-center h-full mt-40">
+            <div
+              className="w-16 h-16 border-8 rounded-full animate-spin"
+              style={{
+                borderColor: "transparent",
+                borderTopColor: "rgba(20, 184, 166, 0.7)",
+                borderRightColor: "rgba(13, 148, 136, 0.9)",
+                borderBottomColor: "rgba(19, 78, 74, 1)",
+              }}
+            ></div>
+          </div>
+        )}
+        {error && <div className="flex justify-center items-center font-extrabold text-red-500">{error}</div>}
         {!error && !loading && (
           <>
             <header className="flex justify-between items-center">
