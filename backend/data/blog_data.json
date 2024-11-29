@@ -26,6 +26,20 @@
           {"type": "small_title", "content": "FastAPI Blog Structure"},
           {"type": "text", "content": "FastAPI makes routing easy and efficient..."},
           {"type": "numbered_list", "content": ["Step 1: Define your models", "Step 2: Create routes"]},
+          {"type": "image", "content": "https://example.com/fastapi.png"},
+          {"type": "text", "content": "FastAPI makes routing easy and efficient..."},
+          {"type": "code_block", "content": "from fastapi import FastAPI"},
+          {"type": "dotted_list", "content": ["Step 1: Define your models", "Step 2: Create routes"]},
+          {"type": "small_title", "content": "FastAPI Blog Structure"},
+          {"type": "text", "content": "FastAPI makes routing easy and efficient..."},
+          {"type": "numbered_list", "content": ["Step 1: Define your models", "Step 2: Create routes"]},
+          {"type": "image", "content": "https://example.com/fastapi.png"},
+          {"type": "text", "content": "FastAPI makes routing easy and efficient..."},
+          {"type": "code_block", "content": "from fastapi import FastAPI"},
+          {"type": "dotted_list", "content": ["Step 1: Define your models", "Step 2: Create routes"]},
+          {"type": "small_title", "content": "FastAPI Blog Structure"},
+          {"type": "text", "content": "FastAPI makes routing easy and efficient..."},
+          {"type": "numbered_list", "content": ["Step 1: Define your models", "Step 2: Create routes"]},
           {"type": "image", "content": "https://example.com/fastapi.png"}
         ]
       }
