@@ -8,6 +8,20 @@ const BlogPost: React.FC = () => {
   const [post, setPost] = useState<BlogPostType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 15) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -99,7 +113,7 @@ const BlogPost: React.FC = () => {
   return (
     <article>
       <div className="text-left sm:px-8">
-        <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))] pb-10"></div>
+        <div className="order-last mt-[calc(theme(spacing.20)-theme(spacing.3))] pb-10"></div>
         {loading && (
           <div className="flex justify-center items-center pt-[25vh]">
             <div
@@ -113,7 +127,11 @@ const BlogPost: React.FC = () => {
             ></div>
           </div>
         )}
-        {error && <div className="flex justify-center items-center font-extrabold text-red-500 pt-[15vh]">{error}</div>}
+        {error && (
+          <div className="flex justify-center items-center font-extrabold text-red-500 pt-[15vh]">
+            {error}
+          </div>
+        )}
         {!error && !loading && (
           <>
             <header className="flex justify-between items-center">
@@ -128,7 +146,7 @@ const BlogPost: React.FC = () => {
                 onClick={handleClick}
                 type="button"
                 aria-label="Go back to articles"
-                className="group mb-2 sm:mb-8 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition lg:-left-5 lg:-mt-2 lg:mb-0 xl:-top-1.5 xl:left-0 xl:mt-0 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20"
+                className="group flex h-10 w-10 items-center justify-center rounded-full shadow-md shadow-zinc-800/5 transition lg:-left-5 lg:-mt-2 lg:mb-0 xl:-top-1.5 xl:left-0 xl:mt-0 border border-zinc-700/50 bg-zinc-800 ring-0 ring-white/10 hover:border-zinc-700 hover:ring-white/20"
               >
                 <svg
                   viewBox="0 0 16 16"
