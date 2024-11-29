@@ -113,7 +113,7 @@ const BlogPost: React.FC = () => {
             ></div>
           </div>
         )}
-        {error && <div className="flex justify-center items-center font-extrabold text-red-500">{error}</div>}
+        {error && <div className="flex justify-center items-center font-extrabold text-red-500 pt-[15vh]">{error}</div>}
         {!error && !loading && (
           <>
             <header className="flex justify-between items-center">
