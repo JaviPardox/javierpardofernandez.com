@@ -12,7 +12,7 @@ const BlogPost: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 15) {
+      if (window.scrollY > 150) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -113,7 +113,7 @@ const BlogPost: React.FC = () => {
   return (
     <article>
       <div className="text-left sm:px-8">
-        <div className="order-last mt-[calc(theme(spacing.20)-theme(spacing.3))] pb-10"></div>
+        <div className="order-last mt-[calc(theme(spacing.24)-theme(spacing.3))] pb-10"></div>
         {loading && (
           <div className="flex justify-center items-center pt-[25vh]">
             <div
@@ -134,36 +134,39 @@ const BlogPost: React.FC = () => {
         )}
         {!error && !loading && (
           <>
-            <header className="flex justify-between items-center">
+            <header className="flex justify-between items-center relative">
               <div className="sm:flex sm:items-center">
                 <time className="order-first flex items-center text-base text-zinc-500 sm:mt-0 sm:mr-4">
                   <span className="h-4 w-0.5 rounded-full bg-zinc-500"></span>
                   <span className="ml-3">{post?.date}</span>
                 </time>
               </div>
-
-              <button
-                onClick={handleClick}
-                type="button"
-                aria-label="Go back to articles"
-                className="group flex h-10 w-10 items-center justify-center rounded-full shadow-md shadow-zinc-800/5 transition lg:-left-5 lg:-mt-2 lg:mb-0 xl:-top-1.5 xl:left-0 xl:mt-0 border border-zinc-700/50 bg-zinc-800 ring-0 ring-white/10 hover:border-zinc-700 hover:ring-white/20"
-              >
-                <svg
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  aria-hidden="true"
-                  className="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400"
+              <div className="absolute right-0 -top-2 h-10 w-10">
+                <button
+                  onClick={handleClick}
+                  type="button"
+                  aria-label="Go back to articles"
+                  className={`group flex h-10 w-10 items-center justify-center rounded-full shadow-md shadow-zinc-800/5 transition lg:-left-5 lg:-mt-2 lg:mb-0 xl:-top-1.5 xl:left-0 xl:mt-0 border border-zinc-700/50 bg-zinc-800/90 ring-0 ring-white/10 hover:border-zinc-700 hover:ring-white/20 ${
+                    isScrolled ? "fixed-button" : ""
+                  }`}
                 >
-                  <path
-                    d="M7.25 11.25 3.75 8m0 0 3.5-3.25M3.75 8h8.5"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  ></path>
-                </svg>
-              </button>
+                  <svg
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    aria-hidden="true"
+                    className="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400"
+                  >
+                    <path
+                      d="M7.25 11.25 3.75 8m0 0 3.5-3.25M3.75 8h8.5"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
             </header>
-            <h1 className="mt-6 text-4xl font-inter font-bold tracking-tight sm:text-5xl text-zinc-100">
+            <h1 className="mt-10 text-4xl font-inter font-bold tracking-tight sm:text-5xl text-zinc-100">
               {post?.title}
             </h1>
             {post?.content_blocks.map((block, index) =>

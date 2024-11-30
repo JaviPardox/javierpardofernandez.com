@@ -143,6 +143,19 @@ li {
   display: none;
 }
 
+.fixed-button {
+  @apply fixed bottom-4 right-4 z-50;
+}
+
+
+/* For larger screens (md and up) */
+@media (min-width: 640px) {
+  .fixed-button {
+    @apply static;
+  }
+}
+
+
 @font-face {
   font-family: 'Söhne';
   src: url('../public/fonts/Sohne-Extraleicht.woff2') format('woff2'),
