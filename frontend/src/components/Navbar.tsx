@@ -9,7 +9,8 @@ const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const [activeLink, setActiveLink] = useState<string | null>(
-    location.pathname === '/blog' ? 'blog' : 'home'
+    location.pathname === '/blog' || /^\/articles\/\d+$/.test(location.pathname)
+    ? 'blog' : 'home'
   );
   const [isMdViewport, setIsMdViewport] = useState(window.innerWidth >= 768);
 
@@ -168,7 +169,7 @@ const Navbar: React.FC = () => {
       // So that when going to blog, home does not get highlighted
       if (window.location.pathname === "/blog") return;
       if (/^\/articles\/\d+$/.test(window.location.pathname)) return;
-      
+
       const sections = ["home", "offer", "experience"];
       let maxVisibleSection = "home";
       let maxVisibleArea = 0;
