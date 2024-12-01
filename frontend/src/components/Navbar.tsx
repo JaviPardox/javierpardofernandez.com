@@ -167,6 +167,8 @@ const Navbar: React.FC = () => {
       // Handle blog page separately
       // So that when going to blog, home does not get highlighted
       if (window.location.pathname === "/blog") return;
+      if (/^\/articles\/\d+$/.test(window.location.pathname)) return;
+      
       const sections = ["home", "offer", "experience"];
       let maxVisibleSection = "home";
       let maxVisibleArea = 0;
