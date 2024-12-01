@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { BlogPost as BlogPostType, BlogContentBlock } from "../types/index";
@@ -9,10 +9,12 @@ const BlogPost: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [buttonPosition, setButtonPosition] = useState({});
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 150) {
+      if (window.scrollY > 15) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -22,6 +24,37 @@ const BlogPost: React.FC = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (isScrolled) {
+      // Check if buttonRef.current is not null before accessing it
+      if (buttonRef.current) {
+        const rect = buttonRef.current.getBoundingClientRect();
+        
+        console.log(rect)
+        // Calculate the translation needed to move from current position to fixed position
+        setButtonPosition({
+          position: 'fixed',
+          left: rect.left,
+          top: rect.top,
+          
+          // Calculate translation to make it appear like it's moving smoothly
+          transform:  'translate(10px, 5px)',
+          
+          // Add smooth transition
+          transition: 'transform 0.3s ease-in-out'
+        });
+      }
+    } else {
+      // Reset to original positioning when not scrolled
+      setButtonPosition(prevState => ({
+        ...prevState,
+        transform: 'translate(0px, 0px)',
+        transition: 'transform 0.3s ease-in-out'
+      }));
+    }
+  }, [isScrolled]);
+
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -146,9 +179,9 @@ const BlogPost: React.FC = () => {
                   onClick={handleClick}
                   type="button"
                   aria-label="Go back to articles"
-                  className={`group flex h-10 w-10 items-center justify-center rounded-full shadow-md shadow-zinc-800/5 transition lg:-left-5 lg:-mt-2 lg:mb-0 xl:-top-1.5 xl:left-0 xl:mt-0 border border-zinc-700/50 bg-zinc-800/90 ring-0 ring-white/10 hover:border-zinc-700 hover:ring-white/20 ${
-                    isScrolled ? "fixed-button" : ""
-                  }`}
+                  ref={buttonRef}
+                  style={buttonPosition}
+                  className={`group flex h-10 w-10 items-center justify-center rounded-full shadow-md shadow-zinc-800/5 lg:-left-5 lg:-mt-2 lg:mb-0 xl:-top-1.5 xl:left-0 xl:mt-0 border border-zinc-700/50 bg-zinc-800/90 ring-0 ring-white/10 hover:border-zinc-700 hover:ring-white/20`}
                 >
                   <svg
                     viewBox="0 0 16 16"
