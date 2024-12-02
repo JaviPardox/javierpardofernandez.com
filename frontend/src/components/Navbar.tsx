@@ -79,7 +79,7 @@ const Navbar: React.FC = () => {
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
   const handleLinkClick = (
-    event: React.MouseEvent<HTMLAnchorElement>,
+    event: React.MouseEvent<HTMLElement>,
     linkName: string
   ) => {
     event.preventDefault(); // Prevent default anchor behavior
@@ -90,6 +90,9 @@ const Navbar: React.FC = () => {
       if (currentPath !== "/") {
         setActiveLink("home");
         navigate("/");
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: "auto" });
+        }, 200);  // Transition time
       } else {
         if (isSafari) {
           smoothScrollTo(0, 600);
@@ -102,6 +105,9 @@ const Navbar: React.FC = () => {
       if (currentPath !== "/blog") {
         setActiveLink("blog");
         navigate("/blog");
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: "auto" });
+        }, 200);  // Transition time
       } else {
         if (isSafari) {
           smoothScrollTo(0, 600);
@@ -263,13 +269,15 @@ const Navbar: React.FC = () => {
       }}>
         <img
           src="/jpf-logo-transparent.png"
-          alt="JPF Logo"
+          alt="Javier Pardo Fernandez Logo"
           style={{
             width: '40px',
             height: '40px',
             objectFit: 'contain',
-            marginRight: '1rem'
+            marginRight: '1rem',
+            cursor: 'pointer'
           }}
+          onClick={(e) => handleLinkClick(e, "home")}
         />
       </div>
     <div
