@@ -13,6 +13,7 @@ const Navbar: React.FC = () => {
     ? 'blog' : 'home'
   );
   const [isMdViewport, setIsMdViewport] = useState(window.innerWidth >= 768);
+  const [isLgViewport, setIsLgViewport] = useState(window.innerWidth >= 1024);
 
 
   const closeNavbar = useCallback(() => {
@@ -236,6 +237,7 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const handleResize = () => {
       setIsMdViewport(window.innerWidth >= 768);
+      setIsLgViewport(window.innerWidth >= 1024);
     };
 
     // Event listener for window resize
@@ -265,7 +267,7 @@ const Navbar: React.FC = () => {
     >
       <div style={{
         position: 'absolute',
-        left: '10%',
+        left: isLgViewport ? '23.5%' : '10%',
       }}>
         <img
           src="/jpf-logo-transparent.png"
