@@ -31,7 +31,6 @@ const BlogPost: React.FC = () => {
       if (buttonRef.current) {
         const rect = buttonRef.current.getBoundingClientRect();
         
-        console.log(rect)
         // Calculate the translation needed to move from current position to fixed position
         setButtonPosition({
           position: 'fixed',
