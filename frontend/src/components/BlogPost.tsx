@@ -140,6 +140,9 @@ const BlogPost: React.FC = () => {
 
   const handleClick = () => {
     navigate("/blog");
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }, 200);  // Transition time
   };
 
   return (
