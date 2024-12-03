@@ -469,7 +469,9 @@ const Navbar: React.FC = () => {
               <Link
                 to="/blog"
                 className="text-sm hover:text-teal-400"
-                onClick={() => closeNavbar()}
+                onClick={(e) => {
+                  handleLinkClick(e, "blog");
+                  closeNavbar()}}
               >
                 Blog
               </Link>
