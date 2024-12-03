@@ -1,12 +1,22 @@
-from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel, field_validator
+from fastapi import APIRouter, HTTPException, status
+from pydantic import BaseModel, field_validator, ValidationError
 from datetime import datetime
 from enum import Enum
 from typing import List, Union
 import json
 
-# Define router
+
 router = APIRouter()
+
+
+class BlogDataError(HTTPException):
+    """Custom exception for blog data-related errors."""
+    def __init__(self, detail: str):
+        super().__init__(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, 
+            detail=detail
+        )
+        
 
 def validate_blog_data(data):
     preview_ids = {preview['id'] for preview in data['previews']}
@@ -111,12 +121,43 @@ class BlogPreview(BaseModel):
     
     @classmethod
     def from_json_file(cls, file_name: str) -> List["BlogPreview"]:
-        file_path = f"data/{file_name}"
-        with open(file_path, 'r') as file:
-            data = json.load(file)
+        try:
+            file_path = f"data/{file_name}"
             
-        validate_blog_data(data)
-        return [cls.model_validate(preview) for preview in data["previews"]]
+            try:
+                with open(file_path, 'r') as file:
+                    data = json.load(file)
+            except FileNotFoundError:
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND, 
+                    detail=f"Blog data file '{file_name}' not found"
+                )
+            except json.JSONDecodeError:
+                raise BlogDataError(f"Invalid JSON in file '{file_name}'")        
+            
+            try:
+                validate_blog_data(data)
+                previews = data.get("previews", [])
+                
+                if not previews:
+                    raise HTTPException(
+                        status_code=status.HTTP_404_NOT_FOUND, 
+                        detail="No blog previews found"
+                    )
+                    
+                return [cls.model_validate(preview) for preview in previews]
+            
+            except (ValueError, ValidationError) as e:
+                raise HTTPException(
+                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, 
+                    detail=f"Invalid blog preview data: {str(e)}"
+                )
+
+        except Exception as e:
+            # Catch any unexpected errors
+            raise BlogDataError(f"Error processing blog previews: {str(e)}")
+
+            
 
 # Full blog data model
 class BlogPost(BlogPreview):
@@ -131,20 +172,45 @@ class BlogPost(BlogPreview):
     
     @classmethod
     def from_json_file(cls, file_name: str, post_id: str) -> "BlogPost":
-        file_path = f"data/{file_name}"
-        with open(file_path, 'r') as file:
-            data = json.load(file)
+        
+        try:
+            file_path = f"data/{file_name}"
+
+            try:
+                with open(file_path, 'r') as file:
+                    data = json.load(file)
+            except FileNotFoundError:
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND, 
+                    detail=f"Blog data file '{file_name}' not found"
+                )
+            except json.JSONDecodeError:
+                raise BlogDataError(f"Invalid JSON in file '{file_name}'")
+
+            try:
+                validate_blog_data(data)
+                posts = data.get("posts", {})
+                post_data = posts.get(post_id)
             
-        validate_blog_data(data)
-        posts = data.get("posts", {})
-        post_data = posts.get(post_id)
-    
-        if not post_data:
-            raise ValueError("Blog post not found")
+                if not post_data:
+                    raise HTTPException(
+                            status_code=status.HTTP_404_NOT_FOUND, 
+                            detail=f"Blog post with ID '{post_id}' not found"
+                        )
 
-        return cls.model_validate(post_data)
+                return cls.model_validate(post_data)
 
-# add erros and validators
+            except (ValueError, ValidationError) as e:
+                    raise HTTPException(
+                        status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, 
+                        detail=f"Invalid blog post data: {str(e)}"
+                    )
+
+        except Exception as e:
+            # Catch any unexpected errors
+            raise BlogDataError(f"Error processing blog post: {str(e)}")
+            
+
 
 @router.get("/blog/preview", response_model=List[BlogPreview])
 async def get_blog_previews():
@@ -152,7 +218,5 @@ async def get_blog_previews():
 
 @router.get("/blog/{post_id}", response_model=BlogPost)
 async def get_blog_post(post_id: str):
-    try:
-        return BlogPost.from_json_file("blog_data.json", post_id)
-    except ValueError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+    return BlogPost.from_json_file("blog_data.json", post_id)
+
