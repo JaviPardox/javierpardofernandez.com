@@ -11,6 +11,9 @@ const BlogPreview: React.FC<BlogPreviewProps> = ({ preview }) => {
 
     const handleClick = () => {
       navigate(`/articles/${preview.id}`);
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "auto" });
+      }, 200);  // Transition time
     };
   
   return (
