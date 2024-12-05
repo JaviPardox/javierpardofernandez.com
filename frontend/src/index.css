@@ -15,7 +15,13 @@ body {
 }
 
 html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;  
   overflow-x: hidden;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 /* Might have to change this */
