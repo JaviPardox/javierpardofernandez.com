@@ -1,6 +1,6 @@
 from pydantic import BaseModel, HttpUrl, ValidationError, field_validator
 from typing import List
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, status
 
 
 router = APIRouter()
@@ -82,18 +82,16 @@ class WorkExperience(BaseModel):
                     json_data = file.read()
                 return cls.model_validate_json(json_data)
             except ValidationError as e:
-                raise HTTPException(status_code=422, detail=f"Validation Error: {e}")
+                raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=f"Validation Error: {e}")
+            except ValueError as e:
+                raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=f"Value Error: {e}")
             except FileNotFoundError:
-                raise HTTPException(status_code=404, detail="The file was not found.")
+                raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="The file was not found.")
             except Exception as e:
-                raise HTTPException(status_code=500, detail=f"Unexpected error: {e}")
+                raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Unexpected error: {e}")
         
 
 @router.get("/job-info", response_model=WorkExperience)
 def get_job_info():
-    try:
-        work_experience = WorkExperience.create_from_file('work_experience.json')
-        return work_experience
-    except HTTPException as e:
-        raise e
+    return WorkExperience.create_from_file('work_experience.json')
 

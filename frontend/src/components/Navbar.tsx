@@ -9,9 +9,11 @@ const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const [activeLink, setActiveLink] = useState<string | null>(
-    location.pathname === '/blog' ? 'blog' : 'home'
+    location.pathname === '/blog' || /^\/articles\/\d+$/.test(location.pathname)
+    ? 'blog' : 'home'
   );
   const [isMdViewport, setIsMdViewport] = useState(window.innerWidth >= 768);
+  const [isLgViewport, setIsLgViewport] = useState(window.innerWidth >= 1024);
 
 
   const closeNavbar = useCallback(() => {
@@ -78,7 +80,7 @@ const Navbar: React.FC = () => {
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
   const handleLinkClick = (
-    event: React.MouseEvent<HTMLAnchorElement>,
+    event: React.MouseEvent<HTMLElement>,
     linkName: string
   ) => {
     event.preventDefault(); // Prevent default anchor behavior
@@ -89,6 +91,9 @@ const Navbar: React.FC = () => {
       if (currentPath !== "/") {
         setActiveLink("home");
         navigate("/");
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: "auto" });
+        }, 200);  // Transition time
       } else {
         if (isSafari) {
           smoothScrollTo(0, 600);
@@ -101,6 +106,9 @@ const Navbar: React.FC = () => {
       if (currentPath !== "/blog") {
         setActiveLink("blog");
         navigate("/blog");
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: "auto" });
+        }, 200);  // Transition time
       } else {
         if (isSafari) {
           smoothScrollTo(0, 600);
@@ -167,6 +175,8 @@ const Navbar: React.FC = () => {
       // Handle blog page separately
       // So that when going to blog, home does not get highlighted
       if (window.location.pathname === "/blog") return;
+      if (/^\/articles\/\d+$/.test(window.location.pathname)) return;
+
       const sections = ["home", "offer", "experience"];
       let maxVisibleSection = "home";
       let maxVisibleArea = 0;
@@ -227,6 +237,7 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const handleResize = () => {
       setIsMdViewport(window.innerWidth >= 768);
+      setIsLgViewport(window.innerWidth >= 1024);
     };
 
     // Event listener for window resize
@@ -256,17 +267,19 @@ const Navbar: React.FC = () => {
     >
       <div style={{
         position: 'absolute',
-        left: '10%',
+        left: isLgViewport ? '23.5%' : '10%',
       }}>
         <img
           src="/jpf-logo-transparent.png"
-          alt="JPF Logo"
+          alt="Javier Pardo Fernandez Logo"
           style={{
             width: '40px',
             height: '40px',
             objectFit: 'contain',
-            marginRight: '1rem'
+            marginRight: '1rem',
+            cursor: 'pointer'
           }}
+          onClick={(e) => handleLinkClick(e, "home")}
         />
       </div>
     <div
@@ -456,7 +469,9 @@ const Navbar: React.FC = () => {
               <Link
                 to="/blog"
                 className="text-sm hover:text-teal-400"
-                onClick={() => closeNavbar()}
+                onClick={(e) => {
+                  handleLinkClick(e, "blog");
+                  closeNavbar()}}
               >
                 Blog
               </Link>

@@ -25,31 +25,37 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({
 
     const html = document.documentElement;
 
-    if (showLoadingScreen) { //dependency?
-      html.classList.add('no-scroll-height');
-      document.body.classList.add('no-scroll-height');
+    if (showLoadingScreen) {
+      //dependency?
+      html.classList.add("no-scroll-height");
+      document.body.classList.add("no-scroll-height");
     }
 
     if (!isLoading) {
-      console.log("Loading completed, proceeding to content")
-      // Once isLoading is false start nested timeouts
-      // It goes from outer to inner timeouts
-      fadeOutTimer = setTimeout(() => {
-        setfadeOutLoadingScreen(true);
+      // Run procedure when loading home
+      if (window.location.pathname === "/") {
+        // Once isLoading is false start nested timeouts
+        // It goes from outer to inner timeouts
+        fadeOutTimer = setTimeout(() => {
+          setfadeOutLoadingScreen(true);
 
-        unmountTimer = setTimeout(() => {
-          setShowLoadingScreen(false);
+          unmountTimer = setTimeout(() => {
+            setShowLoadingScreen(false);
 
-          contentFadeinTimer = setTimeout(() => {
-            setIsContentReady(true);
+            contentFadeinTimer = setTimeout(() => {
+              setIsContentReady(true);
 
-            scrollTimer = setTimeout(() => {
-              html.classList.remove('no-scroll-height');
-              document.body.classList.remove('no-scroll-height');
-            }, FADE_DURATION);
-          }, START_CONTENT_FADE_IN);
-        }, FADE_DURATION);
-      }, MINIMUM_LOADING_SCREEN_DURATION);
+              scrollTimer = setTimeout(() => {
+                html.classList.remove("no-scroll-height");
+                document.body.classList.remove("no-scroll-height");
+              }, FADE_DURATION);
+            }, START_CONTENT_FADE_IN);
+          }, FADE_DURATION);
+        }, MINIMUM_LOADING_SCREEN_DURATION);
+      } else {
+        setShowLoadingScreen(false);
+        setIsContentReady(true);
+      }
     }
 
     return () => {
@@ -58,8 +64,8 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({
       clearTimeout(contentFadeinTimer);
       clearTimeout(scrollTimer);
 
-      html.classList.remove('no-scroll-height');
-      document.body.classList.remove('no-scroll-height');
+      html.classList.remove("no-scroll-height");
+      document.body.classList.remove("no-scroll-height");
     };
   }, [isLoading]);
 
@@ -93,7 +99,7 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({
         >
           {children}
         </div>
-        {showLoadingScreen && (
+        {showLoadingScreen && window.location.pathname === "/" && (
           <div
             className={`fixed inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-1000 ${
               fadeOutLoadingScreen ? "opacity-0" : "opacity-100"

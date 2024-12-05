@@ -55,7 +55,17 @@ const ExperienceSection: React.FC = () => {
   }, [dispatch]);
 
   if (loading)
-    return <div className="text-center">Loading job experience...</div>;
+    return (<div className="flex justify-center items-center pt-[15vh]">
+      <div
+        className="w-16 h-16 border-8 rounded-full animate-spin"
+        style={{
+          borderColor: "transparent",
+          borderTopColor: "rgba(20, 184, 166, 0.7)",
+          borderRightColor: "rgba(13, 148, 136, 0.9)",
+          borderBottomColor: "rgba(19, 78, 74, 1)",
+        }}
+      ></div>
+    </div>);
   if (error) return <div className="text-red-500 text-center">{error}</div>;
   if (!workExperience)
     return (

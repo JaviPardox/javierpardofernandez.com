@@ -123,6 +123,15 @@ h2.code-themed {
   top: 0.25em;
 }
 
+li::marker {
+  color: #e4e4e7;
+  font-size: 0.9rem;
+}
+
+li {
+  padding-left: 1rem;
+}
+
 @keyframes blink-caret {
   50% {
     opacity: 0;
@@ -134,10 +143,18 @@ h2.code-themed {
   display: none;
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+.fixed-button {
+  @apply fixed bottom-4 right-4 z-50;
 }
+
+
+/* For larger screens (md and up) */
+@media (min-width: 640px) {
+  .fixed-button {
+    @apply static;
+  }
+}
+
 
 @font-face {
   font-family: 'Söhne';
