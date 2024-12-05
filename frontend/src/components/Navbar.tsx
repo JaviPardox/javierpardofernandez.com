@@ -10,7 +10,10 @@ const Navbar: React.FC = () => {
   const location = useLocation();
   const [activeLink, setActiveLink] = useState<string | null>(
     location.pathname === '/blog' || /^\/articles\/\d+$/.test(location.pathname)
-    ? 'blog' : 'home'
+    ? 'blog' 
+    : location.pathname === '/'
+    ? 'home'
+    : null
   );
   const [isMdViewport, setIsMdViewport] = useState(window.innerWidth >= 768);
   const [isLgViewport, setIsLgViewport] = useState(window.innerWidth >= 1024);
@@ -32,6 +35,20 @@ const Navbar: React.FC = () => {
     },
     [menuRef, closeNavbar]
   );
+
+  // Hook to make sure the highlighting stays consistent when navigating
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setActiveLink("home");
+    }
+    else if (location.pathname === "/blog" || /^\/articles\/\d+$/.test(location.pathname)) {
+      setActiveLink("blog");
+    }
+    else {
+      setActiveLink(null);
+    }
+
+  }, [location.pathname])
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -172,10 +189,8 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Handle blog page separately
-      // So that when going to blog, home does not get highlighted
-      if (window.location.pathname === "/blog") return;
-      if (/^\/articles\/\d+$/.test(window.location.pathname)) return;
+      // Only applies when at home
+      if (window.location.pathname !== "/") return;
 
       const sections = ["home", "offer", "experience"];
       let maxVisibleSection = "home";
