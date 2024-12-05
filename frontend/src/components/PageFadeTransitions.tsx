@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Home from '../pages/Home';
 import Blog from '../pages/Blog';
 import BlogPost from './BlogPost';
+import NotFoundPage from '../pages/NotFoundPage';
 
 const PageFadeTransitions = () => {
   const location = useLocation();
@@ -26,6 +27,7 @@ const PageFadeTransitions = () => {
           <Route path="/" element={<Home />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/articles/:id" element={<BlogPost />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </motion.div>
     </AnimatePresence>
