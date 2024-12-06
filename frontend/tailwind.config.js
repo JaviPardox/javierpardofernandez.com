@@ -26,6 +26,15 @@ module.exports = {
         '10p': '10%',
         '20p': '20%',
       },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        }
+      },
+      animation: {
+        'fade-in': 'fadeIn 40s forwards'
+      }
     },
   },
   plugins: [],
