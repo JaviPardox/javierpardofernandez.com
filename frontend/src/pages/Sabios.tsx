@@ -18,7 +18,8 @@ const Sabios: React.FC = () => {
 
   const quotes = [
     { text: '"razers negros se tiñen de blñanco en rusia en los pros vayne"', author: "El Sabio" },
-    { text: '"Ave si ahora hay que hacer por a alguien para saber que es subnormal"', author: "El Sabio" }
+    { text: '"Ave si ahora hay que hacer por a alguien para saber que es subnormal"', author: "El Sabio" },
+    { text: '"Fregar deporte nacional"', author:"El Sabio"}
   ];
 
   useEffect(() => {
