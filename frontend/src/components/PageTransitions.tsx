@@ -55,6 +55,9 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({
       } else {
         setShowLoadingScreen(false);
         setIsContentReady(true);
+
+        html.classList.remove("no-scroll-height");
+        document.body.classList.remove("no-scroll-height");
       }
     }
 

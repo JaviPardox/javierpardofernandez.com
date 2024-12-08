@@ -10,7 +10,10 @@ const Navbar: React.FC = () => {
   const location = useLocation();
   const [activeLink, setActiveLink] = useState<string | null>(
     location.pathname === '/blog' || /^\/articles\/\d+$/.test(location.pathname)
-    ? 'blog' : 'home'
+    ? 'blog' 
+    : location.pathname === '/'
+    ? 'home'
+    : null
   );
   const [isMdViewport, setIsMdViewport] = useState(window.innerWidth >= 768);
   const [isLgViewport, setIsLgViewport] = useState(window.innerWidth >= 1024);
@@ -32,6 +35,20 @@ const Navbar: React.FC = () => {
     },
     [menuRef, closeNavbar]
   );
+
+  // Hook to make sure the highlighting stays consistent when navigating
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setActiveLink("home");
+    }
+    else if (location.pathname === "/blog" || /^\/articles\/\d+$/.test(location.pathname)) {
+      setActiveLink("blog");
+    }
+    else {
+      setActiveLink(null);
+    }
+
+  }, [location.pathname])
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -172,10 +189,8 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Handle blog page separately
-      // So that when going to blog, home does not get highlighted
-      if (window.location.pathname === "/blog") return;
-      if (/^\/articles\/\d+$/.test(window.location.pathname)) return;
+      // Only applies when at home
+      if (window.location.pathname !== "/") return;
 
       const sections = ["home", "offer", "experience"];
       let maxVisibleSection = "home";
@@ -386,7 +401,7 @@ const Navbar: React.FC = () => {
       </div>
       {isOpen && (
         <div
-          className={`fixed inset-0 z-40 transition-all duration-300 px-10p ${
+          className={`fixed inset-0 z-40 transition-all duration-300 px-5p ${
             isAnimating ? "opacity-100 scale-100" : "opacity-0 scale-100"
           }`}
           style={{
@@ -443,7 +458,7 @@ const Navbar: React.FC = () => {
               >
                 Home
               </Link>
-              <span className="block h-px mr-4 bg-gradient-to-r from-teal-400/40 via-teal-400/20 to-teal-400/40"></span>
+              <span className="block h-px mr-4 bg-zinc-100/5"></span>
               <Link
                 to="/"
                 className="text-sm hover:text-teal-400"
@@ -454,7 +469,7 @@ const Navbar: React.FC = () => {
               >
                 Offer
               </Link>
-              <span className="block h-px mr-4 bg-gradient-to-r from-teal-400/40 via-teal-400/20 to-teal-400/40"></span>
+              <span className="block h-px mr-4 bg-zinc-100/5"></span>
               <Link
                 to="/"
                 className="text-sm hover:text-teal-400"
@@ -465,7 +480,7 @@ const Navbar: React.FC = () => {
               >
                 Experience
               </Link>
-              <span className="block h-px mr-4 bg-gradient-to-r from-teal-400/40 via-teal-400/20 to-teal-400/40"></span>
+              <span className="block h-px mr-4 bg-zinc-100/5"></span>
               <Link
                 to="/blog"
                 className="text-sm hover:text-teal-400"
