@@ -17,9 +17,15 @@ const Sabios: React.FC = () => {
   ];
 
   const quotes = [
-    { text: '"razers negros se tiñen de blñanco en rusia en los pros vayne"', author: "El Sabio" },
-    { text: '"Ave si ahora hay que hacer por a alguien para saber que es subnormal"', author: "El Sabio" },
-    { text: '"Fregar deporte nacional"', author:"El Sabio"}
+    {
+      text: '"razers negros se tiñen de blñanco en rusia en los pros vayne"',
+      author: "El Sabio",
+    },
+    {
+      text: '"Ave si ahora hay que hacer por a alguien para saber que es subnormal"',
+      author: "El Sabio",
+    },
+    { text: '"Fregar deporte nacional"', author: "El Sabio" },
   ];
 
   useEffect(() => {
@@ -45,12 +51,12 @@ const Sabios: React.FC = () => {
   useEffect(() => {
     if (!isCoverMounted && audioRef.current) {
       audioRef.current.src = audioTracks[currentTrackIndex];
-      audioRef.current.play().catch(error => {
+      audioRef.current.play().catch((error) => {
         console.log("Autoplay was prevented:", error);
       });
     }
   }, [currentTrackIndex]);
-  
+
   const handleCoverClick = () => {
     // Hide the cover and start playing music
     if (audioRef.current) {
@@ -72,7 +78,6 @@ const Sabios: React.FC = () => {
       }
     }
   }, [isCoverMounted]);
-  
 
   return (
     <div className="relative">
@@ -92,7 +97,7 @@ const Sabios: React.FC = () => {
         </div>
       )}
       <div
-        className={`flex h-screen items-center justify-center flex-col text-center 
+        className={`flex h-screen sm:h-auto items-center justify-center flex-col text-center
           ${coverFadeOut ? "animate-fade-in opacity-0" : "opacity-100"}`}
       >
         <img
@@ -101,15 +106,23 @@ const Sabios: React.FC = () => {
           style={{ width: "100%", maxWidth: "800px" }}
           className="rounded-lg"
         ></img>
-        <div className="quote-container text-center mt-8">
-        <p
-          className={`mt-4 italic text-xl text-zinc-300 transition-opacity duration-1000 ease-in-out ${fadeOut ? "opacity-0" : "opacity-100"}`}
-          style={{ fontFamily: "'MedievalSharp', cursive" }}
-        >
-          {quotes[currentQuote].text}
-        </p>
-          <span className={`text-2xl text-zinc-400 mt-2 block italic transition-opacity duration-1000 ease-in-out ${fadeOut ? "opacity-0" : "opacity-100"}`}
-          style={{ fontFamily: "'MedievalSharp', cursive", color: '#d4af37' }}>— {quotes[currentQuote].author}</span>
+        <div className="quote-container text-center mt-2 sm:mt-0 h-32 sm:h-auto">
+          <p
+            className={`mt-4 italic text-xl text-zinc-300 transition-opacity duration-1000 ease-in-out ${
+              fadeOut ? "opacity-0" : "opacity-100"
+            }`}
+            style={{ fontFamily: "'MedievalSharp', cursive" }}
+          >
+            {quotes[currentQuote].text}
+          </p>
+          <span
+            className={`text-2xl text-zinc-400 mt-2 block italic transition-opacity duration-1000 ease-in-out ${
+              fadeOut ? "opacity-0" : "opacity-100"
+            }`}
+            style={{ fontFamily: "'MedievalSharp', cursive", color: "#d4af37" }}
+          >
+            — {quotes[currentQuote].author}
+          </span>
         </div>
         <div className="mt-6">
           <audio
