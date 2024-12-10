@@ -58,6 +58,8 @@ const Sabios: React.FC = () => {
   }, [currentTrackIndex]);
 
   const handleCoverClick = () => {
+    const html = document.documentElement;
+    const body = document.body;
     // Hide the cover and start playing music
     if (audioRef.current) {
       audioRef.current.play();
@@ -65,6 +67,8 @@ const Sabios: React.FC = () => {
     setCoverFadeOut(true);
     setTimeout(() => {
       setIsCoverMounted(false);
+      html.classList.remove("no-scroll-sabios");
+      body.classList.remove("no-scroll-sabios");
     }, 1000);
   };
 
@@ -78,6 +82,21 @@ const Sabios: React.FC = () => {
       }
     }
   }, [isCoverMounted]);
+
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+  
+    // Add the class on mount
+    html.classList.add("no-scroll-sabios");
+    body.classList.add("no-scroll-sabios");
+  
+    // Cleanup to remove the class on unmount
+    return () => {
+      html.classList.remove("no-scroll-sabios");
+      body.classList.remove("no-scroll-sabios");
+    };
+  },[]);
 
   return (
     <div className="relative">
@@ -97,14 +116,13 @@ const Sabios: React.FC = () => {
         </div>
       )}
       <div
-        className={`flex h-screen sm:h-auto items-center justify-center flex-col text-center
+        className={`flex h-screen items-center justify-center flex-col text-center
           ${coverFadeOut ? "animate-fade-in opacity-0" : "opacity-100"}`}
       >
         <img
           src="img/sabios/los_sabios.webp"
           alt="Los sabios"
-          style={{ width: "100%", maxWidth: "800px" }}
-          className="rounded-lg"
+          className="rounded-lg w-full max-w-[100%] sm:max-w-[700px]"
         ></img>
         <div className="quote-container text-center mt-2 sm:mt-0 h-32 sm:h-auto">
           <p

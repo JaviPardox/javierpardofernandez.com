@@ -59,6 +59,16 @@ html.no-scroll, body.no-scroll {
   overflow: hidden;
 }
 
+.no-scroll-sabios {
+  overflow: hidden;
+  height: 100%;
+}
+
+html.no-scroll-sabios, body.no-scroll-sabios {
+  overflow: hidden;
+  height: 100%;
+}
+
 .code-themed {
   font-family: 'Courier New', Courier, monospace;
   background-color: #343434;

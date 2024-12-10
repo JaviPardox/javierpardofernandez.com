@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import ResponsiveCenterLayout from './components/ResponsiveCenterLayout';
 import PageTransitions from './components/PageTransitions';
 import PageFadeTransitions from './components/PageFadeTransitions';
+import Footer from './components/Footer';
 
 
 const App: React.FC = () => {
@@ -20,6 +21,7 @@ const App: React.FC = () => {
                 <PageFadeTransitions />
               </main>
             </ResponsiveCenterLayout>
+            <Footer />
           </PageTransitions>
         </div>
       </Router>
