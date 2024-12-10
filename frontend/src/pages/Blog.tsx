@@ -29,7 +29,7 @@ const Blog: React.FC = () => {
 
   return (
     <div className="text-left sm:px-8 sm:pb-8 pb-8">
-      <div className="order-last mt-[calc(theme(spacing.20)-theme(spacing.3))] pb-10"></div>
+      <div className="mt-[calc(theme(spacing.20)-theme(spacing.3))] pb-10"></div>
       <h1 className="max-w-2xl text-4xl sm:text-4.82xl mb-6 mt-7 text-zinc-100 font-inter font-bold tracking-tight leading-[2.5rem] sm:leading-[3.5rem]">
         Writing on software design, company building, and the aerospace
         industry.
