@@ -22,11 +22,13 @@ class Organization(BaseModel):
 def get_records():
     return {
         "academic": [
-            {"institution": "University A", "degree": "BSc", "field_of_study": "Computer Science", "start_date": "2018", "end_date": "2022"},
-            {"institution": "High School B", "degree": "High School Diploma", "field_of_study": "Science", "start_date": "2014", "end_date": "2018"}
+            {"institution": "Universitat de Barcelona", "degree": "MSc", "field_of_study": "Project Management", "start_date": "March 2023", "end_date": "March 2024"},
+            {"institution": "UC Berkeley", "degree": "Bootcamp", "field_of_study": "Data Science", "start_date": "November 2020", "end_date": "June 2021"},
+            {"institution": "California State University, Chico", "degree": "BSc", "field_of_study": "Computer Engineering", "start_date": "August 2015", "end_date": "December 2019"}
         ],
         "organizations": [
-            {"name": "Tech Club", "role": "President", "duration": "2 years", "description": "Led a team of developers."},
-            {"name": "Open Source Group", "role": "Member", "duration": "1 year", "description": "Contributed to open-source projects."}
+            {"name": "Tau Beta Pi, Alpha Alpha Chapter", "role": "Corresponding Secretary", "duration": "1 year", "description": "Responsible for managing communication on behalf of the chapter."},
+            {"name": "Tau Beta Pi, Alpha Alpha Chapter", "role": "IT Master", "duration": "1 year", "description": "Responsible for updating and maintaining the website functionality and content."},
+            {"name": "Tau Kappa Epsilon, Theta Pi Chapter", "role": "Founding Father", "duration": "3 years", "description": "Played an active role in the creation of the Theta Pi chapter."}
         ]
     }
