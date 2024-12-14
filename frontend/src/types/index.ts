@@ -53,13 +53,16 @@ export interface AcademicRecord {
   field_of_study: string;
   start_date: string;
   end_date: string;
+  logo_path: string;
 }
 
 export interface Organization {
   name: string;
+  chapter: string;
   role: string;
   duration: string;
   description: string;
+  logo_path: string;
 }
 
 export interface Records {
