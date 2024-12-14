@@ -11,6 +11,7 @@ class AcademicRecord(BaseModel):
     field_of_study: str
     start_date: str
     end_date: str
+    logo_path: str
 
 class Organization(BaseModel):
     name: str
@@ -18,18 +19,19 @@ class Organization(BaseModel):
     role: str
     duration: str
     description: str
+    logo_path: str
 
 @router.get("/records")
 def get_records():
     return {
         "academic": [
-            {"institution": "Universitat de Barcelona", "degree": "MSc", "field_of_study": "Project Management", "start_date": "March 2023", "end_date": "March 2024"},
-            {"institution": "UC Berkeley", "degree": "Bootcamp", "field_of_study": "Data Science", "start_date": "November 2020", "end_date": "June 2021"},
-            {"institution": "California State University, Chico", "degree": "BSc", "field_of_study": "Computer Engineering", "start_date": "August 2015", "end_date": "December 2019"}
+            {"institution": "Universitat de Barcelona", "degree": "MSc", "field_of_study": "Project Management", "start_date": "March 2023", "end_date": "March 2024", "logo_path": "udb"},
+            {"institution": "UC Berkeley", "degree": "Bootcamp", "field_of_study": "Data Science", "start_date": "November 2020", "end_date": "June 2021", "logo_path": "ucb"},
+            {"institution": "California State University, Chico", "degree": "BSc", "field_of_study": "Computer Engineering", "start_date": "August 2015", "end_date": "December 2019", "logo_path": "csuchico"}
         ],
         "organizations": [
-            {"name": "Tau Beta Pi", "chapter": "Alpha Alpha Chapter", "role": "Corresponding Secretary", "duration": "1 year", "description": "Responsible for managing communication on behalf of the chapter."},
-            {"name": "Tau Beta Pi", "chapter": "Alpha Alpha Chapter", "role": "IT Master", "duration": "1 year", "description": "Responsible for updating and maintaining the website functionality and content."},
-            {"name": "Tau Kappa Epsilon", "chapter": "Theta Pi Chapter", "role": "Founding Father", "duration": "3 years", "description": "Played an active role in the creation of the Theta Pi chapter."}
+            {"name": "Tau Beta Pi", "chapter": "Alpha Alpha Chapter", "role": "Corresponding Secretary", "duration": "1 year", "description": "Responsible for managing communication on behalf of the chapter.", "logo_path": "tbp"},
+            {"name": "Tau Beta Pi", "chapter": "Alpha Alpha Chapter", "role": "IT Master", "duration": "1 year", "description": "Responsible for updating and maintaining the website functionality and content.", "logo_path": "tbp"},
+            {"name": "Tau Kappa Epsilon", "chapter": "Theta Pi Chapter", "role": "Founding Father", "duration": "3 years", "description": "Played an active role in the creation of the Theta Pi chapter.", "logo_path": "tke"}
         ]
     }
