@@ -47,7 +47,7 @@ export interface BlogPost {
   content_blocks: BlogContentBlock[];
 }
 
-export interface AcademicRecord {
+export interface Academic {
   institution: string;
   degree: string;
   field_of_study: string;
@@ -66,6 +66,6 @@ export interface Organization {
 }
 
 export interface Records {
-  academic: AcademicRecord[];
+  academics: Academic[];
   organizations: Organization[];
 }
