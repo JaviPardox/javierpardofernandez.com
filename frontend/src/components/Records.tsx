@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { AcademicRecord, Organization, Records } from "../types";
+import { Academic, Organization, Records } from "../types";
 import axios from "axios";
 
 const RecordsSection: React.FC = () => {
-  const [academicRecords, setAcademicRecords] = useState<AcademicRecord[]>([]);
+  const [academicRecords, setAcademicRecords] = useState<Academic[]>([]);
   const [organizations, setOrganizations] = useState<Organization[]>([]);
   const [error, setErrorMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -17,7 +17,7 @@ const RecordsSection: React.FC = () => {
         const response = await axios.get<Records>(
           `http://${serverIP}:${backendPort}/records`
         );
-        setAcademicRecords(response.data.academic);
+        setAcademicRecords(response.data.academics);
         setOrganizations(response.data.organizations);
         setLoading(false);
       } catch (error) {
@@ -47,7 +47,7 @@ const RecordsSection: React.FC = () => {
   if (error) return <div className="text-red-500 text-center">{error}</div>;
 
   return (
-    <section className="flex flex-col lg:flex-row gap-8 px-4 py-8">
+    <section className="flex flex-col lg:flex-row gap-8 py-8">
       <div className="lg:w-1/2">
         <h2 className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
           <span className="function-name">$</span>{" "}
@@ -76,11 +76,11 @@ const RecordsSection: React.FC = () => {
                 </div>
                 <dl className="flex flex-auto flex-wrap gap-x-2">
                   <dd className="w-full flex-none text-sm font-medium text-zinc-100">
+                    {record.field_of_study}
+                    <span className="mx-1">|</span>
                     <span className="italic font-normal text-zinc-100/60">
                       {record.degree}
                     </span>
-                    <span className="mx-1">|</span>
-                    {record.field_of_study}
                   </dd>
                   <dd className="text-xs text-zinc-400">
                     {record.institution}
@@ -124,11 +124,11 @@ const RecordsSection: React.FC = () => {
                 </div>
                 <dl className="flex flex-auto flex-wrap gap-x-2">
                   <dd className="w-full flex-none text-sm font-medium text-zinc-100">
+                    {org.name}
+                    <span className="mx-1">|</span>
                     <span className="italic font-normal text-zinc-100/60">
                       {org.chapter}
                     </span>
-                    <span className="mx-1">|</span>
-                    {org.name}
                   </dd>
                   <dd className="text-xs text-zinc-400">{org.role}</dd>
                   <dd
