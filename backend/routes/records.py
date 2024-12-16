@@ -10,8 +10,8 @@ class Academic(BaseModel):
     institution: str = Field(..., min_length=1, max_length=200)
     degree: str = Field(..., min_length=1, max_length=100)
     field_of_study: str = Field(..., min_length=1, max_length=100)
-    start_date: str
-    end_date: str
+    start_date: str = Field(..., min_length=1, max_length=20)
+    end_date: str = Field(..., min_length=1, max_length=20)
     logo_path: str = Field(default="")
 
 
@@ -19,7 +19,7 @@ class Organization(BaseModel):
     name: str = Field(..., min_length=1, max_length=200)
     chapter: str = Field(default="")
     role: str = Field(..., min_length=1, max_length=100)
-    duration: str
+    duration: str = Field(..., min_length=1, max_length=20)
     description: str = Field(default="")
     logo_path: str = Field(default="")
     
