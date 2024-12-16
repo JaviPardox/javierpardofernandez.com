@@ -1,37 +1,69 @@
-from fastapi import APIRouter
-from pydantic import BaseModel
+from fastapi import APIRouter, HTTPException, status
+from pydantic import BaseModel, Field, ValidationError
 from typing import List
+import json
 
 
 router = APIRouter()
 
-class AcademicRecord(BaseModel):
-    institution: str
-    degree: str
-    field_of_study: str
+class Academic(BaseModel):
+    institution: str = Field(..., min_length=1, max_length=200)
+    degree: str = Field(..., min_length=1, max_length=100)
+    field_of_study: str = Field(..., min_length=1, max_length=100)
     start_date: str
     end_date: str
-    logo_path: str
+    logo_path: str = Field(default="")
+
 
 class Organization(BaseModel):
-    name: str
-    chapter: str
-    role: str
+    name: str = Field(..., min_length=1, max_length=200)
+    chapter: str = Field(default="")
+    role: str = Field(..., min_length=1, max_length=100)
     duration: str
-    description: str
-    logo_path: str
+    description: str = Field(default="")
+    logo_path: str = Field(default="")
+    
+class Records(BaseModel):
+    academics: List[Academic]
+    organizations: List[Organization]
+    
+    @classmethod
+    def create_from_file(cls, file_name: str):
+        try:
+            file_path = f"data/{file_name}"
+            
+            try:
+                with open(file_path, 'r') as file:
+                    data = json.load(file)
+            except FileNotFoundError:
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND, 
+                    detail=f"Blog data file '{file_name}' not found"
+                )
+            except json.JSONDecodeError:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail=f"Invalid JSON format in file '{file_name}'"
+                )
+            
+            try:
+                records = cls(
+                    academics=data.get('academics', []),
+                    organizations=data.get('organizations', [])
+                )
+                return records
+            except ValidationError as e:
+                raise HTTPException(
+                    status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                    detail=f"Validation error in records: {str(e)}"
+                )
+        except Exception as e:
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail=f"Unexpected error processing records file: {str(e)}"
+            )
 
-@router.get("/records")
+
+@router.get("/records", response_model=Records)
 def get_records():
-    return {
-        "academic": [
-            {"institution": "Universitat de Barcelona", "degree": "MSc", "field_of_study": "Project Management", "start_date": "March 2023", "end_date": "March 2024", "logo_path": "udb"},
-            {"institution": "UC Berkeley", "degree": "Bootcamp", "field_of_study": "Data Science", "start_date": "November 2020", "end_date": "June 2021", "logo_path": "ucb"},
-            {"institution": "California State University, Chico", "degree": "BSc", "field_of_study": "Computer Engineering", "start_date": "August 2015", "end_date": "December 2019", "logo_path": "csuchico"}
-        ],
-        "organizations": [
-            {"name": "Tau Beta Pi", "chapter": "Alpha Alpha Chapter", "role": "Corresponding Secretary", "duration": "1 year", "description": "Responsible for managing communication on behalf of the chapter.", "logo_path": "tbp"},
-            {"name": "Tau Beta Pi", "chapter": "Alpha Alpha Chapter", "role": "IT Master", "duration": "1 year", "description": "Responsible for updating and maintaining the website functionality and content.", "logo_path": "tbp"},
-            {"name": "Tau Kappa Epsilon", "chapter": "Theta Pi Chapter", "role": "Founding Father", "duration": "3 years", "description": "Played an active role in the creation of the Theta Pi chapter.", "logo_path": "tke"}
-        ]
-    }
+    return Records.create_from_file('records.json')
