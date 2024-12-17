@@ -57,10 +57,13 @@ const RecordsSection: React.FC = () => {
           <span className="string">academics</span>
           <span className="cursor"></span>
         </h2>
-        <div className="rounded-2xl border p-6 border-zinc-700/40">
+        <div className="perspective-500 transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:shadow-xl hover:brightness-110 active:brightness-90 rounded-2xl border p-6 border-zinc-700/40 bg-zinc-800/80 hover:bg-zinc-800/90 active:bg-zinc-800/70">
           <ul className="space-y-4">
             {academicRecords.map((record, index) => (
-              <li key={index} className="flex gap-4">
+              <li
+                key={index}
+                className="flex gap-4 transition-transform duration-200 hover:translate-x-1 active:translate-x-0.5"
+              >
                 <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 border border-zinc-700/50 bg-zinc-800 ring-0">
                   <img
                     alt=""
@@ -72,7 +75,7 @@ const RecordsSection: React.FC = () => {
                     className="h-7 w-7 rounded-full"
                     src={`/img/records/${record.logo_path}.png`}
                     style={{ color: "transparent" }}
-                  ></img>
+                  />
                 </div>
                 <dl className="flex flex-auto flex-wrap gap-x-2">
                   <dd className="w-full flex-none text-sm font-medium text-zinc-100">
@@ -87,10 +90,9 @@ const RecordsSection: React.FC = () => {
                   </dd>
                   <dd
                     className="ml-auto text-xs text-zinc-500"
-                    aria-label="2019 until Present"
                   >
                     <time>{record.start_date}</time>{" "}
-                    <span aria-hidden="true">—</span>{" "}
+                    <span>—</span>{" "}
                     <time>{record.end_date}</time>
                   </dd>
                 </dl>
@@ -105,10 +107,13 @@ const RecordsSection: React.FC = () => {
           <span className="string">"organizations.h"</span>
           <span className="cursor"></span>
         </h2>
-        <div className="rounded-2xl border p-6 border-zinc-700/40">
+        <div className="perspective-500 transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:shadow-xl hover:brightness-110 active:brightness-90 rounded-2xl border p-6 border-zinc-700/40 bg-zinc-800/80 hover:bg-zinc-800/90 active:bg-zinc-800/70">
           <ul className="space-y-4">
             {organizations.map((org, index) => (
-              <li key={index} className="flex gap-4">
+              <li
+                key={index}
+                className="flex gap-4 transition-transform duration-200 hover:translate-x-1 active:translate-x-0.5"
+              >
                 <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 border border-zinc-700/50 bg-zinc-800 ring-0">
                   <img
                     alt=""
@@ -120,7 +125,7 @@ const RecordsSection: React.FC = () => {
                     className="h-7 w-7 rounded-full"
                     src={`/img/records/${org.logo_path}.png`}
                     style={{ color: "transparent" }}
-                  ></img>
+                  />
                 </div>
                 <dl className="flex flex-auto flex-wrap gap-x-2">
                   <dd className="w-full flex-none text-sm font-medium text-zinc-100">
@@ -133,7 +138,6 @@ const RecordsSection: React.FC = () => {
                   <dd className="text-xs text-zinc-400">{org.role}</dd>
                   <dd
                     className="ml-auto text-xs text-zinc-500"
-                    aria-label="2019 until Present"
                   >
                     <time>{org.duration}</time>
                   </dd>
