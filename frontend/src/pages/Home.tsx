@@ -9,7 +9,7 @@ import RecordsSection from "../components/Records";
 const Home: React.FC = () => {
 
   return (
-    <div className="text-left sm:px-8 ">
+    <div className="text-left md:px-8">
       <div className="mt-[calc(theme(spacing.16)-theme(spacing.3))] pb-10"></div>
       <div className="pb-0">
         <div className="h-16 w-16 rounded-full backdrop-blur bg-zinc-800/90 ring-2 ring-white/50">

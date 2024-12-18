@@ -47,7 +47,7 @@ const RecordsSection: React.FC = () => {
   if (error) return <div className="text-red-500 text-center">{error}</div>;
 
   return (
-    <section className="flex flex-col lg:flex-row gap-8 py-8">
+    <section className="flex flex-col lg:flex-row gap-8">
       <div className="lg:w-1/2">
         <h2 className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
           <span className="function-name">$</span>{" "}
