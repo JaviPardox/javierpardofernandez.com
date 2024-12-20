@@ -57,12 +57,12 @@ const RecordsSection: React.FC = () => {
           <span className="string">academics</span>
           <span className="cursor"></span>
         </h2>
-        <div className="perspective-500 transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:shadow-xl hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 hover:bg-zinc-800/90 active:bg-zinc-800/70">
+        <div className="perspective-500 transform transition-all duration-300 lg:hover:scale-[1.02] active:scale-[0.98] lg:hover:shadow-xl lg:hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 lg:hover:bg-zinc-800/90 active:bg-zinc-800/70">
           <ul className="space-y-4">
             {academicRecords.map((record, index) => (
               <li
                 key={index}
-                className="flex gap-4 transition-transform duration-200 hover:translate-x-1 active:translate-x-0.5"
+                className="flex gap-4 transition-transform duration-200 lg:hover:translate-x-1 active:translate-x-0.5"
               >
                 <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 border border-zinc-700/50 bg-zinc-800 ring-0">
                   <img
@@ -107,12 +107,12 @@ const RecordsSection: React.FC = () => {
           <span className="string">"organizations.h"</span>
           <span className="cursor"></span>
         </h2>
-        <div className="perspective-500 transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:shadow-xl hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 hover:bg-zinc-800/90 active:bg-zinc-800/70">
+        <div className="perspective-500 transform transition-all duration-300 lg:hover:scale-[1.02] active:scale-[0.98] lg:hover:shadow-xl lg:hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 lg:hover:bg-zinc-800/90 active:bg-zinc-800/70">
           <ul className="space-y-4">
             {organizations.map((org, index) => (
               <li
                 key={index}
-                className="flex gap-4 transition-transform duration-200 hover:translate-x-1 active:translate-x-0.5"
+                className="flex gap-4 transition-transform duration-200 lg:hover:translate-x-1 active:translate-x-0.5"
               >
                 <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 border border-zinc-700/50 bg-zinc-800 ring-0">
                   <img
