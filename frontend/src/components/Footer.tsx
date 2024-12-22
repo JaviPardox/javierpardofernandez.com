@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
             <div className="relative px-4 lg:px-12">
               <div className="mx-auto max-w-2xl lg:max-w-5xl">
                 <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-                  <div className="flex items-center justify-center gap-x-6 text-sm font-medium text-zinc-200 w-full md:w-3/4 lg:w-2/5">
+                  <div className="flex items-center justify-center gap-x-3 sm:gap-x-6 text-sm font-medium text-zinc-200 w-full md:w-3/4 lg:w-2/5">
                     <a
                       className="inline-flex items-center justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none font-medium bg-zinc-800/50 text-zinc-300 hover:bg-zinc-800 hover:text-zinc-50 active:bg-zinc-800/50 active:text-zinc-50/70 w-full"
                       href="/files/cv.pdf"
