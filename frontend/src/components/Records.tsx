@@ -141,7 +141,7 @@ const RecordsSection: React.FC = () => {
                   >
                     <time>{org.duration}</time>
                   </dd>
-                  <dd className="w-5/6 flex-none text-xs text-zinc-200">
+                  <dd className="w-full flex-none text-xs text-zinc-200">
                     {org.description}
                   </dd>
                 </dl>
