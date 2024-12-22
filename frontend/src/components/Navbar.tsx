@@ -192,7 +192,7 @@ const Navbar: React.FC = () => {
       // Only applies when at home
       if (window.location.pathname !== "/") return;
 
-      const sections = ["home", "offer", "experience"];
+      const sections = ["home", "offer", "experience", "records"];
       let maxVisibleSection = "home";
       let maxVisibleArea = 0;
 
@@ -358,6 +358,20 @@ const Navbar: React.FC = () => {
                 ></span>
               </Link>
               <Link
+                to="/"
+                className={`relative block transition hover:text-teal-400 px-1.5 py-2 nav-link ${
+                  activeLink === "records" ? "text-teal-400" : ""
+                }`}
+                onClick={(e) => handleLinkClick(e, "records")}
+              >
+                Records
+                <span
+                  className={`absolute inset-x-0 -bottom-[0.2rem] h-px bg-gradient-to-r from-teal-400/0 via-teal-400/40 to-teal-400/0 transition-opacity duration-300 ease-in-out ${
+                    activeLink === "records" ? "opacity-100" : "opacity-0"
+                  }`}
+                ></span>
+              </Link>
+              <Link
                 to="/blog"
                 className={`relative block transition hover:text-teal-400 px-1.5 py-2 nav-link ${
                   activeLink === "blog" ? "text-teal-400" : ""
@@ -479,6 +493,17 @@ const Navbar: React.FC = () => {
                 }}
               >
                 Experience
+              </Link>
+              <span className="block h-px mr-4 bg-zinc-100/5"></span>
+              <Link
+                to="/"
+                className="text-sm hover:text-teal-400"
+                onClick={(e) => {
+                  handleLinkClick(e, "records");
+                  closeNavbar();
+                }}
+              >
+                Records
               </Link>
               <span className="block h-px mr-4 bg-zinc-100/5"></span>
               <Link

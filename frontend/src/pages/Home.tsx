@@ -4,11 +4,12 @@ import SocialIcon from "../components/SocialIcon";
 import AvatarImage from "../components/AvatarImage";
 import WhatIOfferList from "../components/WhatIOfferList";
 import ExperienceSection from "../components/Experience";
+import RecordsSection from "../components/Records";
 
 const Home: React.FC = () => {
 
   return (
-    <div className="text-left sm:px-8 ">
+    <div className="text-left md:px-8">
       <div className="mt-[calc(theme(spacing.16)-theme(spacing.3))] pb-10"></div>
       <div className="pb-0">
         <div className="h-16 w-16 rounded-full backdrop-blur bg-zinc-800/90 ring-2 ring-white/50">
@@ -90,6 +91,9 @@ const Home: React.FC = () => {
             &nbsp;&nbsp;&nbsp;&nbsp;<span className="keyword">super</span><span className="parentheses">&#40;&#41;</span><span className="cursor"></span>
         </h2>
         <ExperienceSection />
+      </div>
+      <div className="mt-24 md:mt-28" id="records">
+        <RecordsSection />
       </div>
     </div>
   );

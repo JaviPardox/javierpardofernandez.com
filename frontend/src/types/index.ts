@@ -46,3 +46,26 @@ export interface BlogPost {
   date: string;
   content_blocks: BlogContentBlock[];
 }
+
+export interface Academic {
+  institution: string;
+  degree: string;
+  field_of_study: string;
+  start_date: string;
+  end_date: string;
+  logo_path: string;
+}
+
+export interface Organization {
+  name: string;
+  chapter: string;
+  role: string;
+  duration: string;
+  description: string;
+  logo_path: string;
+}
+
+export interface Records {
+  academics: Academic[];
+  organizations: Organization[];
+}
