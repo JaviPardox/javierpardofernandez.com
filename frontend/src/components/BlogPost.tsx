@@ -163,8 +163,8 @@ const BlogPost: React.FC = () => {
           </div>
         )}
         {error && (
-          <div className="flex justify-center items-center font-extrabold text-red-500 pt-[15vh]">
-            {error}
+          <div className="flex justify-center items-center font-bold text-red-500 pt-[15vh]">
+            {error} — Article does not exist
           </div>
         )}
         {!error && !loading && (
