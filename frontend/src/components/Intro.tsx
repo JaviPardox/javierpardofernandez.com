@@ -1,7 +1,7 @@
 import AvatarImage from "./AvatarImage";
 import SocialIconRow from "./SocialIconRow";
 
-const Intro: React.FC = () => {
+const Intro = () => {
   return (
     <>
       <div className="pb-0">
