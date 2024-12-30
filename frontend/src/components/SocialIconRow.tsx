@@ -1,8 +1,7 @@
-import React from "react"
-import SocialIcon from "../components/SocialIcon";
+import SocialIcon from "./SocialIcon";
 
 
-const SocialIconRow: React.FC = () => {
+const SocialIconRow = () => {
     return (
         <>
         <div className="mt-6 flex gap-6">
