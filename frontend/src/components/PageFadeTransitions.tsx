@@ -1,5 +1,3 @@
-// components/PageFadeTransitions.tsx
-import React from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Home from '../pages/Home';
