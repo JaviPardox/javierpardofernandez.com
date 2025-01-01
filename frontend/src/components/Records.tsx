@@ -44,7 +44,32 @@ const RecordsSection: React.FC = () => {
         ></div>
       </div>
     );
-  if (error) return <div className="text-red-500 text-center">{error}</div>;
+  if (error)
+    return (
+      <>
+        <section className="flex flex-col lg:flex-row gap-8">
+          <div className="lg:w-1/2">
+            <h2 className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
+              <span className="function-name">$</span>{" "}
+              <span className="string">ls</span>{" "}
+              <span className="keyword">-l</span>
+              {" | "}
+              <span className="function-name">grep</span>{" "}
+              <span className="string">academics</span>
+              <span className="cursor"></span>
+            </h2>
+          </div>
+          <div className="lg:w-1/2">
+            <h2 className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
+              <span className="include">#include</span>{" "}
+              <span className="string">"organizations.h"</span>
+              <span className="cursor"></span>
+            </h2>
+          </div>
+        </section>
+        <div className="text-red-500 text-center">{error}</div>
+      </>
+    );
 
   return (
     <section className="flex flex-col lg:flex-row gap-8">
@@ -88,11 +113,8 @@ const RecordsSection: React.FC = () => {
                   <dd className="text-xs text-zinc-400">
                     {record.institution}
                   </dd>
-                  <dd
-                    className="ml-auto text-xs text-zinc-500"
-                  >
-                    <time>{record.start_date}</time>{" "}
-                    <span>—</span>{" "}
+                  <dd className="ml-auto text-xs text-zinc-500">
+                    <time>{record.start_date}</time> <span>—</span>{" "}
                     <time>{record.end_date}</time>
                   </dd>
                 </dl>
@@ -136,9 +158,7 @@ const RecordsSection: React.FC = () => {
                     </span>
                   </dd>
                   <dd className="text-xs text-zinc-400">{org.role}</dd>
-                  <dd
-                    className="ml-auto text-xs text-zinc-500"
-                  >
+                  <dd className="ml-auto text-xs text-zinc-500">
                     <time>{org.duration}</time>
                   </dd>
                   <dd className="w-full flex-none text-xs text-zinc-200">
