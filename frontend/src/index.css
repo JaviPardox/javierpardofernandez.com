@@ -38,7 +38,7 @@ This prevents sudden layout shifts and ensures that scrollTo positions calculate
 }
 
 #experience {
-  min-height: 1300px;
+  min-height: 0px;
 }
 
 #records {
