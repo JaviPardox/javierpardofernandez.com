@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Academic, Organization, Records } from "../types";
 import axios from "axios";
 
-const RecordsSection: React.FC = () => {
+const RecordsSection = () => {
   const [academicRecords, setAcademicRecords] = useState<Academic[]>([]);
   const [organizations, setOrganizations] = useState<Organization[]>([]);
   const [error, setErrorMessage] = useState<string | null>(null);
