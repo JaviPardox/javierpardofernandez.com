@@ -9,7 +9,7 @@ import PageFadeTransitions from './components/PageFadeTransitions';
 import Footer from './components/Footer';
 
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <Provider store={store}>
       <Router>
