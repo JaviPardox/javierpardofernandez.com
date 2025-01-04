@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { BlogPost as BlogPostType, BlogContentBlock } from "../types/index";
 
-const BlogPost: React.FC = () => {
+const BlogPost = () => {
   const { id } = useParams<{ id: string }>();
   const [post, setPost] = useState<BlogPostType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
