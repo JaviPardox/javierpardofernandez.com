@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useAppDispatch } from "../store/hooks";
 import { startLoading, finishLoading, setError } from '../store/loadingSlice';
 import DevIconGroup from "./DevIconGroup";
@@ -9,7 +9,7 @@ import JobTitleAndDescription from "./JobTitleAndDescription";
 import axios from "axios";
 import { WorkExperience } from "../types";
 
-const ExperienceSection: React.FC = () => {
+const ExperienceSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [workExperience, setWorkExperience] = useState<WorkExperience | null>(
     null

@@ -1,6 +1,4 @@
-import React from 'react';
-
-const Contact: React.FC = () => {
+const Contact = () => {
   return (
     <div>
       <h1 className="text-4xl font-bold mb-6">Contact Me</h1>

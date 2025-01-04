@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const Sabios: React.FC = () => {
+const Sabios = () => {
   const [isCoverMounted, setIsCoverMounted] = useState(true);
   const [coverFadeOut, setCoverFadeOut] = useState(false);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);

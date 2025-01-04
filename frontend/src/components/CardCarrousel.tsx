@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Card from "../components/Card";
 
-const CardCarrousel: React.FC = () => {
+const CardCarrousel = () => {
 
   useEffect(() => {
     // Use a small delay to ensure the carousel centers after any navigation scrolling

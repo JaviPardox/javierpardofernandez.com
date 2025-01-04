@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { BlogPreview as BlogPreviewType } from "../types/index";
 import BlogPreview from "../components/BlogPreview";
 
-const Blog: React.FC = () => {
+const Blog = () => {
   const [previews, setPreviews] = useState<BlogPreviewType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);

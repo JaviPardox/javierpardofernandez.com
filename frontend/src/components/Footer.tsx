@@ -1,6 +1,4 @@
-import React from "react";
-
-const Footer: React.FC = () => {
+const Footer = () => {
   return (
     <footer className="">
       <div className="bg-openai-dark text-openai-light flex justify-center">

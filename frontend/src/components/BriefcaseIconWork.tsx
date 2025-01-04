@@ -1,6 +1,4 @@
-import React from 'react';
-
-const BriefcaseIconWork: React.FC = () => {
+const BriefcaseIconWork = () => {
   return (
     <span className="absolute w-6 h-6 hidden md:flex items-center justify-center ring-1 ring-zinc-900/5 border border-zinc-700/50 rounded-full bg-zinc-800 left-[-36px] top-[2px]">
       <svg
