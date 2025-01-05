@@ -1,4 +1,3 @@
-import React from "react";
 import CardCarrousel from "../components/CardCarrousel";
 import WhatIOfferList from "../components/WhatIOfferList";
 import ExperienceSection from "../components/Experience";
