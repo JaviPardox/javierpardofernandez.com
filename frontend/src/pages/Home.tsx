@@ -2,7 +2,7 @@ import CardCarrousel from "../components/CardCarrousel";
 import WhatIOfferList from "../components/WhatIOfferList";
 import ExperienceSection from "../components/Experience";
 import RecordsSection from "../components/Records";
-import Intro from "../components/Intro";
+import Intro from "../components/home/Intro";
 
 const Home = () => {
   return (
