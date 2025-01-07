@@ -1,6 +1,4 @@
-import React from "react";
-
-const FadingLoadingScreen = () => {
+const LoadingScreenAnimation = () => {
   return (
     <div className="relative flex flex-col items-center gap-4 animate-contentFadeIn">
       <div className="measure"></div>
@@ -125,4 +123,4 @@ const FadingLoadingScreen = () => {
   );
 };
 
-export default FadingLoadingScreen;
+export default LoadingScreenAnimation;

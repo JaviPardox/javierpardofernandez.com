@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BlogPreview as BlogPreviewType } from '../types/index';
+import { BlogPreview as BlogPreviewType } from '../../types/index';
 
 interface BlogPreviewProps {
   preview: BlogPreviewType;

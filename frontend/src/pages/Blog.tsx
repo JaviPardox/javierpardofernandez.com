@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { BlogPreview as BlogPreviewType } from "../types/index";
-import BlogPreview from "../components/BlogPreview";
+import BlogPreview from "../components/blog/BlogPreview";
 
 const Blog = () => {
   const [previews, setPreviews] = useState<BlogPreviewType[]>([]);

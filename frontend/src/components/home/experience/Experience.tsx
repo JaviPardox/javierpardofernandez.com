@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import { useAppDispatch } from "../store/hooks";
-import { startLoading, finishLoading, setError } from '../store/loadingSlice';
+import { useAppDispatch } from "../../../store/hooks";
+import { startLoading, finishLoading, setError } from '../../../store/loadingSlice';
 import DevIconGroup from "./DevIconGroup";
 import HashtagList from "./HashtagList";
 import BriefcaseIconWork from "./BriefcaseIconWork";
 import CompanyAndDateInfo from "./CompanyAndDateInfo";
 import JobTitleAndDescription from "./JobTitleAndDescription";
 import axios from "axios";
-import { WorkExperience } from "../types";
+import { WorkExperience } from "../../../types";
 
 const ExperienceSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);

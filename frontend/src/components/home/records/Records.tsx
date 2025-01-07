@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Academic, Organization, Records } from "../types";
+import { Academic, Organization, Records } from "../../../types";
 import axios from "axios";
 
 const RecordsSection = () => {

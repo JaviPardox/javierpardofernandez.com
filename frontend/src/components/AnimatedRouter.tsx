@@ -2,11 +2,11 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Home from '../pages/Home';
 import Blog from '../pages/Blog';
-import BlogPost from './BlogPost';
+import BlogPost from './blog/BlogPost';
 import NotFoundPage from '../pages/NotFoundPage';
 import Sabios from '../pages/Sabios';
 
-const PageFadeTransitions = () => {
+const AnimatedRouter = () => {
   const location = useLocation();
   
   return (
@@ -34,4 +34,4 @@ const PageFadeTransitions = () => {
   );
 };
 
-export default PageFadeTransitions;
+export default AnimatedRouter;

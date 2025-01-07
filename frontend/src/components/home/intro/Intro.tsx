@@ -1,5 +1,5 @@
-import AvatarImage from "../AvatarImage";
-import SocialIconRow from "../SocialIconRow";
+import AvatarImage from "./AvatarImage";
+import SocialIconRow from "./SocialIconRow";
 
 const Intro = () => {
   return (
