@@ -3,7 +3,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../store/hooks";
-import FadingLoadingScreen from "./FadingLoadingScreen";
+import LoadingScreenAnimation from "./LoadingScreenAnimation";
 
 const FADE_DURATION = 1000; // How long each fade animation takes
 const MINIMUM_LOADING_SCREEN_DURATION = 3000; // Minimun time the loading screen takes
@@ -108,7 +108,7 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({
               fadeOutLoadingScreen ? "opacity-0" : "opacity-100"
             }`}
           >
-            <FadingLoadingScreen />
+            <LoadingScreenAnimation />
           </div>
         )}
       </div>

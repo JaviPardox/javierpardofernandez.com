@@ -1,8 +1,8 @@
-import CardCarrousel from "../components/CardCarrousel";
-import WhatIOfferList from "../components/WhatIOfferList";
-import ExperienceSection from "../components/Experience";
-import RecordsSection from "../components/Records";
-import Intro from "../components/Intro";
+import CardCarrousel from "../components/home/carrousel/CardCarrousel";
+import WhatIOfferList from "../components/home/offer/WhatIOfferList";
+import ExperienceSection from "../components/home/experience/Experience";
+import RecordsSection from "../components/home/records/Records";
+import Intro from "../components/home/intro/Intro";
 
 const Home = () => {
   return (

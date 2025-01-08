@@ -1,11 +1,10 @@
-import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import Navbar from './components/Navbar';
 import ResponsiveCenterLayout from './components/ResponsiveCenterLayout';
 import PageTransitions from './components/PageTransitions';
-import PageFadeTransitions from './components/PageFadeTransitions';
+import AnimatedRouter from './components/AnimatedRouter';
 import Footer from './components/Footer';
 
 
@@ -18,7 +17,7 @@ const App = () => {
           <Navbar />  
             <ResponsiveCenterLayout>
               <main className="p-4 sm:p-6 lg:p-8">
-                <PageFadeTransitions />
+                <AnimatedRouter />
               </main>
             </ResponsiveCenterLayout>
             <Footer />

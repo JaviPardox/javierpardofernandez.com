@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from 'react-redux';
-import { startLoading, finishLoading, setError } from '../store/loadingSlice';
+import { startLoading, finishLoading, setError } from '../../../store/loadingSlice';
 
 interface ImageCardProps {
   imageId: string;

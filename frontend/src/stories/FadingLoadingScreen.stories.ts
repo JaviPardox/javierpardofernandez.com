@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import FadingLoadingScreen from '../components/FadingLoadingScreen';
+import FadingLoadingScreen from '../components/LoadingScreenAnimation';
 
 const meta: Meta<typeof FadingLoadingScreen> = {
   title: 'Components/FadingLoadingScreen',

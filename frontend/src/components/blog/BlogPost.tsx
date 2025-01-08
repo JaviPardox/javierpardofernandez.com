@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { BlogPost as BlogPostType, BlogContentBlock } from "../types/index";
+import { BlogPost as BlogPostType, BlogContentBlock } from "../../types/index";
 
 const BlogPost = () => {
   const { id } = useParams<{ id: string }>();
