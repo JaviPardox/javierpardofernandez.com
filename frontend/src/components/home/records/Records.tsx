@@ -8,6 +8,30 @@ const RecordsSection = () => {
   const [error, setErrorMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
+  const fullText = "$ ls -l | grep academics";
+  const [displayedText, setDisplayedText] = useState("");
+
+  useEffect(() => {
+    let currentIndex = 0;
+    const type = () => {
+      console.log("Typing:", fullText[currentIndex], "at index", currentIndex);
+      if (currentIndex < fullText.length - 1) {
+        setDisplayedText((prev) => prev + fullText[currentIndex]);
+        currentIndex++;
+      } else {
+        clearInterval(typingInterval); 
+      }
+    };
+
+    const typingInterval = setInterval(type, 200); // Adjust typing speed here
+
+    return () => clearInterval(typingInterval); // Cleanup on unmount
+  }, [fullText]);
+
+  useEffect(() => {
+    console.log("Displayed Text Updated:", displayedText);
+  }, [displayedText]);
+
   useEffect(() => {
     const fetchRecords = async () => {
       const backendPort = process.env.REACT_APP_BACKEND_PORT;
@@ -75,11 +99,19 @@ const RecordsSection = () => {
     <section className="flex flex-col lg:flex-row gap-8">
       <div className="lg:w-1/2">
         <h2 className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
-          <span className="function-name">$</span>{" "}
-          <span className="string">ls</span> <span className="keyword">-l</span>
-          {" | "}
-          <span className="function-name">grep</span>{" "}
-          <span className="string">academics</span>
+        {displayedText.split("").map((char, index) => (
+        <span key={index}>
+          <span
+            className={`${
+              char === "$" || char === "|" ? "function-name" : ""
+            } ${char === "-" ? "keyword" : ""} ${
+              char === " " ? "string" : ""
+            }`}
+          >
+            {char}
+          </span>
+        </span>
+      ))}
           <span className="cursor"></span>
         </h2>
         <div className="perspective-500 transform transition-all duration-300 lg:hover:scale-[1.02] active:scale-[0.98] lg:hover:shadow-2xl lg:hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 lg:hover:bg-zinc-800/90 active:bg-zinc-800/70 shadow-xl active:shadow-none">
