@@ -2,35 +2,59 @@ import { useState, useEffect } from "react";
 import { Academic, Organization, Records } from "../../../types";
 import axios from "axios";
 
+
 const RecordsSection = () => {
   const [academicRecords, setAcademicRecords] = useState<Academic[]>([]);
   const [organizations, setOrganizations] = useState<Organization[]>([]);
   const [error, setErrorMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [displayedText, setDisplayedText] = useState<Record<string, string>[]>([]);
 
-  const fullText = "$ ls -l | grep academics";
-  const [displayedText, setDisplayedText] = useState("");
+  const academicTitle: Record<string, string> = {
+    " $ ": "function-name",
+    "ls ": "string",
+    "-l ": "keyword",
+    "| ": "",
+    "grep ": "function-name",
+    "academics": "string",
+  };
 
+  function splitKeysToChars(inputDict: Record<string, string>): Record<string, string>[] {
+    const arrayOfDictionaries: Record<string, string>[] = []
+  
+    Object.entries(inputDict).forEach(([key, value]) => {
+      for (const char of key) {
+        const tmpDict: Record<string, string> = {};
+        tmpDict[char] = value;
+        arrayOfDictionaries.push(tmpDict);
+      }
+    });
+    console.log(arrayOfDictionaries);
+    return arrayOfDictionaries;
+  }
+    
   useEffect(() => {
     let currentIndex = 0;
+    const splitAcademicTitle = splitKeysToChars(academicTitle);
+
     const type = () => {
-      console.log("Typing:", fullText[currentIndex], "at index", currentIndex);
-      if (currentIndex < fullText.length - 1) {
-        setDisplayedText((prev) => prev + fullText[currentIndex]);
+      if (currentIndex < splitAcademicTitle.length - 1) {
+        setDisplayedText((prev) => {
+          // Leaving this for debugging due to the state skipping the first item of the array
+          // Could be due to how React renders the page
+          const updated = [...(prev || []), splitAcademicTitle[currentIndex]]
+          return updated
+        });
         currentIndex++;
       } else {
         clearInterval(typingInterval); 
       }
     };
+    
+    const typingInterval = setInterval(type, 200);
 
-    const typingInterval = setInterval(type, 200); // Adjust typing speed here
-
-    return () => clearInterval(typingInterval); // Cleanup on unmount
-  }, [fullText]);
-
-  useEffect(() => {
-    console.log("Displayed Text Updated:", displayedText);
-  }, [displayedText]);
+    return () => clearInterval(typingInterval);
+  }, []);
 
   useEffect(() => {
     const fetchRecords = async () => {
@@ -99,17 +123,13 @@ const RecordsSection = () => {
     <section className="flex flex-col lg:flex-row gap-8">
       <div className="lg:w-1/2">
         <h2 className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
-        {displayedText.split("").map((char, index) => (
+        {displayedText.map((item, index) => (
         <span key={index}>
-          <span
-            className={`${
-              char === "$" || char === "|" ? "function-name" : ""
-            } ${char === "-" ? "keyword" : ""} ${
-              char === " " ? "string" : ""
-            }`}
-          >
-            {char}
-          </span>
+          {Object.entries(item).map(([key, value]) => (
+                <span key={key} className={value}>
+                  {key}
+                </span>
+              ))}
         </span>
       ))}
           <span className="cursor"></span>
