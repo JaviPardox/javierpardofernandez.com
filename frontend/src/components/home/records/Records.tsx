@@ -9,6 +9,7 @@ const RecordsSection = () => {
   const [error, setErrorMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [displayedText, setDisplayedText] = useState<Record<string, string>[]>([]);
+  const [isTyping, setIsTyping] = useState(true);
 
   const academicTitle: Record<string, string> = {
     " $ ": "function-name",
@@ -18,7 +19,7 @@ const RecordsSection = () => {
     "grep ": "function-name",
     "academics": "string",
   };
-
+  // tamb mirar lo de resetear el titulo? o que se ejecute cuando el titulo aparezca a la vista
   function splitKeysToChars(inputDict: Record<string, string>): Record<string, string>[] {
     const arrayOfDictionaries: Record<string, string>[] = []
   
@@ -47,7 +48,13 @@ const RecordsSection = () => {
         });
         currentIndex++;
       } else {
-        clearInterval(typingInterval); 
+        if (isTyping) {
+          setDisplayedText([]);
+          currentIndex = 0;
+        }
+        else {
+          clearInterval(typingInterval);
+        }
       }
     };
     
