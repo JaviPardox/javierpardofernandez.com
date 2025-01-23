@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Academic, Organization, Records } from "../../../types";
 import axios from "axios";
 
@@ -9,7 +9,9 @@ const RecordsSection = () => {
   const [error, setErrorMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [displayedText, setDisplayedText] = useState<Record<string, string>[]>([]);
-  const [isTyping, setIsTyping] = useState(true);
+  const isTyping = useRef<boolean>(true);
+  const currentIndex = useRef<number>(0);
+
 
   const academicTitle: Record<string, string> = {
     " $ ": "function-name",
@@ -30,34 +32,40 @@ const RecordsSection = () => {
         arrayOfDictionaries.push(tmpDict);
       }
     });
-    console.log(arrayOfDictionaries);
     return arrayOfDictionaries;
   }
     
   useEffect(() => {
-    let currentIndex = 0;
     const splitAcademicTitle = splitKeysToChars(academicTitle);
 
     const type = () => {
-      if (currentIndex < splitAcademicTitle.length - 1) {
-        setDisplayedText((prev) => {
-          // Leaving this for debugging due to the state skipping the first item of the array
-          // Could be due to how React renders the page
-          const updated = [...(prev || []), splitAcademicTitle[currentIndex]]
-          return updated
-        });
-        currentIndex++;
-      } else {
-        if (isTyping) {
-          setDisplayedText([]);
-          currentIndex = 0;
+      if (isTyping.current) {
+        if (currentIndex.current < splitAcademicTitle.length - 1) {
+          setDisplayedText((prev) => {
+            // Leaving this for debugging due to the state skipping the first item of the array
+            // Could be due to how React renders the page
+            const updated = [
+              ...(prev || []),
+              splitAcademicTitle[currentIndex.current],
+            ];
+            return updated;
+          });
+          currentIndex.current += 1;
+        } else {
+          isTyping.current = false;
+        }
+      }
+      else {
+        if (currentIndex.current > 0) {
+          setDisplayedText((prev) => prev.slice(0, -1));
+          currentIndex.current -= 1;
         }
         else {
-          clearInterval(typingInterval);
+          isTyping.current = true;
         }
       }
     };
-    
+
     const typingInterval = setInterval(type, 200);
 
     return () => clearInterval(typingInterval);
