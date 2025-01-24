@@ -36,6 +36,7 @@ const RecordsSection = () => {
   }
     
   useEffect(() => {
+    let typingTimeout: NodeJS.Timeout;
     const splitAcademicTitle = splitKeysToChars(academicTitle);
 
     const type = () => {
@@ -64,11 +65,14 @@ const RecordsSection = () => {
           isTyping.current = true;
         }
       }
+      const nextDelay = Math.random() * (300 - 30) + 30;
+      console.log(nextDelay);
+      typingTimeout = setTimeout(type, nextDelay);
     };
 
-    const typingInterval = setInterval(type, 200);
+    type();
 
-    return () => clearInterval(typingInterval);
+    return () => clearTimeout(typingTimeout);
   }, []);
 
   useEffect(() => {
