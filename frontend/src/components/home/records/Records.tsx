@@ -66,7 +66,6 @@ const RecordsSection = () => {
         }
       }
       const nextDelay = Math.random() * (300 - 30) + 30;
-      console.log(nextDelay);
       typingTimeout = setTimeout(type, nextDelay);
     };
 
