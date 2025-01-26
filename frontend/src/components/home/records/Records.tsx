@@ -11,6 +11,8 @@ const RecordsSection = () => {
   const [displayedText, setDisplayedText] = useState<Record<string, string>[]>([]);
   const isTyping = useRef<boolean>(true);
   const currentIndex = useRef<number>(0);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [elementRef, setElementRef] = useState<HTMLHeadingElement | null>(null);
 
 
   const academicTitle: Record<string, string> = {
@@ -69,10 +71,37 @@ const RecordsSection = () => {
       typingTimeout = setTimeout(type, nextDelay);
     };
 
-    type();
+    if (isVisible) {
+      type();
+    }
 
     return () => clearTimeout(typingTimeout);
-  }, []);
+  }, [isVisible]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      {
+        root: null, // viewport
+        rootMargin: '0px',
+        threshold: 0.99, // trigger when 99% of element is visible
+      }
+    );
+
+    if (elementRef && !isVisible) {
+      observer.observe(elementRef);
+    }
+
+    return () => {
+      if (elementRef) {
+        observer.unobserve(elementRef);
+      }
+    };
+  }, [elementRef, isVisible]);
 
   useEffect(() => {
     const fetchRecords = async () => {
@@ -140,7 +169,7 @@ const RecordsSection = () => {
   return (
     <section className="flex flex-col lg:flex-row gap-8">
       <div className="lg:w-1/2">
-        <h2 className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
+        <h2 ref={setElementRef} className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
         {displayedText.map((item, index) => (
         <span key={index}>
           {Object.entries(item).map(([key, value]) => (
