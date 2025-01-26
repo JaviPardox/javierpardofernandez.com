@@ -23,7 +23,7 @@ const RecordsSection = () => {
     "grep ": "function-name",
     "academics": "string",
   };
-  // tamb mirar lo de resetear el titulo? o que se ejecute cuando el titulo aparezca a la vista
+
   function splitKeysToChars(inputDict: Record<string, string>): Record<string, string>[] {
     const arrayOfDictionaries: Record<string, string>[] = []
   
