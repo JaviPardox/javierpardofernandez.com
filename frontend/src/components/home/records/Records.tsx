@@ -1,19 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Academic, Organization, Records } from "../../../types";
 import axios from "axios";
-
+import { useTypingAnimation } from "../../../hooks/useTypingAnimation";
 
 const RecordsSection = () => {
   const [academicRecords, setAcademicRecords] = useState<Academic[]>([]);
   const [organizations, setOrganizations] = useState<Organization[]>([]);
   const [error, setErrorMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [displayedText, setDisplayedText] = useState<Record<string, string>[]>([]);
-  const isTyping = useRef<boolean>(true);
-  const currentIndex = useRef<number>(0);
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [elementRef, setElementRef] = useState<HTMLHeadingElement | null>(null);
-
 
   const academicTitle: Record<string, string> = {
     " $ ": "function-name",
@@ -24,84 +18,16 @@ const RecordsSection = () => {
     "academics": "string",
   };
 
-  function splitKeysToChars(inputDict: Record<string, string>): Record<string, string>[] {
-    const arrayOfDictionaries: Record<string, string>[] = []
-  
-    Object.entries(inputDict).forEach(([key, value]) => {
-      for (const char of key) {
-        const tmpDict: Record<string, string> = {};
-        tmpDict[char] = value;
-        arrayOfDictionaries.push(tmpDict);
-      }
-    });
-    return arrayOfDictionaries;
-  }
-    
-  useEffect(() => {
-    let typingTimeout: NodeJS.Timeout;
-    const splitAcademicTitle = splitKeysToChars(academicTitle);
+  const organizationTitle: Record<string, string> = {
+    " #include ": "include",
+    '"organizations.h"': "string",
+  };
 
-    const type = () => {
-      if (isTyping.current) {
-        if (currentIndex.current < splitAcademicTitle.length - 1) {
-          setDisplayedText((prev) => {
-            // Leaving this for debugging due to the state skipping the first item of the array
-            // Could be due to how React renders the page
-            const updated = [
-              ...(prev || []),
-              splitAcademicTitle[currentIndex.current],
-            ];
-            return updated;
-          });
-          currentIndex.current += 1;
-        } else {
-          isTyping.current = false;
-        }
-      }
-      else {
-        if (currentIndex.current > 0) {
-          setDisplayedText((prev) => prev.slice(0, -1));
-          currentIndex.current -= 1;
-        }
-        else {
-          isTyping.current = true;
-        }
-      }
-      const nextDelay = Math.random() * (300 - 30) + 30;
-      typingTimeout = setTimeout(type, nextDelay);
-    };
+  const { displayedText: academicDisplayedText, elementRef: academicRef } = 
+    useTypingAnimation(academicTitle);
 
-    if (isVisible) {
-      type();
-    }
-
-    return () => clearTimeout(typingTimeout);
-  }, [isVisible]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isVisible) {
-          setIsVisible(true);
-        }
-      },
-      {
-        root: null, // viewport
-        rootMargin: '0px',
-        threshold: 0.99, // trigger when 99% of element is visible
-      }
-    );
-
-    if (elementRef && !isVisible) {
-      observer.observe(elementRef);
-    }
-
-    return () => {
-      if (elementRef) {
-        observer.unobserve(elementRef);
-      }
-    };
-  }, [elementRef, isVisible]);
+  const { displayedText: organizationDisplayedText, elementRef: organizationRef } = 
+    useTypingAnimation(organizationTitle);
 
   useEffect(() => {
     const fetchRecords = async () => {
@@ -169,8 +95,8 @@ const RecordsSection = () => {
   return (
     <section className="flex flex-col lg:flex-row gap-8">
       <div className="lg:w-1/2">
-        <h2 ref={setElementRef} className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
-        {displayedText.map((item, index) => (
+        <h2 ref={academicRef} className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
+        {academicDisplayedText.map((item, index) => (
         <span key={index}>
           {Object.entries(item).map(([key, value]) => (
                 <span key={key} className={value}>
@@ -223,9 +149,16 @@ const RecordsSection = () => {
         </div>
       </div>
       <div className="lg:w-1/2">
-        <h2 className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
-          <span className="include">#include</span>{" "}
-          <span className="string">"organizations.h"</span>
+        <h2 ref={organizationRef} className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
+        {organizationDisplayedText.map((item, index) => (
+        <span key={index}>
+          {Object.entries(item).map(([key, value]) => (
+                <span key={key} className={value}>
+                  {key}
+                </span>
+              ))}
+        </span>
+      ))}
           <span className="cursor"></span>
         </h2>
         <div className="perspective-500 transform transition-all duration-300 lg:hover:scale-[1.02] active:scale-[0.98] lg:hover:shadow-2xl lg:hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 lg:hover:bg-zinc-800/90 active:bg-zinc-800/70 shadow-xl active:shadow-none">
