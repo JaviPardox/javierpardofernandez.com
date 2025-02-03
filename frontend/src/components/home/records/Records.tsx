@@ -14,14 +14,20 @@ const RecordsSection = () => {
     "ls ": "string",
     "-l ": "keyword",
     "| ": "",
+    "\n": "",
     "grep ": "function-name",
     "academics": "string",
   };
 
   const organizationTitle: Record<string, string> = {
-    " #include ": "include",
-    '"organizations.h"': "string",
+    " SELECT ": "keyword",
+    "* ": "",
+    "\n": "",
+    "FROM ": "keyword",
+    "orgs": "",
   };
+
+  // comprobar que se vea bien con todas las resoluciones del navegador
 
   const { displayedText: academicDisplayedText, elementRef: academicRef } = 
     useTypingAnimation(academicTitle);
@@ -95,7 +101,7 @@ const RecordsSection = () => {
   return (
     <section className="flex flex-col lg:flex-row gap-8">
       <div className="lg:w-1/2">
-        <h2 ref={academicRef} className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
+        <h2 ref={academicRef} className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto whitespace-pre-wrap md:whitespace-nowrap min-h-[132px] md:min-h-[3.5rem]">
         {academicDisplayedText.map((item, index) => (
         <span key={index}>
           {Object.entries(item).map(([key, value]) => (
@@ -149,7 +155,7 @@ const RecordsSection = () => {
         </div>
       </div>
       <div className="lg:w-1/2">
-        <h2 ref={organizationRef} className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
+        <h2 ref={organizationRef} className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto whitespace-pre-wrap md:whitespace-nowrap min-h-[132px] md:min-h-[3.5rem]">
         {organizationDisplayedText.map((item, index) => (
         <span key={index}>
           {Object.entries(item).map(([key, value]) => (
