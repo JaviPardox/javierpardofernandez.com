@@ -16,7 +16,7 @@ const RecordsSection = () => {
     "| ": "",
     "\n": "",
     "grep ": "function-name",
-    "academics": "string",
+    academics: "string",
   };
 
   const organizationTitle: Record<string, string> = {
@@ -24,16 +24,16 @@ const RecordsSection = () => {
     "* ": "",
     "\n": "",
     "FROM ": "keyword",
-    "orgs": "",
+    orgs: "",
   };
 
-  // comprobar que se vea bien con todas las resoluciones del navegador
-
-  const { displayedText: academicDisplayedText, elementRef: academicRef } = 
+  const { displayedText: academicDisplayedText, elementRef: academicRef } =
     useTypingAnimation(academicTitle);
 
-  const { displayedText: organizationDisplayedText, elementRef: organizationRef } = 
-    useTypingAnimation(organizationTitle);
+  const {
+    displayedText: organizationDisplayedText,
+    elementRef: organizationRef,
+  } = useTypingAnimation(organizationTitle);
 
   useEffect(() => {
     const fetchRecords = async () => {
@@ -101,16 +101,19 @@ const RecordsSection = () => {
   return (
     <section className="flex flex-col lg:flex-row gap-8">
       <div className="lg:w-1/2">
-        <h2 ref={academicRef} className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto whitespace-pre-wrap md:whitespace-nowrap min-h-[132px] md:min-h-[3.5rem]">
-        {academicDisplayedText.map((item, index) => (
-        <span key={index}>
-          {Object.entries(item).map(([key, value]) => (
+        <h2
+          ref={academicRef}
+          className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto whitespace-pre-wrap md:whitespace-nowrap min-h-[132px] md:min-h-[3.5rem]"
+        >
+          {academicDisplayedText.map((item, index) => (
+            <span key={index}>
+              {Object.entries(item).map(([key, value]) => (
                 <span key={key} className={value}>
                   {key}
                 </span>
               ))}
-        </span>
-      ))}
+            </span>
+          ))}
           <span className="cursor"></span>
         </h2>
         <div className="perspective-500 transform transition-all duration-300 lg:hover:scale-[1.02] active:scale-[0.98] lg:hover:shadow-2xl lg:hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 lg:hover:bg-zinc-800/90 active:bg-zinc-800/70 shadow-xl active:shadow-none">
@@ -155,16 +158,19 @@ const RecordsSection = () => {
         </div>
       </div>
       <div className="lg:w-1/2">
-        <h2 ref={organizationRef} className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto whitespace-pre-wrap md:whitespace-nowrap min-h-[132px] md:min-h-[3.5rem]">
-        {organizationDisplayedText.map((item, index) => (
-        <span key={index}>
-          {Object.entries(item).map(([key, value]) => (
+        <h2
+          ref={organizationRef}
+          className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto whitespace-pre-wrap md:whitespace-nowrap min-h-[132px] md:min-h-[3.5rem]"
+        >
+          {organizationDisplayedText.map((item, index) => (
+            <span key={index}>
+              {Object.entries(item).map(([key, value]) => (
                 <span key={key} className={value}>
                   {key}
                 </span>
               ))}
-        </span>
-      ))}
+            </span>
+          ))}
           <span className="cursor"></span>
         </h2>
         <div className="perspective-500 transform transition-all duration-300 lg:hover:scale-[1.02] active:scale-[0.98] lg:hover:shadow-2xl lg:hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 lg:hover:bg-zinc-800/90 active:bg-zinc-800/70 shadow-xl active:shadow-none">
