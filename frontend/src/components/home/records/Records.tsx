@@ -76,20 +76,36 @@ const RecordsSection = () => {
       <>
         <section className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-1/2">
-            <h2 className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
-              <span className="function-name">$</span>{" "}
-              <span className="string">ls</span>{" "}
-              <span className="keyword">-l</span>
-              {" | "}
-              <span className="function-name">grep</span>{" "}
-              <span className="string">academics</span>
+            <h2
+              ref={academicRef}
+              className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto whitespace-pre-wrap md:whitespace-nowrap min-h-[132px] md:min-h-[3.5rem]"
+            >
+              {academicDisplayedText.map((item, index) => (
+                <span key={index}>
+                  {Object.entries(item).map(([key, value]) => (
+                    <span key={key} className={value}>
+                      {key}
+                    </span>
+                  ))}
+                </span>
+              ))}
               <span className="cursor"></span>
             </h2>
           </div>
           <div className="lg:w-1/2">
-            <h2 className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
-              <span className="include">#include</span>{" "}
-              <span className="string">"organizations.h"</span>
+            <h2
+              ref={organizationRef}
+              className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto whitespace-pre-wrap md:whitespace-nowrap min-h-[132px] md:min-h-[3.5rem]"
+            >
+              {organizationDisplayedText.map((item, index) => (
+                <span key={index}>
+                  {Object.entries(item).map(([key, value]) => (
+                    <span key={key} className={value}>
+                      {key}
+                    </span>
+                  ))}
+                </span>
+              ))}
               <span className="cursor"></span>
             </h2>
           </div>
