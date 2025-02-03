@@ -6,7 +6,7 @@ import Intro from "../components/home/intro/Intro";
 
 const Home = () => {
   return (
-    <div className="text-left md:px-8">
+    <div className="text-left xl:px-8">
       <div className="mt-[calc(theme(spacing.16)-theme(spacing.3))] pb-10"></div>
       <Intro />
       <div className="mt-16 sm:mt-20">
