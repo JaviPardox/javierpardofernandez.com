@@ -155,7 +155,9 @@ const Navbar = () => {
         scrollTo: elementPosition - offset,
       });
       if (isSafari) {
-        smoothScrollTo(elementPosition - offset, 600);
+        const distance = Math.abs(elementPosition - offset - window.scrollY);
+        const duration = Math.min(1000, Math.max(300, distance * 0.5));
+        smoothScrollTo(elementPosition - offset, duration);
       } else {
         window.scrollTo({
           top: elementPosition - offset,
@@ -174,7 +176,35 @@ const Navbar = () => {
       if (element) {
         console.log(`Target section ${sectionId} rendered.`);
         observer.disconnect();
-        scrollToSection(sectionId);
+        
+        let positions: number[] = [];
+        let checkCount = 0;
+        const maxChecks = 15;
+        const requiredStableChecks = 3;
+        
+        const checkPosition = () => {
+          const currentPosition = element.offsetTop;
+          positions.push(currentPosition);
+          console.log(`Check ${checkCount + 1}: Position for ${sectionId}:`, currentPosition);
+          
+          // Check if last N positions are the same
+          const lastPositions = positions.slice(-requiredStableChecks);
+          const isStable = lastPositions.length >= requiredStableChecks && 
+                          lastPositions.every(pos => pos === lastPositions[0]);
+          
+          if (isStable) {
+            console.log(`Position stabilized for ${sectionId} at:`, currentPosition);
+            scrollToSection(sectionId);
+          } else if (checkCount < maxChecks) {
+            checkCount++;
+            setTimeout(checkPosition, 50);
+          } else {
+            console.warn(`Position didn't fully stabilize for ${sectionId}, using last position:`, currentPosition);
+            scrollToSection(sectionId);
+          }
+        };
+        
+        setTimeout(checkPosition, 100);
       }
     });
   

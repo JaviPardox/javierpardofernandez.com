@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Academic, Organization, Records } from "../../../types";
 import axios from "axios";
+import TypingTitle from '../../common/TypingTitle';
+import { academicTitle, organizationTitle } from '../../../constants/titles';
 
 const RecordsSection = () => {
   const [academicRecords, setAcademicRecords] = useState<Academic[]>([]);
@@ -49,22 +51,10 @@ const RecordsSection = () => {
       <>
         <section className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-1/2">
-            <h2 className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
-              <span className="function-name">$</span>{" "}
-              <span className="string">ls</span>{" "}
-              <span className="keyword">-l</span>
-              {" | "}
-              <span className="function-name">grep</span>{" "}
-              <span className="string">academics</span>
-              <span className="cursor"></span>
-            </h2>
+            <TypingTitle text={academicTitle} />
           </div>
           <div className="lg:w-1/2">
-            <h2 className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
-              <span className="include">#include</span>{" "}
-              <span className="string">"organizations.h"</span>
-              <span className="cursor"></span>
-            </h2>
+            <TypingTitle text={organizationTitle} />
           </div>
         </section>
         <div className="text-red-500 text-center">{error}</div>
@@ -74,14 +64,7 @@ const RecordsSection = () => {
   return (
     <section className="flex flex-col lg:flex-row gap-8">
       <div className="lg:w-1/2">
-        <h2 className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
-          <span className="function-name">$</span>{" "}
-          <span className="string">ls</span> <span className="keyword">-l</span>
-          {" | "}
-          <span className="function-name">grep</span>{" "}
-          <span className="string">academics</span>
-          <span className="cursor"></span>
-        </h2>
+        <TypingTitle text={academicTitle} />
         <div className="perspective-500 transform transition-all duration-300 lg:hover:scale-[1.02] active:scale-[0.98] lg:hover:shadow-2xl lg:hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 lg:hover:bg-zinc-800/90 active:bg-zinc-800/70 shadow-xl active:shadow-none">
           <ul className="space-y-4">
             {academicRecords.map((record, index) => (
@@ -124,11 +107,7 @@ const RecordsSection = () => {
         </div>
       </div>
       <div className="lg:w-1/2">
-        <h2 className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto">
-          <span className="include">#include</span>{" "}
-          <span className="string">"organizations.h"</span>
-          <span className="cursor"></span>
-        </h2>
+        <TypingTitle text={organizationTitle} />
         <div className="perspective-500 transform transition-all duration-300 lg:hover:scale-[1.02] active:scale-[0.98] lg:hover:shadow-2xl lg:hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 lg:hover:bg-zinc-800/90 active:bg-zinc-800/70 shadow-xl active:shadow-none">
           <ul className="space-y-4">
             {organizations.map((org, index) => (
