@@ -90,6 +90,10 @@ h2.code-themed {
   text-shadow: 1px 1px 2px #000;
 }
 
+.python-function-attribute {
+  color: #9cdcfe;
+}
+
 .keyword {
   color: #569cd6;
 }
@@ -98,6 +102,7 @@ h2.code-themed {
   color: #dcdcaa;
 }
 
+.default
 .parentheses,
 .braces,
 .semicolon {
@@ -119,6 +124,10 @@ h2.code-themed {
 .code-themed:hover {
   cursor: text;
   background-color: #1F1F1F;
+}
+
+.python-function-attribute {
+  color: #60c7ff;
 }
 
 .code-themed:hover .keyword {
