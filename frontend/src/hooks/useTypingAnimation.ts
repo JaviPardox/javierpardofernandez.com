@@ -59,7 +59,7 @@ export const useTypingAnimation = (text: Record<string,string>) => {
         }
     
         return () => clearTimeout(typingTimeout);
-      }, [isVisible]);
+      }, [isVisible, text]);
     
       useEffect(() => {
         const observer = new IntersectionObserver(
