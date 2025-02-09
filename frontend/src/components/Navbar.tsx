@@ -155,7 +155,9 @@ const Navbar = () => {
         scrollTo: elementPosition - offset,
       });
       if (isSafari) {
-        smoothScrollTo(elementPosition - offset, 600);
+        const distance = Math.abs(elementPosition - offset - window.scrollY);
+        const duration = Math.min(1000, Math.max(300, distance * 0.5));
+        smoothScrollTo(elementPosition - offset, duration);
       } else {
         window.scrollTo({
           top: elementPosition - offset,
@@ -174,8 +176,26 @@ const Navbar = () => {
       if (element) {
         console.log(`Target section ${sectionId} rendered.`);
         observer.disconnect();
-        scrollToSection(sectionId);
-      }
+        let lastPosition = -1;
+        let checkCount = 0;
+        const maxChecks = 10;
+        
+        const checkPosition = () => {
+          const currentPosition = element.offsetTop;
+          console.log(`Check ${checkCount + 1}: Position for ${sectionId}:`, currentPosition);
+          
+          if (currentPosition === lastPosition) {
+            scrollToSection(sectionId);
+          } else if (checkCount < maxChecks) {
+            lastPosition = currentPosition;
+            checkCount++;
+            setTimeout(checkPosition, 50);
+          } else {
+            scrollToSection(sectionId);
+          }
+        };
+        setTimeout(checkPosition, 100);
+      };
     });
   
     // Observe changes in the DOM
