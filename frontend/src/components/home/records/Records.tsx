@@ -1,39 +1,14 @@
 import { useState, useEffect } from "react";
 import { Academic, Organization, Records } from "../../../types";
 import axios from "axios";
-import { useTypingAnimation } from "../../../hooks/useTypingAnimation";
+import TypingTitle from '../../common/TypingTitle';
+import { academicTitle, organizationTitle } from '../../../constants/titles';
 
 const RecordsSection = () => {
   const [academicRecords, setAcademicRecords] = useState<Academic[]>([]);
   const [organizations, setOrganizations] = useState<Organization[]>([]);
   const [error, setErrorMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-
-  const academicTitle: Record<string, string> = {
-    " $ ": "function-name",
-    "ls ": "string",
-    "-l ": "keyword",
-    "| ": "",
-    "\n": "",
-    "grep ": "function-name",
-    academics: "string",
-  };
-
-  const organizationTitle: Record<string, string> = {
-    " SELECT ": "keyword",
-    "* ": "",
-    "\n": "",
-    "FROM ": "keyword",
-    orgs: "",
-  };
-
-  const { displayedText: academicDisplayedText, elementRef: academicRef } =
-    useTypingAnimation(academicTitle);
-
-  const {
-    displayedText: organizationDisplayedText,
-    elementRef: organizationRef,
-  } = useTypingAnimation(organizationTitle);
 
   useEffect(() => {
     const fetchRecords = async () => {
@@ -76,38 +51,10 @@ const RecordsSection = () => {
       <>
         <section className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-1/2">
-            <h2
-              ref={academicRef}
-              className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto whitespace-pre-wrap md:whitespace-nowrap min-h-[132px] md:min-h-[3.5rem]"
-            >
-              {academicDisplayedText.map((item, index) => (
-                <span key={index}>
-                  {Object.entries(item).map(([key, value]) => (
-                    <span key={key} className={value}>
-                      {key}
-                    </span>
-                  ))}
-                </span>
-              ))}
-              <span className="cursor"></span>
-            </h2>
+            <TypingTitle text={academicTitle} />
           </div>
           <div className="lg:w-1/2">
-            <h2
-              ref={organizationRef}
-              className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto whitespace-pre-wrap md:whitespace-nowrap min-h-[132px] md:min-h-[3.5rem]"
-            >
-              {organizationDisplayedText.map((item, index) => (
-                <span key={index}>
-                  {Object.entries(item).map(([key, value]) => (
-                    <span key={key} className={value}>
-                      {key}
-                    </span>
-                  ))}
-                </span>
-              ))}
-              <span className="cursor"></span>
-            </h2>
+            <TypingTitle text={organizationTitle} />
           </div>
         </section>
         <div className="text-red-500 text-center">{error}</div>
@@ -117,21 +64,7 @@ const RecordsSection = () => {
   return (
     <section className="flex flex-col lg:flex-row gap-8">
       <div className="lg:w-1/2">
-        <h2
-          ref={academicRef}
-          className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto whitespace-pre-wrap md:whitespace-nowrap min-h-[132px] md:min-h-[3.5rem]"
-        >
-          {academicDisplayedText.map((item, index) => (
-            <span key={index}>
-              {Object.entries(item).map(([key, value]) => (
-                <span key={key} className={value}>
-                  {key}
-                </span>
-              ))}
-            </span>
-          ))}
-          <span className="cursor"></span>
-        </h2>
+        <TypingTitle text={academicTitle} />
         <div className="perspective-500 transform transition-all duration-300 lg:hover:scale-[1.02] active:scale-[0.98] lg:hover:shadow-2xl lg:hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 lg:hover:bg-zinc-800/90 active:bg-zinc-800/70 shadow-xl active:shadow-none">
           <ul className="space-y-4">
             {academicRecords.map((record, index) => (
@@ -174,21 +107,7 @@ const RecordsSection = () => {
         </div>
       </div>
       <div className="lg:w-1/2">
-        <h2
-          ref={organizationRef}
-          className="relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto whitespace-pre-wrap md:whitespace-nowrap min-h-[132px] md:min-h-[3.5rem]"
-        >
-          {organizationDisplayedText.map((item, index) => (
-            <span key={index}>
-              {Object.entries(item).map(([key, value]) => (
-                <span key={key} className={value}>
-                  {key}
-                </span>
-              ))}
-            </span>
-          ))}
-          <span className="cursor"></span>
-        </h2>
+        <TypingTitle text={organizationTitle} />
         <div className="perspective-500 transform transition-all duration-300 lg:hover:scale-[1.02] active:scale-[0.98] lg:hover:shadow-2xl lg:hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 lg:hover:bg-zinc-800/90 active:bg-zinc-800/70 shadow-xl active:shadow-none">
           <ul className="space-y-4">
             {organizations.map((org, index) => (
