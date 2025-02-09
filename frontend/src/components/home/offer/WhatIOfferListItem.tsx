@@ -11,7 +11,7 @@ interface WhatIOfferListItemProps {
   }) => {
     return (
       <li className="relative group flex flex-col items-start">
-        <span className="absolute -inset-x-4 -inset-y-6 z-[-1] scale-95 bg-zinc-800/50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 rounded-2xl"></span>
+        <span className="absolute -inset-x-4 -inset-y-6 z-[-1] scale-95 bg-zinc-800/50 opacity-0 transition md:group-hover:scale-100 md:group-hover:opacity-100 sm:-inset-x-6 rounded-2xl"></span>
         <i className="w-12 h-12 flex items-center justify-center ring-1 ring-zinc-900/5 border border-zinc-700/50 rounded-full bg-zinc-800">
           {icon}
         </i>
