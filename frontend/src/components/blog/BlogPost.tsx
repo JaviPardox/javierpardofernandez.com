@@ -37,19 +37,21 @@ const BlogPost = () => {
           left: rect.left,
           top: rect.top,
           
+          // Leaving comments in case of reverting the changes
+          
           // Calculate translation to make it appear like it's moving smoothly
-          transform:  'translate(10px, 5px)',
+          //transform:  'translate(10px, 5px)',
           
           // Add smooth transition
-          transition: 'transform 0.3s ease-in-out'
+          //transition: 'transform 0.3s ease-in-out'
         });
       }
     } else {
       // Reset to original positioning when not scrolled
       setButtonPosition(prevState => ({
         ...prevState,
-        transform: 'translate(0px, 0px)',
-        transition: 'transform 0.3s ease-in-out'
+        //transform: 'translate(0px, 0px)',
+        //transition: 'transform 0.3s ease-in-out'
       }));
     }
   }, [isScrolled]);
