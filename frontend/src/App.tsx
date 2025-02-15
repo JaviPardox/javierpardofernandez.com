@@ -19,8 +19,8 @@ const App = () => {
               <main className="p-4 sm:p-6 lg:p-8">
                 <AnimatedRouter />
               </main>
+              <Footer />
             </ResponsiveCenterLayout>
-            <Footer />
           </PageTransitions>
         </div>
       </Router>

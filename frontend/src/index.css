@@ -649,3 +649,75 @@ li {
     /* box-shadow: inset 0 0 0 0em ;*/
   }
 }
+
+.gradient-background {
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient-background::before,
+.gradient-background::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 217, 255, 0.3) 0%,
+    rgba(183, 0, 255, 0.3) 25%,
+    rgba(255, 0, 149, 0.3) 45%,
+    rgba(0, 0, 0, 0) 60%
+  );
+  filter: blur(30px);
+  animation: gradient-move 15s ease infinite;
+  opacity: 0;
+}
+
+.gradient-background::after {
+  animation-delay: -7s;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 255, 234, 0.3) 0%,
+    rgba(255, 166, 0, 0.3) 25%,
+    rgba(157, 0, 255, 0.3) 45%,
+    rgba(0, 0, 0, 0) 60%
+  );
+}
+
+@keyframes gradient-move {
+  0% {
+    opacity: 0;
+    transform: translate(-30%, -30%) scale(1.5);
+  }
+  25% {
+    opacity: 0.7;                   /* Increased peak opacity */
+    transform: translate(30%, -20%) scale(1);
+  }
+  50% {
+    opacity: 0;
+    transform: translate(20%, 30%) scale(1.5);
+  }
+  75% {
+    opacity: 0.7;                   /* Increased peak opacity */
+    transform: translate(-20%, 20%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-30%, -30%) scale(1.5);
+  }
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

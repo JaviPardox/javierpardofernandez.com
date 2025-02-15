@@ -2,11 +2,12 @@ const Footer = () => {
   return (
     <footer className="">
       <div className="bg-openai-dark text-openai-light flex justify-center">
-        <div className="bg-openai-center-content w-full max-w-[76rem] min-w-[20rem] sm:mx-[5%] relative pb-10 pt-10 sm:border-x sm:border-b sm:border-zinc-300/20">
+        <div className="bg-openai-center-content w-full max-w-[76rem] min-w-[20rem] relative sm:pb-10 pb-7">
+          <div className="-mx-2 sm:-mx-6 lg:-mx-8 border-t border-zinc-300/20 sm:pt-10 pt-7" />
           <div className="px-2 sm:px-6 lg:px-8">
             <div className="relative px-4 lg:px-12">
-              <div className="mx-auto max-w-2xl lg:max-w-5xl">
-                <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
+              <div className="mx-auto">
+                <div className="flex flex-col items-center justify-between gap-4 sm:gap-6 sm:flex-row">
                   <div className="flex items-center justify-center gap-x-3 sm:gap-x-6 text-sm font-medium text-zinc-200 w-full md:w-3/4 lg:w-2/5">
                     <a
                       className="inline-flex items-center justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none font-medium bg-zinc-800/50 text-zinc-300 hover:bg-zinc-800 hover:text-zinc-50 active:bg-zinc-800/50 active:text-zinc-50/70 w-full"
@@ -52,9 +53,10 @@ const Footer = () => {
                       </svg>
                     </a>
                   </div>
-                  <p className="text-right text-sm text-zinc-500">
-                    © 2024 Javier Pardo Fernandez. All rights reserved.
-                  </p>
+                  <div className="flex flex-col items-center sm:items-start lg:items-center lg:flex-row lg:gap-x-2 text-sm text-zinc-500">
+                    <p>© 2025 Javier Pardo Fernandez</p>
+                    <p>All rights reserved.</p>
+                  </div>
                 </div>
               </div>
             </div>
