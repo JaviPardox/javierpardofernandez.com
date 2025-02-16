@@ -2,74 +2,37 @@
     "previews": [
       {
         "id": "1",
-        "date": "September 27, 2024",
-        "title": "FastAPI and Blog Routes",
-        "preview_text": "Learn how to structure FastAPI routes for your blog application... Learn how to structure FastAPI routes for your blog application... Learn how to structure FastAPI routes for your blog application... Learn how to structure FastAPI routes for your blog application... Learn how to structure FastAPI routes for your blog application..."
-      },
-      {
-        "id": "2",
-        "date": "September 27, 2024",
-        "title": "FastAPI and Blog Routes",
-        "preview_text": "Learn how to structure FastAPI routes for your blog application... Learn how to structure FastAPI routes for your blog application... Learn how to structure FastAPI routes for your blog application... Learn how to structure FastAPI routes for your blog application... Learn how to structure FastAPI routes for your blog application..."
+        "date": "February 16, 2025",
+        "title": "Blog Under Construction 🚧",
+        "preview_text": "Hey there! 👋 My blog is currently taking a power nap while I'm busy coding awesome stuff. Stay tuned for some exciting content about software engineering, cloud architecture, and maybe even my adventures in trying to explain programming to my rubber duck 🦆"
       }
     ],
     "posts": {
       "1": {
         "id": "1",
-        "date": "September 27, 2024",
-        "title": "FastAPI and Blog Routes",
-        "preview_text": "Learn how to structure FastAPI routes for your blog application...",
+        "date": "February 16, 2025",
+        "title": "Blog Under Construction 🚧",
+        "preview_text": "Hey there! My blog is currently taking a power nap while I'm busy coding awesome stuff...",
         "content_blocks": [
-          {"type": "text", "content": "FastAPI makes routing easy and efficient..."},
-          {"type": "code_block", "content": "from fastapi import FastAPI"},
-          {"type": "dotted_list", "content": ["Step 1: Define your models", "Step 2: Create routes"]},
-          {"type": "small_title", "content": "FastAPI Blog Structure"},
-          {"type": "text", "content": "FastAPI makes routing easy and efficient..."},
-          {"type": "numbered_list", "content": ["Step 1: Define your models", "Step 2: Create routes"]},
-          {"type": "image", "content": "https://example.com/fastapi.png"},
-          {"type": "text", "content": "FastAPI makes routing easy and efficient..."},
-          {"type": "code_block", "content": "from fastapi import FastAPI"},
-          {"type": "dotted_list", "content": ["Step 1: Define your models", "Step 2: Create routes"]},
-          {"type": "small_title", "content": "FastAPI Blog Structure"},
-          {"type": "text", "content": "FastAPI makes routing easy and efficient..."},
-          {"type": "numbered_list", "content": ["Step 1: Define your models", "Step 2: Create routes"]},
-          {"type": "image", "content": "https://example.com/fastapi.png"},
-          {"type": "text", "content": "FastAPI makes routing easy and efficient..."},
-          {"type": "code_block", "content": "from fastapi import FastAPI"},
-          {"type": "dotted_list", "content": ["Step 1: Define your models", "Step 2: Create routes"]},
-          {"type": "small_title", "content": "FastAPI Blog Structure"},
-          {"type": "text", "content": "FastAPI makes routing easy and efficient..."},
-          {"type": "numbered_list", "content": ["Step 1: Define your models", "Step 2: Create routes"]},
-          {"type": "image", "content": "https://example.com/fastapi.png"}
-        ]
-      },
-      "2": {
-        "id": "1",
-        "date": "September 27, 2024",
-        "title": "FastAPI and Blog Routes",
-        "preview_text": "Learn how to structure FastAPI routes for your blog application...",
-        "content_blocks": [
-          {"type": "text", "content": "FastAPI makes routing easy and efficient..."},
-          {"type": "code_block", "content": "from fastapi import FastAPI"},
-          {"type": "dotted_list", "content": ["Step 1: Define your models", "Step 2: Create routes"]},
-          {"type": "small_title", "content": "FastAPI Blog Structure"},
-          {"type": "text", "content": "FastAPI makes routing easy and efficient..."},
-          {"type": "numbered_list", "content": ["Step 1: Define your models", "Step 2: Create routes"]},
-          {"type": "image", "content": "https://example.com/fastapi.png"},
-          {"type": "text", "content": "FastAPI makes routing easy and efficient..."},
-          {"type": "code_block", "content": "from fastapi import FastAPI"},
-          {"type": "dotted_list", "content": ["Step 1: Define your models", "Step 2: Create routes"]},
-          {"type": "small_title", "content": "FastAPI Blog Structure"},
-          {"type": "text", "content": "FastAPI makes routing easy and efficient..."},
-          {"type": "numbered_list", "content": ["Step 1: Define your models", "Step 2: Create routes"]},
-          {"type": "image", "content": "https://example.com/fastapi.png"},
-          {"type": "text", "content": "FastAPI makes routing easy and efficient..."},
-          {"type": "code_block", "content": "from fastapi import FastAPI"},
-          {"type": "dotted_list", "content": ["Step 1: Define your models", "Step 2: Create routes"]},
-          {"type": "small_title", "content": "FastAPI Blog Structure"},
-          {"type": "text", "content": "FastAPI makes routing easy and efficient..."},
-          {"type": "numbered_list", "content": ["Step 1: Define your models", "Step 2: Create routes"]},
-          {"type": "image", "content": "https://example.com/fastapi.png"}
+          {"type": "text", "content": "Hey there! 👋 Welcome to my blog's construction site."},
+          {"type": "small_title", "content": "What's Happening Here?"},
+          {"type": "text", "content": "I'm currently brewing up some interesting content about software engineering, cloud architecture, and my daily adventures in tech. Think of it as compiling a really large codebase - it takes time, but it'll be worth the wait! 🚀"},
+          {"type": "dotted_list", "content": [
+            "✨ Tech insights coming soon",
+            "🔧 Engineering stories in the pipeline",
+            "☁️ Cloud computing adventures ahead",
+            "🤔 Problem-solving tales loading..."
+          ]},
+          {"type": "text", "content": "In the meantime, feel free to check out my projects and experience. Or you could count the pixels on this page - I won't judge! 😉"},
+          {"type": "small_title", "content": "Coming Up Next"},
+          {"type": "text", "content": "While this blog compiles, here's a preview of what's cooking:"},
+          {"type": "numbered_list", "content": [
+            "How I Convinced My Coffee Machine to Run Python Scripts",
+            "The Day I Almost Deployed to Production on a Friday",
+            "Why My Rubber Duck Deserves a Software Engineering Degree",
+            "Cloud Computing: Because Everyone Loves Someone Else's Computer"
+          ]},
+          {"type": "text", "content": "Stay tuned! And remember: there are only 10 types of people in the world - those who understand binary and those who don't. 🤓"}
         ]
       }
     }
