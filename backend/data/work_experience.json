@@ -15,9 +15,12 @@
           { "content": "Tailwind", "iconClass": "devicon-tailwindcss-plain" },
           { "content": "MacOS", "iconClass": "devicon-apple-original" },
           { "content": "Bash", "iconClass": "devicon-bash-plain" },
-          { "content": "Redis", "iconClass": "devicon-redis-plain" },
+          { "content": "Julia", "iconClass": "devicon-julia-plain" },
           { "content": "Testing", "iconClass": "devicon-pytest-plain" },
-          { "content": "NodeJS", "iconClass": "devicon-nodejs-plain" }
+          { "content": "NodeJS", "iconClass": "devicon-nodejs-plain" },
+          { "content": "CD/CI", "iconClass": "devicon-githubactions-plain" },
+          { "content": "Data Processing", "iconClass": "devicon-pandas-plain" },
+          { "content": "Documentation", "iconClass": "devicon-readthedocs-original" }
         ],
         "companyAndDateInfo": {
           "url": "https://bio-me.com",
@@ -26,12 +29,12 @@
         },
         "jobPosition": "Software Engineer",
         "jobDescription": [
-          "Developed, optimized, and maintained Bio-me's main commercial software in AWS, improving cost-effective storage by 31%, and performance by 200%.",
-          "Developed and maintained the internal LIMS system, working with clinical & commercial teams to develop new software or upgrade existing solutions.",
-          "Tested software for bugs and operating speed, fixing bugs and documenting processes to increase efficiency by 18%.",
-          "Onboarded and supervised internships, assisting and collaborating with a group of 4 students to create features across the software.",
-          "Documented code & best practices within different parts of the company.",
-          "Reviewed code and best practices improving efficiency by 12%."
+          "Architected and developed advanced microbiome profiling platforms, implementing distributed bioinformatics pipelines that improved processing efficiency by 200% and reduced storage costs by 31%.",
+          "Designed and optimized computational workflows for species-specific genomic region identification and qPCR assay development, enabling precise microbiome quantification.",
+          "Engineered scalable laboratory information management systems (LIMS), integrating complex analytical workflows with clinical and commercial requirements.",
+          "Led the development of automated testing frameworks and validation protocols, increasing system reliability by 18%.",
+          "Mentored and supervised internship programs, guiding a team of 4 students in implementing core system features.",
+          "Established comprehensive documentation standards and engineering best practices, improving team efficiency by 12%."
         ]
       },
       {
@@ -40,8 +43,10 @@
           { "content": "Python", "iconClass": "devicon-python-plain" },
           { "content": "MATLAB", "iconClass": "devicon-matlab-plain" },
           { "content": "SQL", "iconClass": "devicon-mysql-plain" },
-          { "content": "Data Analysis", "iconClass": "devicon-jupyter-plain" },
-          { "content": "Engineering", "iconClass": "devicon-matlab-plain" }
+          { "content": "Data Analysis", "iconClass": "devicon-jupyter-plain-wordmark" },
+          { "content": "Engineering", "iconClass": "devicon-matlab-plain" },
+          { "content": "Anaconda", "iconClass": "devicon-anaconda-original" },
+          { "content": "Data Visualization", "iconClass": "devicon-matplotlib-plain" }
         ],
         "companyAndDateInfo": {
           "url": "https://dot.ca.gov",
