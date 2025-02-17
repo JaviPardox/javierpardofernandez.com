@@ -11,19 +11,21 @@ const NotFoundPage = () => {
   };
 
   return (
-    <div className="flex absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 items-center justify-center flex-col text-center">
-      <p className="text-base text-zinc-500 mb-7">
-        404
-      </p>
-      <h1 className="text-4xl font-bold mb-4">
-        Oops! This page doesn't exist.
-      </h1>
-      <button
-        onClick={handleClick}
-        className="inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition bg-zinc-800/50 text-zinc-300 hover:bg-zinc-800 hover:text-zinc-50 mt-4"
-      >
-        Let's get you back home
-      </button>
+    <div className="flex-grow flex items-center justify-center min-h-[82vh]">
+      <div className="flex flex-col items-center justify-center text-center">
+        <p className="text-base text-zinc-500 mb-7">
+          404
+        </p>
+        <h1 className="text-4xl font-bold mb-4">
+          Oops! This page doesn't exist.
+        </h1>
+        <button
+          onClick={handleClick}
+          className="inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition bg-zinc-800/50 text-zinc-300 hover:bg-zinc-800 hover:text-zinc-50 mt-4"
+        >
+          Let's get you back home
+        </button>
+      </div>
     </div>
   );
 };
