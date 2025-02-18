@@ -17,7 +17,6 @@
           { "content": "Bash", "iconClass": "devicon-bash-plain" },
           { "content": "Julia", "iconClass": "devicon-julia-plain" },
           { "content": "Testing", "iconClass": "devicon-pytest-plain" },
-          { "content": "NodeJS", "iconClass": "devicon-nodejs-plain" },
           { "content": "CD/CI", "iconClass": "devicon-githubactions-plain" },
           { "content": "Data Processing", "iconClass": "devicon-pandas-plain" },
           { "content": "Documentation", "iconClass": "devicon-readthedocs-original" }
@@ -66,7 +65,6 @@
           { "content": "Engineering", "iconClass": "devicon-matlab-plain" },
           { "content": "Python", "iconClass": "devicon-python-plain" },
           { "content": "C++", "iconClass": "devicon-cplusplus-plain" },
-          { "content": "JavaScript", "iconClass": "devicon-javascript-plain" },
           { "content": "C", "iconClass": "devicon-c-plain" },
           { "content": "Algorithms", "iconClass": "devicon-github-plain" },
           { "content": "Data Structures", "iconClass": "devicon-python-plain" },
