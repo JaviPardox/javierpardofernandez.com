@@ -4,18 +4,19 @@
         "hashtags": ["Cloud", "Backend", "Frontend", "Testing", "DevOps", "Architecture"],
         "icons": [
           { "content": "Python", "iconClass": "devicon-python-plain" },
-          { "content": "AWS", "iconClass": "devicon-amazonwebservices-plain-wordmark" },
-          { "content": "React", "iconClass": "devicon-react-original" },
-          { "content": "Django", "iconClass": "devicon-django-plain" },
-          { "content": "Docker", "iconClass": "devicon-docker-plain" },
           { "content": "TypeScript", "iconClass": "devicon-typescript-plain" },
+          { "content": "Julia", "iconClass": "devicon-julia-plain" },
+          { "content": "Django", "iconClass": "devicon-django-plain" },
           { "content": "FastAPI", "iconClass": "devicon-fastapi-plain" },
-          { "content": "Git", "iconClass": "devicon-git-plain" },
-          { "content": "Linux", "iconClass": "devicon-linux-plain" },
+          { "content": "React", "iconClass": "devicon-react-original" },
           { "content": "Tailwind", "iconClass": "devicon-tailwindcss-plain" },
+          { "content": "AWS", "iconClass": "devicon-amazonwebservices-plain-wordmark" },
+          { "content": "Nginx", "iconClass": "devicon-nginx-original" },
+          { "content": "Docker", "iconClass": "devicon-docker-plain" },
+          { "content": "Linux", "iconClass": "devicon-linux-plain" },
           { "content": "MacOS", "iconClass": "devicon-apple-original" },
           { "content": "Bash", "iconClass": "devicon-bash-plain" },
-          { "content": "Julia", "iconClass": "devicon-julia-plain" },
+          { "content": "Git", "iconClass": "devicon-git-plain" },
           { "content": "Testing", "iconClass": "devicon-pytest-plain" },
           { "content": "CD/CI", "iconClass": "devicon-githubactions-plain" },
           { "content": "Data Processing", "iconClass": "devicon-pandas-plain" },
@@ -28,7 +29,7 @@
         },
         "jobPosition": "Software Engineer",
         "jobDescription": [
-          "Architected and developed advanced microbiome profiling platforms, implementing distributed bioinformatics pipelines that improved processing efficiency by 200% and reduced storage costs by 31%.",
+          "Architected and developed Bio-Me's microbiome profiling platform, implementing distributed bioinformatics pipelines that improved processing efficiency by 200% and reduced storage costs by 31%.",
           "Designed and optimized computational workflows for species-specific genomic region identification and qPCR assay development, enabling precise microbiome quantification.",
           "Engineered scalable laboratory information management systems (LIMS), integrating complex analytical workflows with clinical and commercial requirements.",
           "Led the development of automated testing frameworks and validation protocols, increasing system reliability by 18%.",
@@ -42,10 +43,11 @@
           { "content": "Python", "iconClass": "devicon-python-plain" },
           { "content": "MATLAB", "iconClass": "devicon-matlab-plain" },
           { "content": "SQL", "iconClass": "devicon-mysql-plain" },
+          { "content": "MongoDB", "iconClass": "devicon-mongodb-plain" },
           { "content": "Data Analysis", "iconClass": "devicon-jupyter-plain-wordmark" },
-          { "content": "Engineering", "iconClass": "devicon-matlab-plain" },
+          { "content": "Data Visualization", "iconClass": "devicon-matplotlib-plain" },
           { "content": "Anaconda", "iconClass": "devicon-anaconda-original" },
-          { "content": "Data Visualization", "iconClass": "devicon-matplotlib-plain" }
+          { "content": "Engineering", "iconClass": "devicon-matlab-plain" }
         ],
         "companyAndDateInfo": {
           "url": "https://dot.ca.gov",
@@ -54,20 +56,23 @@
         },
         "jobPosition": "Transportation Engineer Technician",
         "jobDescription": [
-          "Responsible for compiling data for the design, construction, alteration, maintenance, and operation of civil engineering projects in Napa County.",
-          "Analyzed and gathered field traffic data; performed traffic operational activities including surveillance and incident response.",
-          "Prepared designs, plans, estimates, reports, and specifications for all types of highway and bridge projects."
+          "Responsible for engineering and implementing data analysis systems for infrastructure project monitoring, developing automated solutions for compliance tracking and quality assurance across multiple construction sites.",
+          "Architected comprehensive technical documentation systems and analytical frameworks for construction project oversight, improving operational efficiency and reducing documentation processing time by 25%.",
+          "Developed and maintained complex data processing pipelines for project metrics, including material testing, safety compliance, and environmental impact assessments.",
+          "Led the implementation of digital solutions for contract management and quality control, streamlining processes for construction specifications, material verification, and regulatory compliance."
         ]
       },
       {
         "hashtags": ["Education", "Programming", "Engineering", "Mentoring"],
         "icons": [
-          { "content": "Engineering", "iconClass": "devicon-matlab-plain" },
           { "content": "Python", "iconClass": "devicon-python-plain" },
           { "content": "C++", "iconClass": "devicon-cplusplus-plain" },
           { "content": "C", "iconClass": "devicon-c-plain" },
-          { "content": "Algorithms", "iconClass": "devicon-github-plain" },
-          { "content": "Data Structures", "iconClass": "devicon-python-plain" },
+          { "content": "Embedded C", "iconClass": "devicon-embeddedc-plain" },
+          { "content": "Microcontrollers", "iconClass": "devicon-raspberrypi-plain" },
+          { "content": "LaTeX", "iconClass": "devicon-latex-original" },
+          { "content": "Algorithms", "iconClass": "devicon-stackoverflow-plain" },
+          { "content": "Data Structures", "iconClass": "devicon-threejs-original" },
           { "content": "Physics", "iconClass": "devicon-matlab-plain" }
         ],
         "companyAndDateInfo": {
@@ -77,19 +82,19 @@
         },
         "jobPosition": "Electrical/Computer Engineering Tutor",
         "jobDescription": [
-          "Achieved 17% improvement on tests by assisting students in acquiring a better understanding of engineering, programming, math, and physics courses.",
-          "Successfully engaged students from diverse academic and cultural backgrounds by tailoring to their individual needs.",
-          "Designed interactive and enjoyable learning experiences to maintain student motivation throughout the course."
+          "Developed advanced instructional frameworks for computer architecture, data structures, and algorithms, achieving a 17% improvement in student performance metrics.",
+          "Designed and implemented hands-on programming workshops covering embedded systems, digital signal processing, and computational methods.",
+          "Created innovative problem-solving methodologies for complex engineering concepts, focusing on practical applications in C++, Python, and hardware design."
         ]
       },
       {
         "hashtags": ["Web Development", "Data", "AI", "APIs"],
         "icons": [
           { "content": "PHP", "iconClass": "devicon-php-plain" },
+          { "content": "MySQL", "iconClass": "devicon-mysql-plain" },
           { "content": "HTML5", "iconClass": "devicon-html5-plain" },
           { "content": "JavaScript", "iconClass": "devicon-javascript-plain" },
           { "content": "CSS3", "iconClass": "devicon-css3-plain" },
-          { "content": "MySQL", "iconClass": "devicon-mysql-plain" },
           { "content": "APIs", "iconClass": "devicon-nodejs-plain" },
           { "content": "AI", "iconClass": "devicon-python-plain" }
         ],
@@ -100,8 +105,8 @@
         },
         "jobPosition": "Software Engineer Internship",
         "jobDescription": [
-          "Developed an interface with PHP and HTML/JavaScript to leverage Twitter's API for data collection.",
-          "Managed and processed data for artificial intelligence applications."
+          "Engineered a scalable data collection system integrating Twitter's API with custom analytics pipelines, enabling real-time social media data processing for machine learning applications.",
+          "Developed robust ETL processes and data transformation workflows, implementing efficient storage solutions and data validation protocols."
         ]
       }
     ]
