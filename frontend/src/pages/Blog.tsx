@@ -32,11 +32,10 @@ const Blog = () => {
       <div className="text-left sm:px-8 pb-8 flex flex-col">
         <div className="mt-[calc(theme(spacing.20)-theme(spacing.3))] pb-10"></div>
         <h1 className="max-w-2xl text-4xl sm:text-4.82xl mb-6 mt-7 text-zinc-100 font-inter font-bold tracking-tight leading-[2.5rem] sm:leading-[3.5rem]">
-          Thoughts on software engineering, cloud architecture, and the occasional rubber duck debugging session.
+          Thoughts on life, software engineering, and the occasional rubber duck debugging session.
         </h1>
         <p className="max-w-2xl text-base text-zinc-400">
-          A collection of technical insights, engineering adventures, and lessons learned 
-          while trying to explain my code to inanimate objects. Stay tuned for the good stuff!
+          A collection of insights, adventures, and lessons learned while trying to explain my code to inanimate objects. Stay tuned for the good stuff!
         </p>
         <div className="mt-16 sm:mt-20 flex-grow">
           {loading && (
