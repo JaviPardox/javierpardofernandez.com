@@ -721,3 +721,85 @@ li {
     background-position: 0% 50%;
   }
 }
+
+.rainbow-button {
+  position: relative;
+  isolation: isolate;
+}
+
+.rainbow-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(39, 39, 42, 0.5);
+  transition: background-color 0.3s ease;
+  border-radius: 0.375rem;
+  z-index: -1;
+}
+
+.rainbow-button:hover::after {
+  background: rgb(39, 39, 42);
+}
+
+.rainbow-button::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
+  background: linear-gradient(
+    to right,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #4b0082,
+    #8f00ff
+  );
+  background-size: 200% auto;
+  border-radius: 0.5rem;
+  z-index: -2;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.rainbow-button:hover::before {
+  opacity: 1;
+  visibility: visible;
+  animation: rainbow-animation 2s linear infinite;
+}
+
+.rainbow-text {
+  @apply text-zinc-300;
+  transition: all 0.3s ease;
+}
+
+.rainbow-button:hover .rainbow-text {
+  animation: rainbow-animation 2s linear infinite;
+  background: linear-gradient(
+    to right,
+    #ff0000,
+    #ff7f00,
+    #ffff00,
+    #00ff00,
+    #0000ff,
+    #4b0082,
+    #8f00ff
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% auto;
+}
+
+@keyframes rainbow-animation {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
