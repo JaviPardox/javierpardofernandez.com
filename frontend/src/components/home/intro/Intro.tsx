@@ -13,13 +13,13 @@ const Intro = () => {
       </div>
       <div className="max-w-2xl" id="home">
         <h1 className="text-4xl sm:text-4.82xl mb-6 mt-7 text-zinc-100 font-inter font-bold tracking-tight leading-[2.5rem] sm:leading-[3.5rem]">
-          Software designer, founder, and amateur astronaut.
+          Software Engineer, MSc Project Management.
         </h1>
         <p className="mt-6 text-base text-zinc-400 leading-relaxed leading-[1.78rem]">
-          I'm Spencer, a software designer and entrepreneur based in New York
-          City. I'm the founder and CEO of Planetaria, where we develop
-          technologies that empower regular people to explore space on their own
-          terms.
+          I'm Javier, a Software Engineer based in Oslo, Norway, with a knack for building innovative and scalable software systems. 
+          My work encompasses architecture engineering, high-performance computing, and the integration of technologies. 
+          Beyond the technical realm, I like to learn about investing and financial markets, I'm a devoted FC Barcelona fan, and I enjoy both the serenity of nature and the thrill of cars and motorcycles. 
+          I have a deep appreciation for history, cultures, and music. I like to stay curious and always learn new things!
         </p>
         <SocialIconRow />
       </div>

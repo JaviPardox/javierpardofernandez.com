@@ -44,6 +44,7 @@ export interface BlogPost {
   id: string;
   title: string;
   date: string;
+  preview_text: string;
   content_blocks: BlogContentBlock[];
 }
 

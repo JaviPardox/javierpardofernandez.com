@@ -13,7 +13,7 @@ const Home = () => {
     <div className="text-left xl:px-8">
       <div className="mt-[calc(theme(spacing.16)-theme(spacing.3))] pb-10"></div>
       <Intro />
-      <div className="mt-16 sm:mt-20">
+      <div className="mt-14 sm:mt-18">
         <CardCarrousel />
       </div>
       <div className="mt-24 md:mt-28" id="offer">

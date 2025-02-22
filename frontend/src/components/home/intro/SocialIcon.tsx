@@ -15,7 +15,7 @@ const SocialIcon: React.FC<SocialIconProps> = ({
     <svg
       viewBox="0 0 24 24"
       aria-hidden="true"
-      className="h-6 w-6 fill-zinc-400 transition group-hover:fill-zinc-300"
+      className="h-7 w-7 fill-zinc-400 transition group-hover:fill-zinc-300"
     >
       {iconPaths.map((path, index) => (
         <path

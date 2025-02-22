@@ -1,69 +1,112 @@
 {
     "data": [
       {
-        "hashtags": ["Leadership", "Architecture", "Backend", "Frontend"],
+        "hashtags": ["Cloud", "Backend", "Frontend", "Testing", "DevOps", "Architecture"],
         "icons": [
-          { "content": ".NET 6", "iconClass": "devicon-dotnetcore-plain" },
-          { "content": ".NET Framework 4.7.2", "iconClass": "devicon-dot-net-plain" },
-          { "content": "MS SQL Server 2019", "iconClass": "devicon-microsoftsqlserver-plain" },
-          { "content": "React 16", "iconClass": "devicon-react-plain" },
-          { "content": "Redux", "iconClass": "devicon-redux-plain" }
+          { "content": "Python", "iconClass": "devicon-python-plain" },
+          { "content": "TypeScript", "iconClass": "devicon-typescript-plain" },
+          { "content": "Julia", "iconClass": "devicon-julia-plain" },
+          { "content": "Django", "iconClass": "devicon-django-plain" },
+          { "content": "FastAPI", "iconClass": "devicon-fastapi-plain" },
+          { "content": "React", "iconClass": "devicon-react-original" },
+          { "content": "Tailwind", "iconClass": "devicon-tailwindcss-plain" },
+          { "content": "AWS", "iconClass": "devicon-amazonwebservices-plain-wordmark" },
+          { "content": "Nginx", "iconClass": "devicon-nginx-original" },
+          { "content": "Docker", "iconClass": "devicon-docker-plain" },
+          { "content": "Linux", "iconClass": "devicon-linux-plain" },
+          { "content": "MacOS", "iconClass": "devicon-apple-original" },
+          { "content": "Bash", "iconClass": "devicon-bash-plain" },
+          { "content": "Git", "iconClass": "devicon-git-plain" },
+          { "content": "Testing", "iconClass": "devicon-pytest-plain" },
+          { "content": "CD/CI", "iconClass": "devicon-githubactions-plain" },
+          { "content": "Data Processing", "iconClass": "devicon-pandas-plain" },
+          { "content": "Documentation", "iconClass": "devicon-readthedocs-original" }
         ],
         "companyAndDateInfo": {
-          "url": "https://fabrity.com",
-          "companyName": "FABRITY",
-          "date": "March 2022 - Present"
+          "url": "https://bio-me.com",
+          "companyName": "Bio-Me",
+          "date": "October 2021 - Present"
         },
-        "jobPosition": "Software Architect",
+        "jobPosition": "Software Engineer",
         "jobDescription": [
-          "As a lead software architect for FastAPP, a low-code enterprise platform I help product owners translate their business requirements into clean, robust and extensible technical solutions.",
-          "As a competence leader in the area of .NET, I help backend programmers hone their skills by supporting them in their everyday work.",
-          "As a leader of an internal knowledge-sharing programme, I organize monthly meetings where passion-driven people can share their knowledge with the rest of the company.",
-          "Furthermore, I do technical interviews and serve as a conference speaker on behalf of Fabrity."
+          "Architected and developed Bio-Me's microbiome profiling platform, implementing distributed bioinformatics pipelines that improved processing efficiency by 200% and reduced storage costs by 31%.",
+          "Designed and optimized computational workflows for species-specific genomic region identification and qPCR assay development, enabling precise microbiome quantification.",
+          "Engineered scalable laboratory information management systems (LIMS), integrating complex analytical workflows with clinical and commercial requirements.",
+          "Led the development of automated testing frameworks and validation protocols, increasing system reliability by 18%.",
+          "Mentored and supervised internship programs, guiding a team of 4 students in implementing core system features.",
+          "Established comprehensive documentation standards and engineering best practices, improving team efficiency by 12%."
         ]
       },
       {
-        "hashtags": ["Leadership", "Architecture", "Backend", "Frontend"],
+        "hashtags": ["Engineering", "Infrastructure", "Analysis", "Data"],
         "icons": [
-          { "content": ".NET 6", "iconClass": "devicon-dotnetcore-plain" },
-          { "content": ".NET Framework 4.7.2", "iconClass": "devicon-dot-net-plain" },
-          { "content": "MS SQL Server 2019", "iconClass": "devicon-microsoftsqlserver-plain" },
-          { "content": "React 16", "iconClass": "devicon-react-plain" },
-          { "content": "Redux", "iconClass": "devicon-redux-plain" }
+          { "content": "Python", "iconClass": "devicon-python-plain" },
+          { "content": "MATLAB", "iconClass": "devicon-matlab-plain" },
+          { "content": "SQL", "iconClass": "devicon-mysql-plain" },
+          { "content": "MongoDB", "iconClass": "devicon-mongodb-plain" },
+          { "content": "Data Analysis", "iconClass": "devicon-jupyter-plain-wordmark" },
+          { "content": "Data Visualization", "iconClass": "devicon-matplotlib-plain" },
+          { "content": "Anaconda", "iconClass": "devicon-anaconda-original" },
+          { "content": "Engineering", "iconClass": "devicon-matlab-plain" }
         ],
         "companyAndDateInfo": {
-          "url": "https://fabrity.com",
-          "companyName": "FABRITY",
-          "date": "March 2022 - Present"
+          "url": "https://dot.ca.gov",
+          "companyName": "Caltrans",
+          "date": "September 2020 - March 2021"
         },
-        "jobPosition": "Software Architect",
+        "jobPosition": "Transportation Engineer Technician",
         "jobDescription": [
-          "As a lead software architect for FastAPP, a low-code enterprise platform I help product owners translate their business requirements into clean, robust and extensible technical solutions.",
-          "As a competence leader in the area of .NET, I help backend programmers hone their skills by supporting them in their everyday work.",
-          "As a leader of an internal knowledge-sharing programme, I organize monthly meetings where passion-driven people can share their knowledge with the rest of the company.",
-          "Furthermore, I do technical interviews and serve as a conference speaker on behalf of Fabrity."
+          "Responsible for engineering and implementing data analysis systems for infrastructure project monitoring, developing automated solutions for compliance tracking and quality assurance across multiple construction sites.",
+          "Architected comprehensive technical documentation systems and analytical frameworks for construction project oversight, improving operational efficiency and reducing documentation processing time by 25%.",
+          "Developed and maintained complex data processing pipelines for project metrics, including material testing, safety compliance, and environmental impact assessments.",
+          "Led the implementation of digital solutions for contract management and quality control, streamlining processes for construction specifications, material verification, and regulatory compliance."
         ]
       },
       {
-        "hashtags": ["Leadership", "Architecture", "Backend", "Frontend"],
+        "hashtags": ["Education", "Programming", "Engineering", "Mentoring"],
         "icons": [
-          { "content": ".NET 6", "iconClass": "devicon-dotnetcore-plain" },
-          { "content": ".NET Framework 4.7.2", "iconClass": "devicon-dot-net-plain" },
-          { "content": "MS SQL Server 2019", "iconClass": "devicon-microsoftsqlserver-plain" },
-          { "content": "React 16", "iconClass": "devicon-react-plain" },
-          { "content": "Redux", "iconClass": "devicon-redux-plain" }
+          { "content": "Python", "iconClass": "devicon-python-plain" },
+          { "content": "C++", "iconClass": "devicon-cplusplus-plain" },
+          { "content": "C", "iconClass": "devicon-c-plain" },
+          { "content": "Embedded C", "iconClass": "devicon-embeddedc-plain" },
+          { "content": "Microcontrollers", "iconClass": "devicon-raspberrypi-plain" },
+          { "content": "LaTeX", "iconClass": "devicon-latex-original" },
+          { "content": "Algorithms", "iconClass": "devicon-stackoverflow-plain" },
+          { "content": "Data Structures", "iconClass": "devicon-threejs-original" },
+          { "content": "Physics", "iconClass": "devicon-matlab-plain" }
         ],
         "companyAndDateInfo": {
-          "url": "https://fabrity.com",
-          "companyName": "FABRITY",
-          "date": "March 2022 - Present"
+          "url": "https://www.csuchico.edu",
+          "companyName": "California State University Chico",
+          "date": "August 2018 - December 2019"
         },
-        "jobPosition": "Software Architect",
+        "jobPosition": "Electrical/Computer Engineering Tutor",
         "jobDescription": [
-          "As a lead software architect for FastAPP, a low-code enterprise platform I help product owners translate their business requirements into clean, robust and extensible technical solutions.",
-          "As a competence leader in the area of .NET, I help backend programmers hone their skills by supporting them in their everyday work.",
-          "As a leader of an internal knowledge-sharing programme, I organize monthly meetings where passion-driven people can share their knowledge with the rest of the company.",
-          "Furthermore, I do technical interviews and serve as a conference speaker on behalf of Fabrity."
+          "Developed advanced instructional frameworks for computer architecture, data structures, and algorithms, achieving a 17% improvement in student performance metrics.",
+          "Designed and implemented hands-on programming workshops covering embedded systems, digital signal processing, and computational methods.",
+          "Created innovative problem-solving methodologies for complex engineering concepts, focusing on practical applications in C++, Python, and hardware design."
+        ]
+      },
+      {
+        "hashtags": ["Web Development", "Data", "AI", "APIs"],
+        "icons": [
+          { "content": "PHP", "iconClass": "devicon-php-plain" },
+          { "content": "MySQL", "iconClass": "devicon-mysql-plain" },
+          { "content": "HTML5", "iconClass": "devicon-html5-plain" },
+          { "content": "JavaScript", "iconClass": "devicon-javascript-plain" },
+          { "content": "CSS3", "iconClass": "devicon-css3-plain" },
+          { "content": "APIs", "iconClass": "devicon-nodejs-plain" },
+          { "content": "AI", "iconClass": "devicon-python-plain" }
+        ],
+        "companyAndDateInfo": {
+          "url": "https://aitalentum.com",
+          "companyName": "AI Talentum",
+          "date": "June 2016 - August 2016"
+        },
+        "jobPosition": "Software Engineer Internship",
+        "jobDescription": [
+          "Engineered a scalable data collection system integrating Twitter's API with custom analytics pipelines, enabling real-time social media data processing for machine learning applications.",
+          "Developed robust ETL processes and data transformation workflows, implementing efficient storage solutions and data validation protocols."
         ]
       }
     ]
