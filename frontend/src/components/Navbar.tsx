@@ -150,10 +150,10 @@ const Navbar = () => {
       const offset = 100;
       const elementPosition = element.offsetTop;
 
-      console.log(`Scrolling to ${sectionId}:`, {
-        offsetTop: elementPosition,
-        scrollTo: elementPosition - offset,
-      });
+      //console.log(`Scrolling to ${sectionId}:`, {
+      //  offsetTop: elementPosition,
+      //  scrollTo: elementPosition - offset,
+      //});
       if (isSafari) {
         const distance = Math.abs(elementPosition - offset - window.scrollY);
         const duration = Math.min(1000, Math.max(300, distance * 0.5));
@@ -174,7 +174,7 @@ const Navbar = () => {
     const observer = new MutationObserver(() => {
       const element = document.getElementById(sectionId);
       if (element) {
-        console.log(`Target section ${sectionId} rendered.`);
+        //console.log(`Target section ${sectionId} rendered.`);
         observer.disconnect();
         
         let positions: number[] = [];
@@ -185,7 +185,7 @@ const Navbar = () => {
         const checkPosition = () => {
           const currentPosition = element.offsetTop;
           positions.push(currentPosition);
-          console.log(`Check ${checkCount + 1}: Position for ${sectionId}:`, currentPosition);
+          //console.log(`Check ${checkCount + 1}: Position for ${sectionId}:`, currentPosition);
           
           // Check if last N positions are the same
           const lastPositions = positions.slice(-requiredStableChecks);
@@ -193,13 +193,13 @@ const Navbar = () => {
                           lastPositions.every(pos => pos === lastPositions[0]);
           
           if (isStable) {
-            console.log(`Position stabilized for ${sectionId} at:`, currentPosition);
+            //console.log(`Position stabilized for ${sectionId} at:`, currentPosition);
             scrollToSection(sectionId);
           } else if (checkCount < maxChecks) {
             checkCount++;
             setTimeout(checkPosition, 50);
           } else {
-            console.warn(`Position didn't fully stabilize for ${sectionId}, using last position:`, currentPosition);
+            //console.warn(`Position didn't fully stabilize for ${sectionId}, using last position:`, currentPosition);
             scrollToSection(sectionId);
           }
         };
@@ -214,7 +214,7 @@ const Navbar = () => {
       subtree: true,
     });
   
-    console.warn(`Observer started for ${sectionId}`);
+    //console.warn(`Observer started for ${sectionId}`);
   };
 
   useEffect(() => {
@@ -433,9 +433,9 @@ const Navbar = () => {
                   <path
                     d="M1.75 1.75 4 4.25l2.25-2.5"
                     fill="none"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   ></path>
                 </svg>
               </button>
@@ -481,9 +481,9 @@ const Navbar = () => {
                     d="m17.25 6.75-10.5 10.5M6.75 6.75l10.5 10.5"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   ></path>
                 </svg>
               </button>
