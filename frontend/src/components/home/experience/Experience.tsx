@@ -78,13 +78,15 @@ const ExperienceSection = () => {
     <div className="md:border-l md:pl-6 md:border-zinc-700/40 mt-12">
       <div className="flex flex-col space-y-12 md:space-y-16">
         {workExperience.data.map((experience, index) => (
-          <article className="lg:grid md:grid-cols-4 lg:items-baseline">
+          <article 
+            key={index}
+            className="lg:grid md:grid-cols-4 lg:items-baseline"
+          >
             <div className="relative">
               <BriefcaseIconWork />
               <CompanyAndDateInfo info={experience.companyAndDateInfo} />
             </div>
             <div
-              key={index} // Good for react optimization
               className="md:col-span-3 group relative flex flex-col items-start"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}

@@ -3,8 +3,10 @@ import React from 'react';
 const AvatarImage: React.FC = (props) => {
   return (
     <img
+      {...props}
       alt="javier pardo fernandez"
-      fetchPriority="high"
+      // @ts-ignore -- fetchpriority is a valid HTML attribute but not yet in React types
+      fetchpriority="high"
       width="512"
       height="512"
       decoding="async"
@@ -29,7 +31,6 @@ const AvatarImage: React.FC = (props) => {
         /img/avatar/avatar-3840.jpeg 3840w"
       src="/img/avatar/avatar-3840.jpeg"
       style={{ color: "transparent" }}
-      {...props}  // Accept any additional props passed to the component
     />
   );
 };
