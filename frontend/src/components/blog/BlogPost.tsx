@@ -11,12 +11,8 @@ const BlogPost = () => {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const backendPort = process.env.REACT_APP_BACKEND_PORT;
-      const serverIP = process.env.REACT_APP_SERVER_IP;
       try {
-        const response = await axios.get<BlogPostType>(
-          `http://${serverIP}:${backendPort}/blog/${id}`
-        );
+        const response = await axios.get<BlogPostType>(`/blog/${id}`);
         setPost(response.data);
       } catch (err) {
         setError((err as Error).message);

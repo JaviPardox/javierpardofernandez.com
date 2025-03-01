@@ -12,13 +12,8 @@ const RecordsSection = () => {
 
   useEffect(() => {
     const fetchRecords = async () => {
-      const backendPort = process.env.REACT_APP_BACKEND_PORT;
-      const serverIP = process.env.REACT_APP_SERVER_IP;
-
       try {
-        const response = await axios.get<Records>(
-          `http://${serverIP}:${backendPort}/records`
-        );
+        const response = await axios.get<Records>(`/records`);
         setAcademicRecords(response.data.academics);
         setOrganizations(response.data.organizations);
         setLoading(false);

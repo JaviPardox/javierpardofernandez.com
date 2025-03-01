@@ -10,12 +10,8 @@ const Blog = () => {
 
   useEffect(() => {
     const fetchPreviews = async () => {
-      const backendPort = process.env.REACT_APP_BACKEND_PORT;
-      const serverIP = process.env.REACT_APP_SERVER_IP;
       try {
-        const response = await axios.get<BlogPreviewType[]>(
-          `http://${serverIP}:${backendPort}/blog/preview`
-        );
+        const response = await axios.get<BlogPreviewType[]>(`/blog/preview`);
         setPreviews(response.data);
       } catch (err) {
         setError((err as Error).message);
