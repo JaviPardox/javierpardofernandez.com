@@ -21,6 +21,19 @@ This project is set up for development with hot reloading, allowing you to see c
    - Frontend: http://localhost:3000 (React development server with hot reloading)
    - Backend API: http://localhost:8000 (FastAPI with auto-reload)
 
+### Accessing from Other Devices
+
+You can access the application from other devices on your local network:
+
+1. Find your computer's local IP address:
+   ```bash
+   ifconfig | grep "inet " | grep -v 127.0.0.1
+   ```
+   
+2. Access the application from other devices using:
+   - Frontend: http://YOUR_IP_ADDRESS:3000
+   - Backend API: http://YOUR_IP_ADDRESS:8000
+
 ### How Hot Reloading Works
 
 - **Frontend**: The React development server automatically reloads when you make changes to your frontend code.
