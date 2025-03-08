@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Academic, Organization, Records } from "../../../types";
-import axios from "axios";
+import api from "../../../api/axios";
 import TypingTitle from '../../common/TypingTitle';
 import { academicTitle, organizationTitle } from '../../../constants/titles';
 
@@ -13,7 +13,7 @@ const RecordsSection = () => {
   useEffect(() => {
     const fetchRecords = async () => {
       try {
-        const response = await axios.get<Records>(`/records`);
+        const response = await api.get<Records>(`/records`);
         setAcademicRecords(response.data.academics);
         setOrganizations(response.data.organizations);
         setLoading(false);

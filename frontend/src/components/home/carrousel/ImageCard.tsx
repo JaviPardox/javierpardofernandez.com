@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../../api/axios";
 import { useDispatch } from 'react-redux';
 import { startLoading, finishLoading, setError } from '../../../store/loadingSlice';
 
@@ -27,7 +27,7 @@ const ImageCard: React.FC<ImageCardProps> = ({ imageId }) => {
     dispatch(startLoading(resourceId));
     const fetchImageUrls = async () => {
       try {
-        const response = await axios.get(`/images/${imageId}/urls`);
+        const response = await api.get(`/images/${imageId}/urls`);
         
         const imageUrls = response.data.urls;
         const srcSet = resolutions

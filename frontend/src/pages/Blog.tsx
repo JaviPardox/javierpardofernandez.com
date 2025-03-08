@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../api/axios";
 import { BlogPreview as BlogPreviewType } from "../types/index";
 import BlogPreview from "../components/blog/BlogPreview";
 
@@ -11,7 +11,7 @@ const Blog = () => {
   useEffect(() => {
     const fetchPreviews = async () => {
       try {
-        const response = await axios.get<BlogPreviewType[]>(`/blog/preview`);
+        const response = await api.get<BlogPreviewType[]>(`/blog/preview`);
         setPreviews(response.data);
       } catch (err) {
         setError((err as Error).message);
