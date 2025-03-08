@@ -1,0 +1,45 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: fastapi-backend
+    restart: unless-stopped
+    environment:
+      # Cors allowed origins
+      - FRONTEND_PORT=3000
+      - PRIVATE_NETWORK_IP=${NETWORK_IP}
+      - ENVIRONMENT=development
+    volumes:
+      - ./backend:/app
+    ports:
+      # Allow access from not only the container
+      - "0.0.0.0:8000:8000"
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: react-frontend
+    ports:
+      - "0.0.0.0:3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules # Prevent from overwriting node_modules
+    environment:
+      # These env variables don't need REACT_APP_ prefix, they are used by the create react app infrastructure itself
+      - NODE_ENV=development
+      - REACT_APP_API_URL=http://${NETWORK_IP}:8000 # Available to the network
+      - WDS_SOCKET_PORT=0 # Use same port as the http server
+      - HOST=0.0.0.0 # Tells the development server to listen on all network interfaces
+    networks:
+      - app-network
+    depends_on:
+      - backend
+
+networks:
+  app-network:
+    driver: bridge
