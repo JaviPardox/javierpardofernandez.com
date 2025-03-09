@@ -1,0 +1,57 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: fastapi-backend-prod
+    restart: unless-stopped
+    environment:
+      - ENVIRONMENT=production
+      - PRODUCTION_DOMAIN=javierpardofernandez.com
+    volumes:
+      - ./backend/data:/app/data
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./ssl/certbot/conf:/etc/letsencrypt
+      - ./ssl/certbot/data:/var/www/certbot
+    command: certonly --standalone --email javierpf000@gmail.com --agree-tos --no-eff-email -d javierpardofernandez.com
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: react-frontend-prod
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl/certbot/conf:/etc/nginx/ssl
+      - ./ssl/certbot/data:/var/www/certbot
+    networks:
+      - app-network
+    depends_on:
+      - backend
+      - certbot
+
+networks:
+  app-network:
+    driver: bridge
