@@ -7,6 +7,7 @@ from routes.images import router as images_router
 from routes.blog import router as blog_router
 from routes.records import router as records_router
 from config import ALLOWED_ORIGINS, ALLOWED_METHODS, ALLOWED_HEADERS
+from datetime import datetime
 
 app = FastAPI()
 
@@ -29,4 +30,11 @@ app.add_middleware(
 @app.get("/")
 async def read_root():
     return {"message": "Welcome to my portfolio API"}
+
+@app.get("/health", tags=["Health"])
+async def health_check():
+    """
+    Health check endpoint for monitoring and container orchestration.
+    """
+    return {"status": "healthy", "timestamp": datetime.now().isoformat()}
 
