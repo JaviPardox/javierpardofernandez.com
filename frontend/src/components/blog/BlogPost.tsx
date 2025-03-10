@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../../api/axios";
 import { BlogPost as BlogPostType, BlogContentBlock } from "../../types/index";
 
 const BlogPost = () => {
@@ -11,12 +11,8 @@ const BlogPost = () => {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const backendPort = process.env.REACT_APP_BACKEND_PORT;
-      const serverIP = process.env.REACT_APP_SERVER_IP;
       try {
-        const response = await axios.get<BlogPostType>(
-          `http://${serverIP}:${backendPort}/blog/${id}`
-        );
+        const response = await api.get<BlogPostType>(`/blog/${id}`);
         setPost(response.data);
       } catch (err) {
         setError((err as Error).message);

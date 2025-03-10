@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../../api/axios";
 import { useDispatch } from 'react-redux';
 import { startLoading, finishLoading, setError } from '../../../store/loadingSlice';
 
@@ -22,16 +22,12 @@ const ImageCard: React.FC<ImageCardProps> = ({ imageId }) => {
     3840,
   ]; //dependency?
 
-  const backendPort = process.env.REACT_APP_BACKEND_PORT;
-  const serverIP = process.env.REACT_APP_SERVER_IP;
   useEffect(() => {
     setIsLoadingLocal(true)
     dispatch(startLoading(resourceId));
     const fetchImageUrls = async () => {
       try {
-        const response = await axios.get(
-          `http://${serverIP}:${backendPort}/images/${imageId}/urls`
-        );
+        const response = await api.get(`/images/${imageId}/urls`);
         
         const imageUrls = response.data.urls;
         const srcSet = resolutions
@@ -62,7 +58,7 @@ const ImageCard: React.FC<ImageCardProps> = ({ imageId }) => {
       dispatch(finishLoading(resourceId));
       setIsLoadingLocal(false);
     };
-  }, [imageId, backendPort, serverIP, dispatch, resourceId]);
+  }, [imageId, dispatch, resourceId]);
 
   if (isLoadingLocal) {
     return (

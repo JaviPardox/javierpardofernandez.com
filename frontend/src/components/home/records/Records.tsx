@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Academic, Organization, Records } from "../../../types";
-import axios from "axios";
+import api from "../../../api/axios";
 import TypingTitle from '../../common/TypingTitle';
 import { academicTitle, organizationTitle } from '../../../constants/titles';
 
@@ -12,13 +12,8 @@ const RecordsSection = () => {
 
   useEffect(() => {
     const fetchRecords = async () => {
-      const backendPort = process.env.REACT_APP_BACKEND_PORT;
-      const serverIP = process.env.REACT_APP_SERVER_IP;
-
       try {
-        const response = await axios.get<Records>(
-          `http://${serverIP}:${backendPort}/records`
-        );
+        const response = await api.get<Records>(`/records`);
         setAcademicRecords(response.data.academics);
         setOrganizations(response.data.organizations);
         setLoading(false);

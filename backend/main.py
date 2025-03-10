@@ -6,7 +6,8 @@ from routes.work_experience import router as work_experience_router
 from routes.images import router as images_router
 from routes.blog import router as blog_router
 from routes.records import router as records_router
-from config import FRONTEND_PORT, SERVER_IP
+from config import ALLOWED_ORIGINS, ALLOWED_METHODS, ALLOWED_HEADERS
+from datetime import datetime
 
 app = FastAPI()
 
@@ -16,23 +17,24 @@ app.include_router(blog_router)
 app.include_router(records_router)
 app.mount("/images", StaticFiles(directory="./data/img/cards"), name="images")
 
-
-allowed_origins = [
-    f"http://{SERVER_IP}:{FRONTEND_PORT}",
-    "http://localhost:3000"
-]
-
-# Configure CORS
+# Configure CORS based on environment
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=ALLOWED_METHODS,
+    allow_headers=ALLOWED_HEADERS,
+    max_age=3600,
 )
-
 
 @app.get("/")
 async def read_root():
     return {"message": "Welcome to my portfolio API"}
+
+@app.get("/health", tags=["Health"])
+async def health_check():
+    """
+    Health check endpoint for monitoring and container orchestration.
+    """
+    return {"status": "healthy", "timestamp": datetime.now().isoformat()}
 

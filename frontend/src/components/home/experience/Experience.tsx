@@ -6,7 +6,7 @@ import HashtagList from "./HashtagList";
 import BriefcaseIconWork from "./BriefcaseIconWork";
 import CompanyAndDateInfo from "./CompanyAndDateInfo";
 import JobTitleAndDescription from "./JobTitleAndDescription";
-import axios from "axios";
+import api from "../../../api/axios";
 import { WorkExperience } from "../../../types";
 
 const ExperienceSection = () => {
@@ -21,14 +21,10 @@ const ExperienceSection = () => {
 
   useEffect(() => {
     const fetchExperience = async () => {
-      const backendPort = process.env.REACT_APP_BACKEND_PORT;
-      const serverIP = process.env.REACT_APP_SERVER_IP;
       dispatch(startLoading(resourceId));
 
       try {
-        const response = await axios.get<WorkExperience>(
-          `http://${serverIP}:${backendPort}/job-info`
-        );
+        const response = await api.get<WorkExperience>(`/job-info`);
         setWorkExperience(response.data);
         setLoading(false);
       } catch (error) {
