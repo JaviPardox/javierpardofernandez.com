@@ -19,18 +19,6 @@ services:
       retries: 3
       start_period: 40s
 
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - ./ssl/certbot/conf:/etc/letsencrypt
-      - ./ssl/certbot/data:/var/www/certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot --email javierpf000@gmail.com --agree-tos --no-eff-email -d javierpardofernandez.com
-    networks:
-      - app-network
-    depends_on:
-      - frontend
-
   frontend:
     build:
       context: ./frontend
@@ -50,6 +38,18 @@ services:
       - app-network
     depends_on:
       - backend
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./ssl/certbot/conf:/etc/letsencrypt
+      - ./ssl/certbot/data:/var/www/certbot
+    command: certonly --webroot --webroot-path=/var/www/certbot --email javierpf000@gmail.com --agree-tos --no-eff-email -d javierpardofernandez.com
+    networks:
+      - app-network
+    depends_on:
+      - frontend
 
 networks:
   app-network:

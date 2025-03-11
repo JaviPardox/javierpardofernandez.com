@@ -15,20 +15,24 @@ docker-compose -f docker-compose.prod.yml down
 echo "Building containers..."
 docker-compose -f docker-compose.prod.yml build
 
-# Start the frontend first (it will handle port 80)
-echo "Starting frontend container..."
-docker-compose -f docker-compose.prod.yml up -d frontend
+# Start the frontend and backend first
+echo "Starting frontend and backend containers..."
+docker-compose -f docker-compose.prod.yml up -d frontend backend
 
 # Wait for frontend to start
 echo "Waiting for frontend to start..."
-sleep 10
+sleep 15
+
+# Check if Nginx is running
+echo "Checking if Nginx is running..."
+docker-compose -f docker-compose.prod.yml exec frontend nginx -t
 
 # Run certbot to get certificates
 echo "Running certbot to obtain certificates..."
-docker-compose -f docker-compose.prod.yml up -d certbot
+docker-compose -f docker-compose.prod.yml up certbot
 
-# Start the backend
-echo "Starting backend container..."
-docker-compose -f docker-compose.prod.yml up -d backend
+# Restart frontend to apply certificates
+echo "Restarting frontend to apply certificates..."
+docker-compose -f docker-compose.prod.yml restart frontend
 
 echo "Deployment complete!" 
