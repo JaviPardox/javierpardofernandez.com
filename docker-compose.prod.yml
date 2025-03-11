@@ -25,11 +25,11 @@ services:
     volumes:
       - ./ssl/certbot/conf:/etc/letsencrypt
       - ./ssl/certbot/data:/var/www/certbot
-    command: certonly --standalone --email javierpf000@gmail.com --agree-tos --no-eff-email -d javierpardofernandez.com
-    ports:
-      - "80:80"
+    command: certonly --webroot --webroot-path=/var/www/certbot --email javierpf000@gmail.com --agree-tos --no-eff-email -d javierpardofernandez.com
     networks:
       - app-network
+    depends_on:
+      - frontend
 
   frontend:
     build:
@@ -50,7 +50,6 @@ services:
       - app-network
     depends_on:
       - backend
-      - certbot
 
 networks:
   app-network:
