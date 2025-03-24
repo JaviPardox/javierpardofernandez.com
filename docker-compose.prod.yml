@@ -12,24 +12,6 @@ services:
       - ./backend/data:/app/data
     networks:
       - app-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - ./ssl/certbot/conf:/etc/letsencrypt
-      - ./ssl/certbot/data:/var/www/certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot --email javierpf000@gmail.com --agree-tos --no-eff-email -d javierpardofernandez.com
-    networks:
-      - app-network
-    depends_on:
-      - frontend
 
   frontend:
     build:

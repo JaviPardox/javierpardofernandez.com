@@ -54,7 +54,7 @@ const Footer = () => {
                     </a>
                   </div>
                   <div className="flex flex-col items-center sm:items-start lg:items-center lg:flex-row lg:gap-x-2 text-sm text-zinc-500">
-                    <p>© 2025 Javier Pardo Fernandez</p>
+                    <p>© 2025 Javier Pardo Fernández</p>
                     <p>All rights reserved.</p>
                   </div>
                 </div>
