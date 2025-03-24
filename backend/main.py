@@ -17,7 +17,6 @@ app.include_router(blog_router)
 app.include_router(records_router)
 app.mount("/images", StaticFiles(directory="./data/img/cards"), name="images")
 
-# Configure CORS based on environment
 app.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_ORIGINS,
@@ -29,12 +28,4 @@ app.add_middleware(
 
 @app.get("/")
 async def read_root():
-    return {"message": "Welcome to my portfolio API"}
-
-@app.get("/health", tags=["Health"])
-async def health_check():
-    """
-    Health check endpoint for monitoring and container orchestration.
-    """
-    return {"status": "healthy", "timestamp": datetime.now().isoformat()}
-
+    return {"message": "Welcome to my API foo"}
