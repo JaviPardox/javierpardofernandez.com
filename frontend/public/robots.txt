@@ -1,3 +1,26 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /static/           # Block access to all static files for most crawlers
+Disallow: /node_modules/     # Block access to node_modules if exposed
+Disallow: /*.map$            # Block access to all source map files
+Crawl-delay: 1               # Add a 1-second delay between requests
+
+# Allow Google Search to crawl important content
+User-agent: Googlebot
+Allow: /                     # Allow access to the main site content
+Allow: /static/js/           # Allow Google to access JavaScript (needed for rendering)
+Allow: /static/css/          # Allow Google to access CSS (needed for rendering)
+Disallow: /static/media/     # Block media files for regular Googlebot
+Disallow: /*.map$            # Block source maps
+
+# Allow Google Images to access all images (for favicon and other images)
+User-agent: Googlebot-Image
+Allow: /                     # Allow access to the main site
+Allow: /static/media/        # Allow access to media files
+Allow: /icons/               # Explicitly allow access to the icons directory for favicons
+
+# Allow Googlebot Smartphone (mobile crawler)
+User-agent: Googlebot-Mobile
+Allow: /                     # Allow full access for mobile indexing
+Allow: /static/js/           # Allow JavaScript for mobile rendering
+Allow: /static/css/          # Allow CSS for mobile rendering
