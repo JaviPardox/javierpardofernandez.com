@@ -18,7 +18,7 @@ const SocialIconRow = () => {
               ]}
             />
             <SocialIcon
-              href="https://www.linkedin.com/in/javier-pardo-fernandez-87b565124/"
+              href="https://www.linkedin.com/in/javier-pardo-fernandez/"
               ariaLabel="Follow on LinkedIn"
               iconPaths={[
                 {
