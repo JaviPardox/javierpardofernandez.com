@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Needs the app to be running for this to work
+# Use webroot method instead of standalone since nginx is running
 docker run --rm \
   -v $(pwd)/ssl/certbot/conf:/etc/letsencrypt \
   -v $(pwd)/ssl/certbot/data:/var/www/certbot \
-  certbot/certbot renew
+  certbot/certbot renew --webroot --webroot-path=/var/www/certbot
 
 # Check if renewal was successful by looking at the exit code
 if [ $? -eq 0 ]; then
