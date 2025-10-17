@@ -7,7 +7,7 @@ const Intro = () => {
       <div className="pb-0">
         <div className="h-16 w-16 rounded-full backdrop-blur bg-zinc-800/90 ring-2 ring-white/50">
           <a href="/">
-            <AvatarImage />
+            <AvatarImage imageId="avatar1" />
           </a>
         </div>
       </div>
