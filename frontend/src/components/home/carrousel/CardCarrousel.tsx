@@ -27,7 +27,7 @@ const CardCarrousel = () => {
       <div className="-my-4 flex overflow-x-auto scrollbar-hide gap-5 py-4 sm:overflow-x-visible sm:justify-center sm:gap-8 snap-x snap-mandatory">
         <div className="pl-6 sm:pl-0 flex gap-5 sm:gap-8 lg:ml-[25px] ml-0">
           <div className="card-item snap-center">
-              <Card rotation={2} imageId="avatar" />
+              <Card rotation={2} imageId="card6" />
             </div>
             <div className="card-item snap-center">
               <Card rotation={-2} imageId="card1" />
@@ -36,7 +36,7 @@ const CardCarrousel = () => {
               <Card rotation={2} imageId="card2" />
             </div>
             <div className="card-item snap-center">
-              <Card rotation={2} imageId="card3" />
+              <Card rotation={2} imageId="card5" />
             </div>
             <div className="card-item snap-center">
               <Card rotation={-2} imageId="card4" />
