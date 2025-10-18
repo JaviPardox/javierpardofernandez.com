@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useTypingAnimation } from '../../hooks/useTypingAnimation';
 
 interface TypingTitleProps {
@@ -6,7 +7,9 @@ interface TypingTitleProps {
 }
 
 const TypingTitle = ({ text, variant = 'default' }: TypingTitleProps) => {
-  const { displayedText, elementRef } = useTypingAnimation(text);
+  // Memoize the text to prevent unnecessary re-renders
+  const memoizedText = useMemo(() => text, [JSON.stringify(text)]);
+  const { displayedText, elementRef } = useTypingAnimation(memoizedText);
 
   const baseClasses = "relative text-4xl mb-10 mt-7 text-zinc-100 tracking-tight leading-[3.5rem] code-themed break-words overflow-x-auto whitespace-pre-wrap";
   
