@@ -6,7 +6,8 @@ export interface Project {
 
 export interface IconItem {
   content: string;
-  iconClass: string;
+  iconClass?: string;
+  customIcon?: string;
 }
 
 export interface CompanyAndDateInfo {
