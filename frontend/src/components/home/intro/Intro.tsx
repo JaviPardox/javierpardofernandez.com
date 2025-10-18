@@ -16,10 +16,15 @@ const Intro = () => {
           Software Engineer, MSc Project Management.
         </h1>
         <p className="mt-6 text-base text-zinc-400 leading-relaxed leading-[1.78rem]">
-          I'm Javier, a Software Engineer based in Oslo, Norway, with a knack for building innovative and scalable software systems. 
-          My work encompasses architecture engineering, high-performance computing, and the integration of technologies. 
-          Beyond the technical realm, I like to learn about investing and financial markets, I'm a devoted FC Barcelona fan, and I enjoy both the serenity of nature and the thrill of cars and motorcycles. 
-          I have a deep appreciation for history, cultures, and music. I like to stay curious and always learn new things!
+          Hey, I'm Javier — a Software Engineer based in Oslo, Norway, who loves figuring out how everything works. For a living, that curiosity takes me from the software we write to the hardware we use every day. <br />
+          <br />
+          I like building just about anything, but I have a special love for creating apps, engineering scalable systems, tinkering with high-performance computing, applying functional programming like it's a higher art form, and designing algorithms. <br />
+          <br />
+          I enjoy connecting ideas across software, hardware, and IoT — it's where curiosity meets creation. <br />
+          <br />
+          When I'm not deep in code, I'm usually outdoors or doing sports. I love playing football (though I keep wondering if I remember myself being faster), gathering with friends — especially if there is a paella involved — or suffering through another Barcelona match. <br />
+          <br />
+          I'm fascinated by people, cars, motorcycles, engineering feats, markets, history, cultures, food (one day I'll visit all those saved spots on Google Maps, I promise), and music — and I like to think curiosity is my default state.
         </p>
         <SocialIconRow />
       </div>
