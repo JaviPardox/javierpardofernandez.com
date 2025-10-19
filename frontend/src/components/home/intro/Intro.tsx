@@ -22,7 +22,7 @@ const Intro = () => {
           <br />
           I enjoy connecting ideas across software, hardware, and IoT — it's where curiosity meets creation. <br />
           <br />
-          When I'm not deep in code, I'm usually outdoors or doing sports. I love playing football (though I keep wondering if I remember myself being faster), gathering with friends — especially if there is a paella involved — or suffering through another Barcelona match. <br />
+          When I'm not deep in code, I'm usually outdoors or doing sports. I love playing football (though I keep wondering if I remember myself being faster), gathering with friends — especially if there is a paella involved — or suffering through another FC Barcelona match. <br />
           <br />
           I'm fascinated by people, cars, motorcycles, engineering feats, markets, history, cultures, food (one day I'll visit all those saved spots on Google Maps, I promise), and music — and I like to think curiosity is my default state.
         </p>
