@@ -6,6 +6,9 @@ export const useTypingAnimation = (text: Record<string,string>) => {
     const currentIndex = useRef<number>(0);
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const [elementRef, setElementRef] = useState<HTMLHeadingElement | null>(null);
+    const textRef = useRef<Record<string, string>>(text);
+    const hasStarted = useRef<boolean>(false);
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     function splitKeysToChars(inputDict: Record<string, string>): Record<string, string>[] {
         const arrayOfDictionaries: Record<string, string>[] = []
@@ -21,21 +24,38 @@ export const useTypingAnimation = (text: Record<string,string>) => {
       }
         
       useEffect(() => {
-        let typingTimeout: NodeJS.Timeout;
+        // Clear any existing timeout
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+          timeoutRef.current = null;
+        }
+        
+        // Only reset if text actually changed
+        const textChanged = JSON.stringify(text) !== JSON.stringify(textRef.current);
+        if (textChanged) {
+          textRef.current = text;
+          setDisplayedText([]);
+          isTyping.current = true;
+          currentIndex.current = 0;
+          hasStarted.current = false;
+        }
+        
         const splitAcademicTitle = splitKeysToChars(text);
     
         const type = () => {
           if (isTyping.current) {
-            if (currentIndex.current < splitAcademicTitle.length - 1) {
-              setDisplayedText((prev) => {
-                // Leaving this for debugging due to the state skipping the first item of the array
-                // Could be due to how React renders the page
-                const updated = [
-                  ...(prev || []),
-                  splitAcademicTitle[currentIndex.current],
-                ];
-                return updated;
-              });
+            if (currentIndex.current < splitAcademicTitle.length) {
+              const currentChar = splitAcademicTitle[currentIndex.current];
+              if (currentChar) {
+                setDisplayedText((prev) => {
+                  // Create a new array with the current character
+                  const updated = [
+                    ...(prev || []),
+                    currentChar,
+                  ];
+                  return updated;
+                });
+              }
               currentIndex.current += 1;
             } else {
               isTyping.current = false;
@@ -51,14 +71,20 @@ export const useTypingAnimation = (text: Record<string,string>) => {
             }
           }
           const nextDelay = Math.random() * (300 - 30) + 30;
-          typingTimeout = setTimeout(type, nextDelay);
+          timeoutRef.current = setTimeout(type, nextDelay);
         };
     
-        if (isVisible) {
+        if (isVisible && !hasStarted.current) {
+          hasStarted.current = true;
           type();
         }
     
-        return () => clearTimeout(typingTimeout);
+        return () => {
+          if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+            timeoutRef.current = null;
+          }
+        };
       }, [isVisible, text]);
     
       useEffect(() => {
@@ -71,7 +97,7 @@ export const useTypingAnimation = (text: Record<string,string>) => {
           {
             root: null, // viewport
             rootMargin: '0px',
-            threshold: 0.99, // trigger when 99% of element is visible
+            threshold: 0.1, // trigger when 10% of element is visible
           }
         );
     

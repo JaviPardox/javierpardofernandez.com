@@ -21,7 +21,7 @@ const Home = () => {
         <WhatIOfferList />
       </div>
       <div className="mt-24 md:mt-28" id="experience">
-        <TypingTitle text={experienceTitle} variant="experience"/>
+        <TypingTitle key="experience-title" text={experienceTitle} variant="experience"/>
         <ExperienceSection />
       </div>
       <div className="mt-24 md:mt-28" id="records">

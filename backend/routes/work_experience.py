@@ -1,5 +1,5 @@
 from pydantic import BaseModel, HttpUrl, ValidationError, field_validator
-from typing import List
+from typing import List, Optional
 from fastapi import APIRouter, HTTPException, status
 
 
@@ -7,7 +7,8 @@ router = APIRouter()
 
 class IconItem(BaseModel):
     content: str
-    iconClass: str
+    iconClass: Optional[str] = None
+    customIcon: Optional[str] = None
 
 class CompanyAndDateInfo(BaseModel):
     url: HttpUrl
@@ -39,8 +40,10 @@ class WorkExperienceItem(BaseModel):
         for icon in v:
             if not isinstance(icon, IconItem):
                 raise ValueError('Each icon must be an IconItem instance.')
-            if not icon.content or not icon.iconClass:
-                raise ValueError('Icon content and iconClass cannot be empty.')
+            if not icon.content:
+                raise ValueError('Icon content cannot be empty.')
+            if not icon.iconClass and not icon.customIcon:
+                raise ValueError('Icon must have either iconClass or customIcon.')
         return v
 
     @field_validator('companyAndDateInfo')

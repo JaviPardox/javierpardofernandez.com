@@ -3,7 +3,7 @@ import DevIcon from "./DevIcon";
 
 interface DevIconGroupProps {
   isHovered: boolean;
-  icons: { content: string; iconClass: string }[];
+  icons: { content: string; iconClass?: string; customIcon?: string }[];
 }
 
 const DevIconGroup: React.FC<DevIconGroupProps> = ({ isHovered, icons }) => {
@@ -15,6 +15,7 @@ const DevIconGroup: React.FC<DevIconGroupProps> = ({ isHovered, icons }) => {
           content={icon.content}
           iconClass={icon.iconClass}
           isHovered={isHovered}
+          customIcon={icon.customIcon}
         />
       ))}
     </ul>

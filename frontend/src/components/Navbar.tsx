@@ -19,6 +19,8 @@ const Navbar = () => {
   const [isLgViewport, setIsLgViewport] = useState(window.innerWidth >= 1024);
 
 
+  const showBlog = false;
+
   const closeNavbar = useCallback(() => {
     setIsAnimating(false);
     setTimeout(() => setIsOpen(false), 300); // Ensure it closes after the animation completes
@@ -60,21 +62,32 @@ const Navbar = () => {
   const html = document.documentElement;
   useEffect(() => {
     if (isOpen) {
+      // Prevent scrolling
       html.classList.add('no-scroll');
       document.body.classList.add('no-scroll');
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      
       setTimeout(() => setIsAnimating(true), 0); // Delay to trigger open transition
     } else {
       setIsAnimating(false); // Reset when closing
+      
+      // Restore scrolling
       html.classList.remove('no-scroll');
       document.body.classList.remove('no-scroll');
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     }
 
     return () => {
+      // Cleanup on unmount
       html.classList.remove('no-scroll');
       document.body.classList.remove('no-scroll');
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     };
 
-  }, [isOpen, html.classList]);
+  }, [isOpen]);
 
   useEffect(() => {
     // Function to close menu on large screen
@@ -294,6 +307,7 @@ const Navbar = () => {
   }, []);
 
   return (
+    <>
     <nav
       style={{
         position: 'fixed',
@@ -304,10 +318,15 @@ const Navbar = () => {
         alignItems: 'center',
         justifyContent: 'center',
         paddingRight: isMdViewport ? '0' : '10%',
-        paddingTop: scrolled ? '1.25rem' : '2rem',
-        paddingBottom: scrolled ? '1.25rem' : '2rem',
+        paddingTop: scrolled ? '1rem' : '1.5rem',
+        paddingBottom: scrolled ? '1rem' : '1.5rem',
         transition: 'padding 0.3s ease-in-out',
-        overflow: 'hidden',
+        overflow: 'visible',
+        background: 'rgba(24, 24, 27, 0.1)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        //borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+        boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
       }}
     >
       <div style={{
@@ -327,22 +346,17 @@ const Navbar = () => {
           onClick={(e) => handleLinkClick(e, "home")}
         />
       </div>
-    <div
-      style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        background: 'linear-gradient(to bottom, rgba(24, 24, 27, 1), rgba(24, 24, 27, 0.6), rgba(24, 24, 27, 0))',
-        opacity: scrolled ? 1 : 0,
-        transition: 'opacity 0.3s ease-in-out',
-        pointerEvents: 'none', // Ensure it doesn't interfere with clicks
-        zIndex: -1,
-      }}
-    />
       <div className="w-full flex md:justify-center justify-end">
-        <div className="inline-block bg-zinc-800/90 rounded-full pl-5 pr-4 py-0.5 ring-1 ring-white/10 text-sm font-light text-zinc-200 hover:ring-white/20">
+        <div 
+          className="inline-block rounded-full pl-5 pr-4 py-0.5 text-sm font-light text-zinc-200 transition-all duration-300"
+          style={{
+            background: 'rgba(24, 24, 27, 0.6)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255, 255, 255, 0.15)',
+            boxShadow: '0 4px 16px 0 rgba(0, 0, 0, 0.2)',
+          }}
+        >
           <div className="flex items-center justify-between">
             <div className="hidden md:flex space-x-4">
               <Link
@@ -401,20 +415,24 @@ const Navbar = () => {
                   }`}
                 ></span>
               </Link>
-              <Link
-                to="/blog"
-                className={`relative block transition hover:text-teal-400 px-1.5 py-2 nav-link ${
-                  activeLink === "blog" ? "text-teal-400" : ""
-                }`}
-                onClick={(e) => handleLinkClick(e, "blog")}
-              >
-                Blog
-                <span
-                  className={`absolute inset-x-0 -bottom-[0.2rem] h-px bg-gradient-to-r from-teal-400/0 via-teal-400/40 to-teal-400/0 transition-opacity duration-300 ease-in-out ${
-                    activeLink === "blog" ? "opacity-100" : "opacity-0"
-                  }`}
-                ></span>
-              </Link>
+              {showBlog && (
+                <>
+                  <Link
+                    to="/blog"
+                    className={`relative block transition hover:text-teal-400 px-1.5 py-2 nav-link ${
+                      activeLink === "blog" ? "text-teal-400" : ""
+                    }`}
+                    onClick={(e) => handleLinkClick(e, "blog")}
+                  >
+                    Blog
+                    <span
+                      className={`absolute inset-x-0 -bottom-[0.2rem] h-px bg-gradient-to-r from-teal-400/0 via-teal-400/40 to-teal-400/0 transition-opacity duration-300 ease-in-out ${
+                        activeLink === "blog" ? "opacity-100" : "opacity-0"
+                      }`}
+                    ></span>
+                  </Link>
+                </>
+              )}
             </div>
             <div className="md:hidden py-2">
               <button
@@ -443,27 +461,27 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {isOpen && (
-        <div
-          className={`fixed inset-0 z-40 transition-all duration-300 px-5p ${
-            isAnimating ? "opacity-100 scale-100" : "opacity-0 scale-100"
-          }`}
-          style={{
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            position: 'fixed',
-            backgroundColor: 'rgba(0,0,0,0.5)',
-            WebkitBackdropFilter: 'blur(4px)',
-            backdropFilter: 'blur(3px)',
-          }}
-        >
+    </nav>
+    {isOpen && (
           <div
             ref={menuRef}
-            className={`mx-auto px-4 py-8 rounded-3xl bg-zinc-900 ring-1 ring-zinc-800 mt-8 mx-3 transition-all duration-300 ${
+            className={`mx-auto px-4 py-8 rounded-3xl mt-8 mx-3 transition-all duration-300 ${
               isAnimating ? "opacity-100 scale-100" : "opacity-0 scale-50"
             }`}
+            style={{
+              position: 'fixed',
+              top: '5rem',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: 52,
+              background: 'rgba(24, 24, 27, 1)',
+              backdropFilter: 'blur(4px)',
+              WebkitBackdropFilter: 'blur(4px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              boxShadow: '0 4px 16px 0 rgba(0, 0, 0, 0.3)',
+              width: 'calc(100vw - 2rem)',
+              maxWidth: '400px',
+            }}
           >
             <div className="flex flex-row-reverse items-center justify-between px-4">
               <button
@@ -535,21 +553,42 @@ const Navbar = () => {
               >
                 Records
               </Link>
-              <span className="block h-px mr-4 bg-zinc-100/5"></span>
-              <Link
-                to="/blog"
-                className="text-sm hover:text-teal-400"
-                onClick={(e) => {
-                  handleLinkClick(e, "blog");
-                  closeNavbar()}}
-              >
-                Blog
-              </Link>
+              {showBlog && (
+                <>
+                  <span className="block h-px mr-4 bg-zinc-100/5"></span>
+                  <Link
+                    to="/blog"
+                    className="text-sm hover:text-teal-400"
+                    onClick={(e) => {
+                      handleLinkClick(e, "blog");
+                      closeNavbar()}}
+                  >
+                    Blog
+                  </Link>
+                </>
+              )}
             </div>
           </div>
-        </div>
-      )}
-    </nav>
+    )}
+    {isOpen && (
+      <div
+        className={`fixed inset-0 transition-all duration-300 ${
+          isAnimating ? "opacity-100" : "opacity-0"
+        }`}
+        style={{
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          position: 'fixed',
+          backgroundColor: 'rgba(0,0,0,0.6)',
+          WebkitBackdropFilter: 'blur(16px)',
+          backdropFilter: 'blur(16px)',
+          zIndex: 51,
+        }}
+      />
+    )}
+    </>
   );
 };
 
