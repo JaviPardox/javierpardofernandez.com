@@ -1,6 +1,42 @@
 {
     "data": [
       {
+        "hashtags": ["Computer Vision", "Edge AI", "Backend", "DevOps", "IoT", "Networks", "Video Streaming", "Authentication"],
+        "icons": [
+          { "content": "Python", "iconClass": "devicon-python-plain" },
+          { "content": "TypeScript", "iconClass": "devicon-typescript-plain" },
+          { "content": "Material UI", "iconClass": "devicon-materialui-plain" },
+          { "content": "FastAPI", "iconClass": "devicon-fastapi-plain" },
+          { "content": "React", "iconClass": "devicon-react-original" },
+          { "content": "Docker", "iconClass": "devicon-docker-plain" },
+          { "content": "Kubernetes", "iconClass": "devicon-kubernetes-plain" },
+          { "content": "Azure", "iconClass": "devicon-azure-plain" },
+          { "content": "NGINX", "iconClass": "devicon-nginx-original" },
+          { "content": "Linux", "iconClass": "devicon-linux-plain" },
+          { "content": "Bash", "iconClass": "devicon-bash-plain" },
+          { "content": "GitHub Actions", "iconClass": "devicon-githubactions-plain" },
+          { "content": "Go2RTC", "customIcon": "/icons/go2rtc.webp" },
+          { "content": "Caddy", "customIcon": "/icons/caddy.svg" },
+          { "content": "Keycloak", "customIcon": "/icons/keycloak.svg" },
+          { "content": "Redis", "iconClass": "devicon-redis-plain" }
+        ],
+        "companyAndDateInfo": {
+          "url": "https://www.roadguard.no/",
+          "companyName": "Roadguard",
+          "date": "March 2025 - Present"
+        },
+        "jobPosition": "Software Engineer",
+        "jobDescription": [
+          "Lead UI Developer for Roadguard's roadside tire safety system, architecting and developing the operator dashboard and data visualization platform that processes real-time camera and sensor streams from the roadside installations to detect worn or unsafe tires.",
+          "Designed and implemented comprehensive authentication and authorization systems using Keycloak, and BFF (Backend for Frontend) patterns, securing access to 10TB+ of sensitive tire detection data and operational controls.",
+          "Built video streaming infrastructure using Go2RTC and Caddy server for real-time camera feeds, enabling operators to monitor roadside installations and verify tire detection accuracy.",
+          "Developed ANPR (Automatic Number Plate Recognition) integration systems for vehicle identification and tracking, processing 1M+ license plate records daily to correlate with tire detection events and vehicle profiles.",
+          "Architected and maintained image processing pipelines for vehicle separation, tread depth analysis, and data curation, implementing containerized microservices with Docker and Kubernetes handling 500K+ images per day with 99.9% reliability.",
+          "Established CI/CD pipelines and operational monitoring using GitHub Actions, Azure Container Registry, and custom dashboards, ensuring 99.9% uptime for critical roadside safety infrastructure serving 10K+ daily API requests.",
+          "Collaborated with cross-functional teams to integrate machine vision outputs with backend decisioning systems, supporting Roadguard's nationwide rollout with Statens Vegvesen to reduce accidents by 15% and microplastic pollution by 30%."
+        ]
+      },
+      {
         "hashtags": ["Cloud", "Backend", "Frontend", "Testing", "DevOps", "Architecture"],
         "icons": [
           { "content": "Python", "iconClass": "devicon-python-plain" },
@@ -20,12 +56,13 @@
           { "content": "Testing", "iconClass": "devicon-pytest-plain" },
           { "content": "CD/CI", "iconClass": "devicon-githubactions-plain" },
           { "content": "Data Processing", "iconClass": "devicon-pandas-plain" },
+          { "content": "DynamoDB", "iconClass": "devicon-amazonwebservices-plain-wordmark" },
           { "content": "Documentation", "iconClass": "devicon-readthedocs-original" }
         ],
         "companyAndDateInfo": {
           "url": "https://bio-me.com",
           "companyName": "Bio-Me",
-          "date": "October 2021 - Present"
+          "date": "October 2021 - March 2025"
         },
         "jobPosition": "Software Engineer",
         "jobDescription": [
@@ -69,6 +106,7 @@
           { "content": "C++", "iconClass": "devicon-cplusplus-plain" },
           { "content": "C", "iconClass": "devicon-c-plain" },
           { "content": "Embedded C", "iconClass": "devicon-embeddedc-plain" },
+          { "content": "Flask", "iconClass": "devicon-flask-original" },
           { "content": "Microcontrollers", "iconClass": "devicon-raspberrypi-plain" },
           { "content": "LaTeX", "iconClass": "devicon-latex-original" },
           { "content": "Algorithms", "iconClass": "devicon-stackoverflow-plain" },
