@@ -5,6 +5,7 @@
         "icons": [
           { "content": "Python", "iconClass": "devicon-python-plain" },
           { "content": "TypeScript", "iconClass": "devicon-typescript-plain" },
+          { "content": "ViteJS", "iconClass": "devicon-vitejs-plain" },
           { "content": "Material UI", "iconClass": "devicon-materialui-plain" },
           { "content": "FastAPI", "iconClass": "devicon-fastapi-plain" },
           { "content": "React", "iconClass": "devicon-react-original" },
@@ -68,7 +69,7 @@
         "jobDescription": [
           "Architected and developed Bio-Me's microbiome profiling platform, implementing distributed bioinformatics pipelines that improved processing efficiency by 200% and reduced storage costs by 31%.",
           "Designed and optimized computational workflows for species-specific genomic region identification and qPCR assay development, enabling precise microbiome quantification.",
-          "Engineered scalable laboratory information management systems (LIMS), integrating complex analytical workflows with clinical and commercial requirements.",
+          "Engineered a scalable laboratory information management system (LIMS), integrating complex analytical workflows with clinical and commercial requirements.",
           "Led the development of automated testing frameworks and validation protocols, increasing system reliability by 18%.",
           "Mentored and supervised internship programs, guiding a team of 4 students in implementing core system features.",
           "Established comprehensive documentation standards and engineering best practices, improving team efficiency by 12%."
