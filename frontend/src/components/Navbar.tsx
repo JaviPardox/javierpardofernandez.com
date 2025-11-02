@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { smoothScrollTo } from "../utils/smoothScrollTo"
+import { smoothScrollTo } from "../utils/smoothScrollTo";
+import { playPattern, stopMusic } from "../utils/music";
+import { EIGHT_BIT_PATTERN, EIGHT_BIT_BPM } from "../components/music";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,9 +19,19 @@ const Navbar = () => {
   );
   const [isMdViewport, setIsMdViewport] = useState(window.innerWidth >= 768);
   const [isLgViewport, setIsLgViewport] = useState(window.innerWidth >= 1024);
-
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
   const showBlog = false;
+
+  const handleMusicToggle = async () => {
+    if (isMusicPlaying) {
+      stopMusic();
+      setIsMusicPlaying(false);
+    } else {
+        await playPattern(EIGHT_BIT_PATTERN, EIGHT_BIT_BPM);
+        setIsMusicPlaying(true);
+    }
+  };
 
   const closeNavbar = useCallback(() => {
     setIsAnimating(false);
@@ -434,7 +446,39 @@ const Navbar = () => {
                 </>
               )}
             </div>
-            <div className="md:hidden py-2">
+            <div className="md:hidden py-2 flex items-center gap-3">
+              {/* Music Toggle Button - Mobile */}
+              <button
+                onClick={handleMusicToggle}
+                className={`p-1.5 rounded-full transition-all duration-200 ${
+                  isMusicPlaying 
+                    ? 'text-teal-400 hover:text-teal-300' 
+                    : 'text-zinc-400 hover:text-zinc-200'
+                }`}
+                style={{
+                  background: 'rgba(39, 39, 42, 0.6)',
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.15)',
+                }}
+                title={isMusicPlaying ? 'Stop 8-bit music' : 'Play 8-bit music'}
+              >
+                {isMusicPlaying ? (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M11 5L6 9H2v6h4l5 4V5z" />
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                    <path d="M18.54 5.46a9 9 0 0 1 0 13.07" />
+                  </svg>
+                ) : (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M11 5L6 9H2v6h4l5 4V5z" />
+                    <path d="M16 9l6 6" />
+                    <path d="M22 9l-6 6" />
+                  </svg>
+                )}
+              </button>
+              
               <button
                 onClick={() => {
                   setIsOpen(!isOpen);
@@ -460,6 +504,46 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+      </div>
+      
+      {/* Music Toggle Button - Desktop */}
+      <div className="hidden md:block" style={{
+        position: 'absolute',
+        right: isLgViewport ? '23.5%' : '10%',
+      }}>
+        <button
+          onClick={handleMusicToggle}
+          className={`p-2 rounded-full transition-all duration-200 ${
+            isMusicPlaying 
+              ? 'text-teal-400 hover:text-teal-300' 
+              : 'text-zinc-400 hover:text-zinc-200'
+          }`}
+          style={{
+            background: 'rgba(39, 39, 42, 0.6)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.15)',
+            transition: 'all 0.2s ease',
+          }}
+          title={isMusicPlaying ? 'Stop 8-bit music' : 'Play 8-bit music'}
+        >
+          {isMusicPlaying ? (
+            // Minimal speaker with sound waves (playing)
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M11 5L6 9H2v6h4l5 4V5z" />
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+              <path d="M18.54 5.46a9 9 0 0 1 0 13.07" />
+            </svg>
+          ) : (
+            // Minimal muted speaker with X
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M11 5L6 9H2v6h4l5 4V5z" />
+              <path d="M16 9l6 6" />
+              <path d="M22 9l-6 6" />
+            </svg>
+          )}
+        </button>
       </div>
     </nav>
     {isOpen && (
