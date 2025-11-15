@@ -8,6 +8,7 @@ import CompanyAndDateInfo from "./CompanyAndDateInfo";
 import JobTitleAndDescription from "./JobTitleAndDescription";
 import api from "../../../api/axios";
 import { WorkExperience } from "../../../types";
+import FadeOnScroll from "../../common/FadeOnScroll";
 
 const ExperienceSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -79,8 +80,12 @@ const ExperienceSection = () => {
             className="lg:grid md:grid-cols-4 lg:items-baseline"
           >
             <div className="relative">
-              <BriefcaseIconWork />
-              <CompanyAndDateInfo info={experience.companyAndDateInfo} />
+              <FadeOnScroll>
+                <BriefcaseIconWork />
+              </FadeOnScroll>
+              <FadeOnScroll>
+                <CompanyAndDateInfo info={experience.companyAndDateInfo} />
+              </FadeOnScroll>
             </div>
             <div
               className="md:col-span-3 group relative flex flex-col items-start"

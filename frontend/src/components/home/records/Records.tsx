@@ -3,6 +3,7 @@ import { Academic, Organization, Records } from "../../../types";
 import api from "../../../api/axios";
 import TypingTitle from '../../common/TypingTitle';
 import { academicTitle, organizationTitle } from '../../../constants/titles';
+import FadeOnScroll from "../../common/FadeOnScroll";
 
 const RecordsSection = () => {
   const [academicRecords, setAcademicRecords] = useState<Academic[]>([]);
@@ -59,7 +60,9 @@ const RecordsSection = () => {
   return (
     <section className="flex flex-col lg:flex-row gap-8">
       <div className="lg:w-1/2">
-        <TypingTitle text={academicTitle} />
+        <FadeOnScroll>
+          <TypingTitle text={academicTitle} />
+        </FadeOnScroll>
         <div className="perspective-500 transform transition-all duration-300 lg:hover:scale-[1.02] active:scale-[0.98] lg:hover:shadow-2xl lg:hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 lg:hover:bg-zinc-800/90 active:bg-zinc-800/70 shadow-xl active:shadow-none">
           <ul className="space-y-4">
             {academicRecords.map((record, index) => (
@@ -102,7 +105,9 @@ const RecordsSection = () => {
         </div>
       </div>
       <div className="lg:w-1/2">
-        <TypingTitle text={organizationTitle} />
+        <FadeOnScroll>
+          <TypingTitle text={organizationTitle} />
+        </FadeOnScroll>
         <div className="perspective-500 transform transition-all duration-300 lg:hover:scale-[1.02] active:scale-[0.98] lg:hover:shadow-2xl lg:hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 lg:hover:bg-zinc-800/90 active:bg-zinc-800/70 shadow-xl active:shadow-none">
           <ul className="space-y-4">
             {organizations.map((org, index) => (
