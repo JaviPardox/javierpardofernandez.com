@@ -15,7 +15,7 @@ const FadeOnScroll = ({ children, className = "", id, delay = 0, amount = 0.9 }:
   const isInView = useInView(ref, { 
     once: false,
     amount,
-    margin: "-150px 0px -150px 0px"
+    margin: "-150px 0px -100px 0px"
   });
 
   return (
