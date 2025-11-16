@@ -63,13 +63,14 @@ const RecordsSection = () => {
         <FadeOnScroll>
           <TypingTitle text={academicTitle} />
         </FadeOnScroll>
-        <div className="perspective-500 transform transition-all duration-300 lg:hover:scale-[1.02] active:scale-[0.98] lg:hover:shadow-2xl lg:hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 lg:hover:bg-zinc-800/90 active:bg-zinc-800/70 shadow-xl active:shadow-none">
-          <ul className="space-y-4">
-            {academicRecords.map((record, index) => (
-              <li
-                key={index}
-                className="flex gap-4 transition-transform duration-200 lg:hover:translate-x-1 active:translate-x-0.5"
-              >
+        <FadeOnScroll delay={0.5} amount={0.3}>
+          <div className="perspective-500 transform transition-all duration-300 lg:hover:scale-[1.02] active:scale-[0.98] lg:hover:shadow-2xl lg:hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 lg:hover:bg-zinc-800/90 active:bg-zinc-800/70 shadow-xl active:shadow-none">
+            <ul className="space-y-4">
+              {academicRecords.map((record, index) => (
+                <FadeOnScroll key={index}>
+                  <li
+                    className="flex gap-4 transition-transform duration-200 lg:hover:translate-x-1 active:translate-x-0.5"
+                  >
                 <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 border border-zinc-700/50 bg-zinc-800 ring-0">
                   <img
                     alt=""
@@ -99,22 +100,25 @@ const RecordsSection = () => {
                     <time>{record.end_date}</time>
                   </dd>
                 </dl>
-              </li>
-            ))}
-          </ul>
-        </div>
+                </li>
+                </FadeOnScroll>
+              ))}
+            </ul>
+          </div>
+        </FadeOnScroll>
       </div>
       <div className="lg:w-1/2">
         <FadeOnScroll>
           <TypingTitle text={organizationTitle} />
         </FadeOnScroll>
-        <div className="perspective-500 transform transition-all duration-300 lg:hover:scale-[1.02] active:scale-[0.98] lg:hover:shadow-2xl lg:hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 lg:hover:bg-zinc-800/90 active:bg-zinc-800/70 shadow-xl active:shadow-none">
-          <ul className="space-y-4">
-            {organizations.map((org, index) => (
-              <li
-                key={index}
-                className="flex gap-4 transition-transform duration-200 lg:hover:translate-x-1 active:translate-x-0.5"
-              >
+        <FadeOnScroll delay={0.6} amount={0.3}>
+          <div className="perspective-500 transform transition-all duration-300 lg:hover:scale-[1.02] active:scale-[0.98] lg:hover:shadow-2xl lg:hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 lg:hover:bg-zinc-800/90 active:bg-zinc-800/70 shadow-xl active:shadow-none">
+            <ul className="space-y-4">
+              {organizations.map((org, index) => (
+                <FadeOnScroll key={index}>
+                  <li
+                    className="flex gap-4 transition-transform duration-200 lg:hover:translate-x-1 active:translate-x-0.5"
+                  >
                 <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 border border-zinc-700/50 bg-zinc-800 ring-0">
                   <img
                     alt=""
@@ -144,10 +148,12 @@ const RecordsSection = () => {
                     {org.description}
                   </dd>
                 </dl>
-              </li>
-            ))}
-          </ul>
-        </div>
+                </li>
+                </FadeOnScroll>
+              ))}
+            </ul>
+          </div>
+        </FadeOnScroll>
       </div>
     </section>
   );
