@@ -9,14 +9,14 @@ interface HashtagListProps {
 const randomDelay = (min: number, max: number) => Math.random() * (max - min) + min;
 
 const HashtagList: React.FC<HashtagListProps> = ({ items }) => {
-  const increasingFactor = 2
+  const increasingFactor = 1.5
   const maxDelay = items.length / (10 * increasingFactor);
   
   return (
     <ul className="mt-6 gap-1 md:gap-2 flex flex-wrap text-zinc-300">
       {items.map((item, index) => (
-        <FadeOnScroll delay={randomDelay(0.1, maxDelay)}>
-          <HashtagListItem key={index} item={item} />
+        <FadeOnScroll key={index} delay={randomDelay(0.1, maxDelay)}>
+          <HashtagListItem item={item} />
         </FadeOnScroll>
       ))}
     </ul>

@@ -16,9 +16,8 @@ const DevIconGroup: React.FC<DevIconGroupProps> = ({ isHovered, icons }) => {
   return (
     <ul className="text-center text-2xl flex mt-4 gap-3 flex-wrap mt-6 text-zinc-300">
       {icons.map((icon, index) => (
-        <FadeOnScroll delay={randomDelay(0.1, maxDelay)}>
+        <FadeOnScroll key={index} delay={randomDelay(0.1, maxDelay)}>
           <DevIcon
-            key={index}
             content={icon.content}
             iconClass={icon.iconClass}
             isHovered={isHovered}

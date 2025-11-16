@@ -16,8 +16,8 @@ const JobTitleAndDescription: React.FC<JobTitleAndDescriptionProps> = ({ positio
       </FadeOnScroll>
       <div className="mt-2 text-sm text-zinc-400 space-y-6">
         {description.map((paragraph, index) => (
-          <FadeOnScroll>
-            <p key={index}>{paragraph}</p>
+          <FadeOnScroll key={index}>
+            <p>{paragraph}</p>
           </FadeOnScroll>
         ))}
       </div>
