@@ -462,7 +462,7 @@ const Navbar = () => {
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                   boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.15)',
                 }}
-                title={isMusicPlaying ? 'Stop 8-bit music' : 'Play 8-bit music'}
+                title={isMusicPlaying ? 'Stop music' : 'Play music'}
               >
                 {isMusicPlaying ? (
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -526,7 +526,7 @@ const Navbar = () => {
             boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.15)',
             transition: 'all 0.2s ease',
           }}
-          title={isMusicPlaying ? 'Stop 8-bit music' : 'Play 8-bit music'}
+          title={isMusicPlaying ? 'Stop music' : 'Play music'}
         >
           {isMusicPlaying ? (
             // Minimal speaker with sound waves (playing)
