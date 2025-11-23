@@ -63,16 +63,51 @@
         "companyAndDateInfo": {
           "url": "https://bio-me.com",
           "companyName": "Bio-Me",
-          "date": "October 2021 - March 2025"
+          "date": "October 2023 - March 2025"
         },
         "jobPosition": "Software Engineer",
         "jobDescription": [
-          "Architected and developed Bio-Me's microbiome profiling platform, implementing distributed bioinformatics pipelines that improved processing efficiency by 200% and reduced storage costs by 31%.",
+          "Led the architecture of Bio-Me's microbiome profiling platform, increasing distributed pipeline throughput by 20% while reducing storage costs by 35%.",
+          "Directed the evolution of the laboratory information management system (LIMS), enabling 5 regulatory workflows and supporting +18 clinical customers.",
+          "Mentored and supervised internship programs, guiding a team of 4 students that shipped 16 production features.",
+          "Established comprehensive documentation standards and engineering best practices, improving release cycle efficiency by 12% and cutting onboarding time by 30%.",
+          "Partnered with leadership to define the platform roadmap, delivering 9 cross-functional initiatives on schedule."
+        ]
+      },
+      {
+        "hashtags": ["Cloud", "Backend", "Frontend", "Testing", "DevOps", "Architecture"],
+        "icons": [
+          { "content": "Python", "iconClass": "devicon-python-plain" },
+          { "content": "TypeScript", "iconClass": "devicon-typescript-plain" },
+          { "content": "Julia", "iconClass": "devicon-julia-plain" },
+          { "content": "Django", "iconClass": "devicon-django-plain" },
+          { "content": "FastAPI", "iconClass": "devicon-fastapi-plain" },
+          { "content": "React", "iconClass": "devicon-react-original" },
+          { "content": "Tailwind", "iconClass": "devicon-tailwindcss-plain" },
+          { "content": "AWS", "iconClass": "devicon-amazonwebservices-plain-wordmark" },
+          { "content": "Nginx", "iconClass": "devicon-nginx-original" },
+          { "content": "Docker", "iconClass": "devicon-docker-plain" },
+          { "content": "Linux", "iconClass": "devicon-linux-plain" },
+          { "content": "MacOS", "iconClass": "devicon-apple-original" },
+          { "content": "Bash", "iconClass": "devicon-bash-plain" },
+          { "content": "Git", "iconClass": "devicon-git-plain" },
+          { "content": "Testing", "iconClass": "devicon-pytest-plain" },
+          { "content": "CD/CI", "iconClass": "devicon-githubactions-plain" },
+          { "content": "Data Processing", "iconClass": "devicon-pandas-plain" },
+          { "content": "DynamoDB", "iconClass": "devicon-amazonwebservices-plain-wordmark" },
+          { "content": "Documentation", "iconClass": "devicon-readthedocs-original" }
+        ],
+        "companyAndDateInfo": {
+          "url": "https://bio-me.com",
+          "companyName": "Bio-Me",
+          "date": "October 2021 - October 2023"
+        },
+        "jobPosition": "Junior Software Engineer",
+        "jobDescription": [
+          "Contributed to Bio-Me's microbiome profiling platform, helping implement distributed bioinformatics pipelines that improved processing efficiency by 200% and reduced storage costs by 31%.",
           "Designed and optimized computational workflows for species-specific genomic region identification and qPCR assay development, enabling precise microbiome quantification.",
-          "Engineered a scalable laboratory information management system (LIMS), integrating complex analytical workflows with clinical and commercial requirements.",
-          "Led the development of automated testing frameworks and validation protocols, increasing system reliability by 18%.",
-          "Mentored and supervised internship programs, guiding a team of 4 students in implementing core system features.",
-          "Established comprehensive documentation standards and engineering best practices, improving team efficiency by 12%."
+          "Implemented scalable laboratory information management system (LIMS) features that tied analytical workflows to clinical and commercial requirements.",
+          "Developed automated testing suites and validation protocols that increased system reliability by 18%."
         ]
       },
       {
