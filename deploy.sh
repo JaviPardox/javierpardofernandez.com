@@ -5,7 +5,7 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 BRANCH="${1:-main}"
-git fetch origin "$BRANCH"
+git fetch origin
 git checkout "$BRANCH" 2>/dev/null || git checkout -b "$BRANCH" "origin/$BRANCH"
 git pull origin "$BRANCH"
 docker-compose -f docker-compose.prod.yml down
