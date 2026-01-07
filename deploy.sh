@@ -5,10 +5,12 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 BRANCH="${1:-master}"
-git fetch --all
+echo "Requested branch: $BRANCH"
+git fetch --all || true
 
 # Check if branch exists on remote
 if git show-ref --verify --quiet "refs/remotes/origin/$BRANCH"; then
+  echo "Branch '$BRANCH' found on remote, checking out..."
   git checkout "$BRANCH" 2>/dev/null || git checkout -b "$BRANCH" "origin/$BRANCH"
   git pull origin "$BRANCH"
 else
