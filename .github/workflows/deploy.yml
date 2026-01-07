@@ -23,5 +23,6 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           script: |
             cd ${{ secrets.DEPLOY_PATH }}
-            ./deploy.sh ${{ github.ref_name }}
+            BRANCH=$(echo "${{ github.ref }}" | sed 's|refs/heads/||')
+            ./deploy.sh "$BRANCH"
 
