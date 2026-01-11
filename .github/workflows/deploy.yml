@@ -24,12 +24,7 @@ jobs:
           script: |
             cd ${{ secrets.DEPLOY_PATH }}
             BRANCH=$(echo "${{ github.ref }}" | sed 's|refs/heads/||')
-            echo "Deploying branch: $BRANCH"
-            echo "GitHub ref: ${{ github.ref }}"
-            # First, quickly pull the latest deploy.sh script
-            git fetch origin "$BRANCH" || git fetch origin master
-            git checkout "$BRANCH" 2>/dev/null || git checkout master
-            git pull origin "$BRANCH" 2>/dev/null || git pull origin master
-            # Now run the updated script
+            git fetch origin "$BRANCH"
+            git pull origin "$BRANCH"
             ./deploy.sh "$BRANCH"
 
