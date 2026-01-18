@@ -6,10 +6,10 @@ interface ContactButtonProps {
 const ContactButton = ({ href, children }: ContactButtonProps) => {
   return (
     <a
-      className="inline-flex items-center justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none font-medium bg-zinc-800/50 text-zinc-300 hover:bg-zinc-800 hover:text-zinc-50 active:bg-zinc-800/50 active:text-zinc-50/70"
+      className="contact-button inline-flex items-center justify-center rounded-md py-2 px-6 text-base outline-offset-2 transition active:transition-none font-medium whitespace-nowrap"
       href={href}
     >
-      {children}
+      <span className="contact-text flex items-center gap-2">{children}</span>
     </a>
   );
 };

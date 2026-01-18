@@ -803,3 +803,86 @@ li {
     background-position: 200% center;
   }
 }
+
+/* Contact button - flashy teal/cyan gradient */
+.contact-button {
+  position: relative;
+  isolation: isolate;
+}
+
+.contact-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(39, 39, 42, 0.5);
+  transition: background-color 0.3s ease;
+  border-radius: 0.375rem;
+  z-index: -1;
+}
+
+.contact-button:hover::after {
+  background: rgb(39, 39, 42);
+}
+
+.contact-button::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
+  background: linear-gradient(
+    to right,
+    #00d9ff,
+    #00ffc8,
+    #14b8a6,
+    #06b6d4,
+    #22d3ee,
+    #00ffc8,
+    #00d9ff
+  );
+  background-size: 200% auto;
+  border-radius: 0.5rem;
+  z-index: -2;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.contact-button:hover::before {
+  opacity: 1;
+  visibility: visible;
+  animation: contact-animation 2s linear infinite;
+}
+
+.contact-text {
+  @apply text-zinc-300;
+  transition: all 0.3s ease;
+}
+
+.contact-button:hover .contact-text {
+  animation: contact-animation 2s linear infinite;
+  background: linear-gradient(
+    to right,
+    #00d9ff,
+    #00ffc8,
+    #14b8a6,
+    #06b6d4,
+    #22d3ee,
+    #00ffc8,
+    #00d9ff
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200% auto;
+}
+
+@keyframes contact-animation {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
