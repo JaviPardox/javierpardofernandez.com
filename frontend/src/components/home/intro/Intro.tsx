@@ -15,7 +15,7 @@ const Intro = () => {
       <div className="max-w-2xl" id="home">
         <FadeOnScroll>
           <h1 className="text-4xl sm:text-4.82xl mb-6 mt-7 text-zinc-100 font-inter font-bold tracking-tight leading-[2.5rem] sm:leading-[3.5rem]">
-            Software Engineer, MSc Project Management.
+            Software Engineer. Building Solutions That Work.
           </h1>
         </FadeOnScroll>
         <FadeOnScroll>
@@ -41,6 +41,11 @@ const Intro = () => {
         <FadeOnScroll>
           <p className="mt-6 text-base text-zinc-400 leading-relaxed leading-[1.78rem]">
             I'm fascinated by people, cars, motorcycles, engineering feats, markets, history, cultures, food (one day I'll visit all those saved spots on Google Maps, I promise), and music — and I like to think curiosity is my default state.
+          </p>
+        </FadeOnScroll>
+        <FadeOnScroll>
+          <p className="mt-6 text-base text-zinc-400 leading-relaxed leading-[1.78rem]">
+            I'm also available for consulting and freelance projects. Whether you need help architecting a new system, optimizing your cloud infrastructure, or just want a second pair of eyes on your code — feel free to reach out.
           </p>
         </FadeOnScroll>
         <SocialIconRow />
