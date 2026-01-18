@@ -7,7 +7,7 @@ interface AvatarImageProps {
 
 const AvatarImage: React.FC<AvatarImageProps> = ({ imageId, ...props }) => {
   const resolutions = [16, 32, 48, 64, 96, 128, 256, 384, 640, 750, 828, 1080, 1200, 1920, 2048, 3840];
-  
+
   const srcSet = resolutions
     .map(size => `/img/${imageId}/${imageId}-${size}.jpeg ${size}w`)
     .join(', ');
@@ -22,7 +22,7 @@ const AvatarImage: React.FC<AvatarImageProps> = ({ imageId, ...props }) => {
       height="512"
       decoding="async"
       className="rounded-full bg-zinc-800 object-cover h-16 w-16"
-      sizes="4rem"
+      sizes="128px"
       srcSet={srcSet}
       src={`/img/${imageId}/${imageId}-3840.jpeg`}
       style={{ color: "transparent" }}
