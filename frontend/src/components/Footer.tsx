@@ -10,29 +10,10 @@ const Footer = () => {
                 <div className="flex flex-col items-center justify-between gap-4 sm:gap-6 sm:flex-row">
                   <div className="flex items-center justify-center gap-x-3 sm:gap-x-6 text-sm font-medium text-zinc-200 w-full md:w-3/4 lg:w-2/5">
                     <a
-                      className="rainbow-button inline-flex items-center justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none font-medium w-full"
-                      href="/files/cv.pdf"
-                      download="Javier Pardo Fernández - Software Engineer - Resume.pdf"
-                    >
-                      Download CV
-                      <svg
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        className="h-4 w-4 stroke-zinc-400 transition group-hover:stroke-zinc-50 group-active:stroke-zinc-50"
-                      >
-                        <path
-                          d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        ></path>
-                      </svg>
-                    </a>
-                    <a
-                      className="inline-flex items-center justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none font-medium bg-zinc-800/50 text-zinc-300 hover:bg-zinc-800 hover:text-zinc-50 active:bg-zinc-800/50 active:text-zinc-50/70 w-full"
+                      className="contact-button inline-flex items-center justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none font-medium w-full"
                       href="mailto:javierpf000@gmail.com"
                     >
-                      Contact
+                      <span className="contact-text">Contact</span>
                       <svg
                         viewBox="0 0 24 24"
                         fill="none"
