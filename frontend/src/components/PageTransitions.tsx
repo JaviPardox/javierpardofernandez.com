@@ -4,18 +4,21 @@
 import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../store/hooks";
 import LoadingScreenAnimation from "./LoadingScreenAnimation";
+import { ContentReadyProvider, useContentReady } from "../store/ContentReadyContext";
 
 const FADE_DURATION = 1000; // How long each fade animation takes
 const MINIMUM_LOADING_SCREEN_DURATION = 3000; // Minimun time the loading screen takes
 const START_CONTENT_FADE_IN = 100; // After loading screen is gone, start content fade in
 
-const PageTransitions: React.FC<{ children: React.ReactNode }> = ({
+// Inner component that manages loading state and updates context
+const PageTransitionsInner: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const isLoading = useAppSelector((state) => state.loading.isLoading);
   const [showLoadingScreen, setShowLoadingScreen] = useState(true);
-  const [isContentReady, setIsContentReady] = useState(false);
+  const [isContentReadyLocal, setIsContentReadyLocal] = useState(false);
   const [fadeOutLoadingScreen, setfadeOutLoadingScreen] = useState(false);
+  const { setContentReady } = useContentReady();
 
   useEffect(() => {
     let fadeOutTimer: NodeJS.Timeout;
@@ -43,7 +46,9 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({
             setShowLoadingScreen(false);
 
             contentFadeinTimer = setTimeout(() => {
-              setIsContentReady(true);
+              setIsContentReadyLocal(true);
+              // Signal to all animation components that content is now visible
+              setContentReady(true);
 
               scrollTimer = setTimeout(() => {
                 html.classList.remove("no-scroll-height");
@@ -54,7 +59,8 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({
         }, MINIMUM_LOADING_SCREEN_DURATION);
       } else {
         setShowLoadingScreen(false);
-        setIsContentReady(true);
+        setIsContentReadyLocal(true);
+        setContentReady(true);
 
         html.classList.remove("no-scroll-height");
         document.body.classList.remove("no-scroll-height");
@@ -70,7 +76,7 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({
       html.classList.remove("no-scroll-height");
       document.body.classList.remove("no-scroll-height");
     };
-  }, [isLoading]);
+  }, [isLoading, setContentReady]);
 
   return (
     <>
@@ -96,17 +102,15 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({
       </style>
       <div className="relative flex-1">
         <div
-          className={`min-h-[calc(100vh-4rem)] ${
-            isContentReady ? "content-fade-in" : "opacity-0"
-          }`}
+          className={`min-h-[calc(100vh-4rem)] ${isContentReadyLocal ? "content-fade-in" : "opacity-0"
+            }`}
         >
           {children}
         </div>
         {showLoadingScreen && window.location.pathname === "/" && (
           <div
-            className={`fixed inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-1000 ${
-              fadeOutLoadingScreen ? "opacity-0" : "opacity-100"
-            }`}
+            className={`fixed inset-0 z-50 flex items-center justify-center bg-black transition-opacity duration-1000 ${fadeOutLoadingScreen ? "opacity-0" : "opacity-100"
+              }`}
           >
             <LoadingScreenAnimation />
           </div>
@@ -116,4 +120,14 @@ const PageTransitions: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 
+// Wrapper component that provides the context
+const PageTransitions: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return (
+    <ContentReadyProvider>
+      <PageTransitionsInner>{children}</PageTransitionsInner>
+    </ContentReadyProvider>
+  );
+};
+
 export default PageTransitions;
+
