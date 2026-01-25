@@ -4,6 +4,9 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 COPY . .
+
+ENV NODE_OPTIONS="--max-old-space-size=3072"
+ENV GENERATE_SOURCEMAP=false
 RUN npm run build
 
 # Run Nginx with build
