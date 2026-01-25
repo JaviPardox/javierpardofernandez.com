@@ -31,8 +31,8 @@ const ExperienceSection = () => {
       } catch (error) {
         console.error("Error fetching experience:", error);
         dispatch(setError({
-          resource: resourceId, 
-          error: "Failed to fetch job experience. Please try again later." 
+          resource: resourceId,
+          error: "Failed to fetch job experience. Please try again later."
         }));
         setErrorMessage((error as Error).message);
         setLoading(false);
@@ -48,7 +48,7 @@ const ExperienceSection = () => {
     return () => {
       dispatch(finishLoading(resourceId));
     };
-    
+
   }, [dispatch]);
 
   if (loading)
@@ -75,35 +75,37 @@ const ExperienceSection = () => {
     <div className="md:border-l md:pl-6 md:border-zinc-700/40 mt-12">
       <div className="flex flex-col space-y-12 md:space-y-16">
         {workExperience.data.map((experience, index) => (
-          <article 
+          <FadeOnScroll
             key={index}
-            className="lg:grid md:grid-cols-4 lg:items-baseline"
+            variant="slide-up"
+            delay={index * 0.1}
+            flashy
           >
-            <div className="relative">
-              <FadeOnScroll>
-                <BriefcaseIconWork />
-              </FadeOnScroll>
-              <FadeOnScroll>
-                <CompanyAndDateInfo info={experience.companyAndDateInfo} />
-              </FadeOnScroll>
-            </div>
-            <div
-              className="md:col-span-3 group relative flex flex-col items-start"
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
+            <article
+              className="lg:grid md:grid-cols-4 lg:items-baseline"
             >
-              <span className="hidden lg:block absolute -inset-x-4 -inset-y-6 z-[-1] scale-95 bg-zinc-800/50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl"></span>
-              <JobTitleAndDescription
-                position={experience.jobPosition}
-                description={experience.jobDescription}
-              />
-              <HashtagList items={experience.hashtags} />
-              <DevIconGroup
-                isHovered={hoveredIndex === index}
-                icons={experience.icons}
-              />
-            </div>
-          </article>
+              <div className="relative">
+                <BriefcaseIconWork />
+                <CompanyAndDateInfo info={experience.companyAndDateInfo} />
+              </div>
+              <div
+                className="md:col-span-3 group relative flex flex-col items-start"
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <span className="hidden lg:block absolute -inset-x-4 -inset-y-6 z-[-1] scale-95 bg-zinc-800/50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl"></span>
+                <JobTitleAndDescription
+                  position={experience.jobPosition}
+                  description={experience.jobDescription}
+                />
+                <HashtagList items={experience.hashtags} />
+                <DevIconGroup
+                  isHovered={hoveredIndex === index}
+                  icons={experience.icons}
+                />
+              </div>
+            </article>
+          </FadeOnScroll>
         ))}
       </div>
     </div>

@@ -2,11 +2,16 @@ import SocialIcon from "./SocialIcon";
 import ContactButton from "../../common/ContactButton";
 import FadeOnScroll from "../../common/FadeOnScroll";
 
-const SocialIconRow = () => {
+interface SocialIconRowProps {
+  delay?: number;
+  viewportMargin?: string;
+}
+
+const SocialIconRow = ({ delay = 0, viewportMargin }: SocialIconRowProps) => {
   return (
     <div className="mt-6 flex justify-between items-center">
       <div className="flex gap-4">
-        <FadeOnScroll delay={0.3}>
+        <FadeOnScroll delay={delay + 0.3} variant="pop" flashy viewportMargin={viewportMargin}>
           <SocialIcon
             href="https://github.com/JaviPardox"
             ariaLabel="Follow on Github"
@@ -19,7 +24,7 @@ const SocialIconRow = () => {
             ]}
           />
         </FadeOnScroll>
-        <FadeOnScroll delay={0.2}>
+        <FadeOnScroll delay={delay + 0.2} variant="pop" flashy viewportMargin={viewportMargin}>
           <SocialIcon
             href="https://www.linkedin.com/in/javier-pardo-fernandez/"
             ariaLabel="Follow on LinkedIn"
@@ -32,7 +37,7 @@ const SocialIconRow = () => {
         </FadeOnScroll>
       </div>
       <div className="flex gap-4">
-        <FadeOnScroll delay={0}>
+        <FadeOnScroll delay={delay} variant="pop" flashy viewportMargin={viewportMargin}>
           <ContactButton href="mailto:javierpf000@gmail.com">
             Contact
             <svg

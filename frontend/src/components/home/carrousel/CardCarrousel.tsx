@@ -25,7 +25,7 @@ const CardCarrousel = () => {
 
   return (
     <div className="relative -mx-6 sm:mx-0">
-      <FadeOnScroll className="sm:hidden">
+      <FadeOnScroll className="sm:hidden" variant="pop" flashy viewportMargin="-50px 0px -300px 0px">
         <div className="-my-4 flex overflow-x-auto card-carousel-scroll scrollbar-hide gap-5 py-4 snap-x snap-mandatory">
           <div className="pl-6 flex gap-5 ml-0">
             {[{ rotation: 2, imageId: "card6" }, { rotation: -2, imageId: "card1" }, { rotation: 2, imageId: "card2" }, { rotation: 2, imageId: "card5" }, { rotation: -2, imageId: "card4" }].map(
@@ -41,19 +41,19 @@ const CardCarrousel = () => {
       </FadeOnScroll>
       <div className="hidden sm:flex -my-4 overflow-x-auto card-carousel-scroll scrollbar-hide gap-5 py-4 sm:overflow-x-visible sm:justify-center sm:gap-8 snap-x snap-mandatory">
         <div className="pl-6 sm:pl-0 flex gap-5 sm:gap-8 lg:ml-[25px] ml-0">
-          <FadeOnScroll delay={0} amount={0.7} className="card-item snap-center">
+          <FadeOnScroll delay={0.1} variant="pop" flashy className="card-item snap-center" viewportMargin="-50px 0px -300px 0px">
             <Card rotation={2} imageId="card6" />
           </FadeOnScroll>
-          <FadeOnScroll delay={0.2} amount={0.7} className="card-item snap-center">
+          <FadeOnScroll delay={0} variant="pop" flashy className="card-item snap-center" viewportMargin="-50px 0px -300px 0px">
             <Card rotation={-2} imageId="card1" />
           </FadeOnScroll>
-          <FadeOnScroll delay={0.1} amount={0.7} className="card-item snap-center">
+          <FadeOnScroll delay={0.2} variant="pop" flashy className="card-item snap-center" viewportMargin="-50px 0px -300px 0px">
             <Card rotation={2} imageId="card2" />
           </FadeOnScroll>
-          <FadeOnScroll delay={0.4} amount={0.7} className="card-item snap-center">
+          <FadeOnScroll delay={0.05} variant="pop" flashy className="card-item snap-center" viewportMargin="-50px 0px -300px 0px">
             <Card rotation={2} imageId="card5" />
           </FadeOnScroll>
-          <FadeOnScroll delay={0.3} amount={0.7} className="card-item snap-center">
+          <FadeOnScroll delay={0.15} variant="pop" flashy className="card-item snap-center" viewportMargin="-50px 0px -300px 0px">
             <Card rotation={-2} imageId="card4" />
           </FadeOnScroll>
         </div>
@@ -64,3 +64,4 @@ const CardCarrousel = () => {
 };
 
 export default CardCarrousel;
+
