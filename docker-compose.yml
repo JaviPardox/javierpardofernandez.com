@@ -35,6 +35,10 @@ services:
       - REACT_APP_API_URL=http://${NETWORK_IP}:8000 # Available to the network
       - WDS_SOCKET_PORT=0 # Use same port as the http server
       - HOST=0.0.0.0 # Tells the development server to listen on all network interfaces
+      - CHOKIDAR_USEPOLLING=true # Enable polling for file watching on Windows
+      - CHOKIDAR_INTERVAL=1000 # Polling interval in milliseconds
+      - WATCHPACK_POLLING=true # Enable webpack polling
+      - FAST_REFRESH=true # Enable Fast Refresh
     networks:
       - app-network
     depends_on:

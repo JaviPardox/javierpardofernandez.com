@@ -13,7 +13,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' || (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true')
+    if: github.ref == 'refs/heads/master' || (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true')
     steps:
       - name: Deploy over SSH
         uses: appleboy/ssh-action@v1.2.4
@@ -23,5 +23,8 @@ jobs:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           script: |
             cd ${{ secrets.DEPLOY_PATH }}
-            ./deploy.sh ${{ github.ref_name }}
+            BRANCH=$(echo "${{ github.ref }}" | sed 's|refs/heads/||')
+            git fetch origin "$BRANCH"
+            git pull origin "$BRANCH"
+            ./deploy.sh "$BRANCH"
 

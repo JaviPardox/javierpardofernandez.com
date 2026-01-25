@@ -10,51 +10,54 @@ const Footer = () => {
                 <div className="flex flex-col items-center justify-between gap-4 sm:gap-6 sm:flex-row">
                   <div className="flex items-center justify-center gap-x-3 sm:gap-x-6 text-sm font-medium text-zinc-200 w-full md:w-3/4 lg:w-2/5">
                     <a
-                      className="rainbow-button inline-flex items-center justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none font-medium w-full"
-                      href="/files/cv.pdf"
-                      download="Javier Pardo Fernández - Software Engineer - Resume.pdf"
+                      className="contact-button inline-flex items-center justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none font-medium w-full whitespace-nowrap"
+                      href="mailto:javierpf000@gmail.com"
                     >
-                      Download CV
-                      <svg
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        className="h-4 w-4 stroke-zinc-400 transition group-hover:stroke-zinc-50 group-active:stroke-zinc-50"
-                      >
-                        <path
-                          d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5"
+                      <span className="contact-text flex items-center gap-1">
+                        Contact
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
                           strokeWidth="1.5"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                        ></path>
-                      </svg>
+                          aria-hidden="true"
+                          className="h-4 w-4 flex-none"
+                        >
+                          <path
+                            d="M2.75 7.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
+                            className="fill-zinc-100/10 stroke-zinc-500"
+                          ></path>
+                          <path
+                            d="m4 6 6.024 5.479a2.915 2.915 0 0 0 3.952 0L20 6"
+                            className="stroke-zinc-500"
+                          ></path>
+                        </svg>
+                      </span>
                     </a>
-                    <a
-                      className="inline-flex items-center justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none font-medium bg-zinc-800/50 text-zinc-300 hover:bg-zinc-800 hover:text-zinc-50 active:bg-zinc-800/50 active:text-zinc-50/70 w-full"
-                      href="mailto:javierpf000@gmail.com"
+                    <button
+                      className="contact-button inline-flex items-center justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none font-medium w-full whitespace-nowrap"
+                      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     >
-                      Contact
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden="true"
-                        className="ml-1 h-4 w-4 flex-none"
-                      >
-                        <path
-                          d="M2.75 7.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
-                          className="fill-zinc-100/10 stroke-zinc-500"
-                        ></path>
-                        <path
-                          d="m4 6 6.024 5.479a2.915 2.915 0 0 0 3.952 0L20 6"
-                          className="stroke-zinc-500"
-                        ></path>
-                      </svg>
-                    </a>
+                      <span className="contact-text flex items-center gap-1">
+                        Back to Top
+                        <svg
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          className="h-4 w-4 flex-none stroke-zinc-500"
+                        >
+                          <path
+                            d="M8 12.25V3.75m0 0L4.75 7m3.25-3.25L11.25 7"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          ></path>
+                        </svg>
+                      </span>
+                    </button>
                   </div>
                   <div className="flex flex-col items-center sm:items-start lg:items-center lg:flex-row lg:gap-x-2 text-sm text-zinc-500">
-                    <p>© 2025 Javier Pardo Fernández</p>
+                    <p>© 2026 Javier Pardo Fernández</p>
                     <p>All rights reserved.</p>
                   </div>
                 </div>

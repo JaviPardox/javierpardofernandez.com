@@ -60,47 +60,47 @@ const RecordsSection = () => {
   return (
     <section className="flex flex-col lg:flex-row gap-8">
       <div className="lg:w-1/2">
-        <FadeOnScroll>
+        <FadeOnScroll variant="slide-up" flashy>
           <TypingTitle text={academicTitle} />
         </FadeOnScroll>
-        <FadeOnScroll delay={0.5} amount={0.3}>
+        <FadeOnScroll delay={0.1} variant="pop" flashy>
           <div className="perspective-500 transform transition-all duration-300 lg:hover:scale-[1.02] active:scale-[0.98] lg:hover:shadow-2xl lg:hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 lg:hover:bg-zinc-800/90 active:bg-zinc-800/70 shadow-xl active:shadow-none">
             <ul className="space-y-4">
               {academicRecords.map((record, index) => (
-                <FadeOnScroll key={index}>
+                <FadeOnScroll key={index} variant="slide-up" delay={index * 0.08} flashy>
                   <li
                     className="flex gap-4 transition-transform duration-200 lg:hover:translate-x-1 active:translate-x-0.5"
                   >
-                <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 border border-zinc-700/50 bg-zinc-800 ring-0">
-                  <img
-                    alt=""
-                    loading="lazy"
-                    width="32"
-                    height="32"
-                    decoding="async"
-                    data-nimg="1"
-                    className="h-7 w-7 rounded-full"
-                    src={`/img/records/${record.logo_path}.png`}
-                    style={{ color: "transparent" }}
-                  />
-                </div>
-                <dl className="flex flex-auto flex-wrap gap-x-2">
-                  <dd className="w-full flex-none text-sm font-medium text-zinc-100">
-                    {record.field_of_study}
-                    <span className="mx-1">|</span>
-                    <span className="italic font-normal text-zinc-100/60">
-                      {record.degree}
-                    </span>
-                  </dd>
-                  <dd className="text-xs text-zinc-400">
-                    {record.institution}
-                  </dd>
-                  <dd className="ml-auto text-xs text-zinc-500">
-                    <time>{record.start_date}</time> <span>—</span>{" "}
-                    <time>{record.end_date}</time>
-                  </dd>
-                </dl>
-                </li>
+                    <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 border border-zinc-700/50 bg-zinc-800">
+                      <img
+                        alt=""
+                        loading="lazy"
+                        width="32"
+                        height="32"
+                        decoding="async"
+                        data-nimg="1"
+                        className="h-7 w-7 rounded-full"
+                        src={`/img/records/${record.logo_path}.png`}
+                        style={{ color: "transparent" }}
+                      />
+                    </div>
+                    <dl className="flex flex-auto flex-wrap gap-x-2">
+                      <dd className="w-full flex-none text-sm font-medium text-zinc-100">
+                        {record.field_of_study}
+                        <span className="mx-1">|</span>
+                        <span className="italic font-normal text-zinc-100/60">
+                          {record.degree}
+                        </span>
+                      </dd>
+                      <dd className="text-xs text-zinc-400">
+                        {record.institution}
+                      </dd>
+                      <dd className="ml-auto text-xs text-zinc-500">
+                        <time>{record.start_date}</time> <span>—</span>{" "}
+                        <time>{record.end_date}</time>
+                      </dd>
+                    </dl>
+                  </li>
                 </FadeOnScroll>
               ))}
             </ul>
@@ -108,47 +108,47 @@ const RecordsSection = () => {
         </FadeOnScroll>
       </div>
       <div className="lg:w-1/2">
-        <FadeOnScroll>
+        <FadeOnScroll variant="slide-up" delay={0.05} flashy>
           <TypingTitle text={organizationTitle} />
         </FadeOnScroll>
-        <FadeOnScroll delay={0.6} amount={0.3}>
+        <FadeOnScroll delay={0.15} variant="pop" flashy>
           <div className="perspective-500 transform transition-all duration-300 lg:hover:scale-[1.02] active:scale-[0.98] lg:hover:shadow-2xl lg:hover:brightness-110 active:brightness-90 rounded-2xl border p-6 pl-3 md:pl-6 border-zinc-700/40 bg-zinc-800/80 lg:hover:bg-zinc-800/90 active:bg-zinc-800/70 shadow-xl active:shadow-none">
             <ul className="space-y-4">
               {organizations.map((org, index) => (
-                <FadeOnScroll key={index}>
+                <FadeOnScroll key={index} variant="slide-up" delay={index * 0.08} flashy>
                   <li
                     className="flex gap-4 transition-transform duration-200 lg:hover:translate-x-1 active:translate-x-0.5"
                   >
-                <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 border border-zinc-700/50 bg-zinc-800 ring-0">
-                  <img
-                    alt=""
-                    loading="lazy"
-                    width="32"
-                    height="32"
-                    decoding="async"
-                    data-nimg="1"
-                    className="h-7 w-7 rounded-full"
-                    src={`/img/records/${org.logo_path}.png`}
-                    style={{ color: "transparent" }}
-                  />
-                </div>
-                <dl className="flex flex-auto flex-wrap gap-x-2">
-                  <dd className="w-full flex-none text-sm font-medium text-zinc-100">
-                    {org.name}
-                    <span className="mx-1">|</span>
-                    <span className="italic font-normal text-zinc-100/60">
-                      {org.chapter}
-                    </span>
-                  </dd>
-                  <dd className="text-xs text-zinc-400">{org.role}</dd>
-                  <dd className="ml-auto text-xs text-zinc-500">
-                    <time>{org.duration}</time>
-                  </dd>
-                  <dd className="w-full flex-none text-xs text-zinc-200">
-                    {org.description}
-                  </dd>
-                </dl>
-                </li>
+                    <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 border border-zinc-700/50 bg-zinc-800">
+                      <img
+                        alt=""
+                        loading="lazy"
+                        width="32"
+                        height="32"
+                        decoding="async"
+                        data-nimg="1"
+                        className="h-7 w-7 rounded-full"
+                        src={`/img/records/${org.logo_path}.png`}
+                        style={{ color: "transparent" }}
+                      />
+                    </div>
+                    <dl className="flex flex-auto flex-wrap gap-x-2">
+                      <dd className="w-full flex-none text-sm font-medium text-zinc-100">
+                        {org.name}
+                        <span className="mx-1">|</span>
+                        <span className="italic font-normal text-zinc-100/60">
+                          {org.chapter}
+                        </span>
+                      </dd>
+                      <dd className="text-xs text-zinc-400">{org.role}</dd>
+                      <dd className="ml-auto text-xs text-zinc-500">
+                        <time>{org.duration}</time>
+                      </dd>
+                      <dd className="w-full flex-none text-xs text-zinc-200">
+                        {org.description}
+                      </dd>
+                    </dl>
+                  </li>
                 </FadeOnScroll>
               ))}
             </ul>

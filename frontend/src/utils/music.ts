@@ -6,7 +6,7 @@ class MusicEngine {
   private gainNodes: GainNode[] = [];
   private isInitialized = false;
   private isSuspended = false;
-  private loopInterval: NodeJS.Timeout | null = null;
+  private loopInterval: number | null = null;
   private isLooping = false;
   private masterGain: GainNode | null = null;
   private compressor: DynamicsCompressorNode | null = null;
@@ -17,12 +17,12 @@ class MusicEngine {
 
   async init() {
     if (this.isInitialized && !this.isSuspended) return;
-    
+
     try {
       if (!this.audioContext) {
         this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
       }
-      
+
       // Resume audio context if it's suspended
       if (this.audioContext.state === 'suspended') {
         await this.audioContext.resume();
@@ -33,22 +33,22 @@ class MusicEngine {
         this.compressor = this.audioContext.createDynamicsCompressor();
         this.compressor.threshold.setValueAtTime(-24, this.audioContext.currentTime);
         this.compressor.knee.setValueAtTime(30, this.audioContext.currentTime);
-        this.compressor.ratio.setValueAtTime(12, this.audioContext.currentTime);
-        this.compressor.attack.setValueAtTime(0.003, this.audioContext.currentTime);
+        this.compressor.ratio.setValueAtTime(4, this.audioContext.currentTime);
+        this.compressor.attack.setValueAtTime(0.03, this.audioContext.currentTime);
         this.compressor.release.setValueAtTime(0.25, this.audioContext.currentTime);
       }
       if (!this.masterGain) {
         this.masterGain = this.audioContext.createGain();
-        this.masterGain.gain.setValueAtTime(0.8, this.audioContext.currentTime);
+        this.masterGain.gain.setValueAtTime(0.6, this.audioContext.currentTime);
       }
       // Connect once
       if (this.compressor && this.masterGain) {
         try {
           this.compressor.disconnect();
-        } catch {}
+        } catch { }
         try {
           this.masterGain.disconnect();
-        } catch {}
+        } catch { }
         this.compressor.connect(this.masterGain);
         this.masterGain.connect(this.audioContext.destination);
       }
@@ -85,7 +85,7 @@ class MusicEngine {
           this.convolver.connect(this.masterGain);
         }
       }
-      
+
       this.isInitialized = true;
     } catch (err) {
       console.error('Failed to initialize audio:', err);
@@ -178,15 +178,18 @@ class MusicEngine {
       saturator.curve = curve;
       saturator.oversample = '2x';
 
-      gainNode.gain.setValueAtTime(0, startTime);
+      gainNode.gain.setValueAtTime(0.0001, startTime);
+      // Ramp up to audible level for the saw texture
       gainNode.gain.linearRampToValueAtTime(0.0001, startTime + 0.01);
-      gainNode.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, startTime + duration - 0.03);
+      gainNode.gain.setTargetAtTime(0.0001, startTime + duration - 0.03, 0.01);
 
       sub.type = 'sine';
       sub.frequency.setValueAtTime(frequency, startTime);
-      subGain.gain.setValueAtTime(0, startTime);
+      subGain.gain.setValueAtTime(0.0001, startTime);
       subGain.gain.linearRampToValueAtTime(0.08, startTime + 0.012);
-      subGain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+      subGain.gain.exponentialRampToValueAtTime(0.001, startTime + duration - 0.03);
+      subGain.gain.setTargetAtTime(0.0001, startTime + duration - 0.03, 0.01);
 
       osc1.connect(lp);
       osc2.connect(lp);
@@ -207,118 +210,143 @@ class MusicEngine {
 
       osc1.start(startTime);
       osc2.start(startTime);
-      osc1.stop(startTime + duration);
-      osc2.stop(startTime + duration);
+      osc1.stop(startTime + duration + 0.03);
+      osc2.stop(startTime + duration + 0.03);
       lfo.start(startTime);
-      lfo.stop(startTime + duration);
+      lfo.stop(startTime + duration + 0.03);
       sub.start(startTime);
-      sub.stop(startTime + duration);
+      sub.stop(startTime + duration + 0.03);
 
       this.oscillators.push(osc1, osc2, lfo, sub);
       this.gainNodes.push(gainNode, lfoGain, subGain);
       return;
     }
 
-    // Default melody path: classy piano-like synth
+    // Default melody path: Warm Rhodes-style Electric Piano
     const fund = this.audioContext.createOscillator();
     const fundGain = this.audioContext.createGain();
-    const overt1 = this.audioContext.createOscillator(); // octave
+    const overt1 = this.audioContext.createOscillator(); // 2nd harmonic (octave) for body
     const overt1Gain = this.audioContext.createGain();
-    const overt2 = this.audioContext.createOscillator(); // 3rd harmonic
+    const overt2 = this.audioContext.createOscillator(); // 3rd harmonic (fifth) for bell tone
     const overt2Gain = this.audioContext.createGain();
+
+    // Tremolo Effect
+    const tremoloLFO = this.audioContext.createOscillator();
+    const tremoloGain = this.audioContext.createGain(); // This modulates the main volume
+    const tremoloDepth = this.audioContext.createGain();
+
     const lpLead = this.audioContext.createBiquadFilter();
     const envGain = this.audioContext.createGain();
     const pan = this.audioContext.createStereoPanner();
 
-    // Optional hammer noise
+    // Soft Hammer (Thump)
     const hammerSrc = this.createNoiseSource();
     const hammerBP = this.audioContext.createBiquadFilter();
     const hammerGain = this.audioContext.createGain();
 
-    // Oscillator setup
-    fund.type = 'triangle';
+    // Oscillator setup - SINE waves for warm EP tone
+    fund.type = 'sine';
     fund.frequency.setValueAtTime(frequency, startTime);
     overt1.type = 'sine';
     overt1.frequency.setValueAtTime(frequency * 2, startTime);
     overt2.type = 'sine';
     overt2.frequency.setValueAtTime(frequency * 3, startTime);
-    fund.detune.setValueAtTime((Math.random() * 2 - 1) * 2, startTime);
-    overt1.detune.setValueAtTime((Math.random() * 2 - 1) * 4, startTime);
-    overt2.detune.setValueAtTime((Math.random() * 2 - 1) * 6, startTime);
 
-    // Balance overtones
-    fundGain.gain.setValueAtTime(0.6, startTime);
-    overt1Gain.gain.setValueAtTime(0.18, startTime);
-    overt2Gain.gain.setValueAtTime(0.06, startTime);
-    // Harmonics decay faster than fundamental
-    overt2Gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.12);
-    overt1Gain.gain.exponentialRampToValueAtTime(0.03, startTime + 0.25);
-    fundGain.gain.exponentialRampToValueAtTime(0.1, startTime + 0.6);
+    // Slight detune for analog warmth
+    fund.detune.setValueAtTime((Math.random() * 2 - 1) * 3, startTime);
+    overt1.detune.setValueAtTime((Math.random() * 2 - 1) * 3, startTime);
 
-    // Filter sweep for attack brightness
+    // Balance - Fundamental is king for Rhodes
+    fundGain.gain.setValueAtTime(0.8, startTime);
+    overt1Gain.gain.setValueAtTime(0.15, startTime);
+    overt2Gain.gain.setValueAtTime(0.05, startTime);
+
+    // Harmonics decay faster = Tine sound
+    overt2Gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.15);
+    overt1Gain.gain.exponentialRampToValueAtTime(0.05, startTime + 0.3);
+
+    // Filter - Much darker now
     lpLead.type = 'lowpass';
-    lpLead.Q.setValueAtTime(0.7, startTime);
-    lpLead.frequency.setValueAtTime(3800, startTime);
-    lpLead.frequency.linearRampToValueAtTime(1700, startTime + 0.12);
+    lpLead.Q.setValueAtTime(0, startTime); // Flat resonance
+    lpLead.frequency.setValueAtTime(1500, startTime); // Start lower
+    lpLead.frequency.exponentialRampToValueAtTime(300, startTime + 0.4); // Sweep down to warm low-mids
 
-    // Piano-like amplitude envelope
-    envGain.gain.setValueAtTime(0, startTime);
-    envGain.gain.linearRampToValueAtTime(0.20, startTime + 0.004);
-    envGain.gain.linearRampToValueAtTime(0.04, startTime + 0.18);
-    envGain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+    // Amplitude Envelope - Softer attack to avoid clicks
+    envGain.gain.setValueAtTime(0.0001, startTime);
+    envGain.gain.linearRampToValueAtTime(0.25, startTime + 0.02); // 20ms attack (was 4ms)
+    envGain.gain.linearRampToValueAtTime(0.15, startTime + 0.2);
 
-    // Hammer noise (short, bandpassed click)
-    hammerBP.type = 'bandpass';
-    hammerBP.frequency.setValueAtTime(2400, startTime);
-    hammerBP.Q.setValueAtTime(1.0, startTime);
-    hammerGain.gain.setValueAtTime(0.0, startTime);
-    hammerGain.gain.linearRampToValueAtTime(0.025, startTime + 0.002);
-    hammerGain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.02);
+    // Release - smooth fade out
+    const releaseTime = 0.15;
+    envGain.gain.setTargetAtTime(0.0001, startTime + duration - releaseTime, 0.04);
+
+    // Tremolo Setup
+    tremoloLFO.type = 'sine';
+    tremoloLFO.frequency.setValueAtTime(5, startTime); // 5Hz wobble
+
+    tremoloGain.gain.setValueAtTime(1, startTime); // Unity gain base
+
+    // Connect LFO to tremolo gain
+    // We want gain to oscillate between 0.8 and 1.2 roughly
+    tremoloDepth.gain.setValueAtTime(0.15, startTime);
+    tremoloLFO.connect(tremoloDepth);
+    tremoloDepth.connect(tremoloGain.gain);
+
+    // Hammer noise (Subtler thump)
+    hammerBP.type = 'lowpass';
+    hammerBP.frequency.setValueAtTime(200, startTime);
+    hammerGain.gain.setValueAtTime(0.04, startTime);
+    hammerGain.gain.exponentialRampToValueAtTime(0.0001, startTime + 0.02);
 
     // Routing
     fund.connect(fundGain);
     overt1.connect(overt1Gain);
     overt2.connect(overt2Gain);
+
     fundGain.connect(lpLead);
     overt1Gain.connect(lpLead);
     overt2Gain.connect(lpLead);
-    lpLead.connect(pan);
-    // Subtle stereo position based on pitch (low notes left, high notes right)
-    const panVal = Math.max(-0.12, Math.min(0.12, (frequency - 500) / 2000));
+
+    lpLead.connect(tremoloGain); // Insert Tremolo
+    tremoloGain.connect(pan);
+
+    // Pan
+    const panVal = Math.max(-0.25, Math.min(0.25, (frequency - 400) / 1000));
     pan.pan.setValueAtTime(panVal, startTime);
+
     pan.connect(envGain);
-    if (this.compressor) {
-      envGain.connect(this.compressor);
-    } else {
-      envGain.connect(this.audioContext.destination);
-    }
+
+    // Master out
+    const dest = this.compressor ?? this.audioContext.destination;
+    envGain.connect(dest);
     if (this.reverbGain) {
       envGain.connect(this.reverbGain);
     }
+
     if (hammerSrc) {
       hammerSrc.connect(hammerBP);
       hammerBP.connect(hammerGain);
-      if (this.compressor) {
-        hammerGain.connect(this.compressor);
-      } else {
-        hammerGain.connect(this.audioContext.destination);
-      }
+      hammerGain.connect(dest);
       hammerSrc.start(startTime);
       hammerSrc.stop(startTime + 0.03);
       this.bufferSources.push(hammerSrc);
       this.gainNodes.push(hammerGain);
     }
 
-    // Start/stop
+    // Start/Stop with safety margin
+    const safetyMargin = 0.2;
     fund.start(startTime);
     overt1.start(startTime);
     overt2.start(startTime);
-    fund.stop(startTime + duration);
-    overt1.stop(startTime + duration);
-    overt2.stop(startTime + duration);
+    tremoloLFO.start(startTime);
 
-    this.oscillators.push(fund, overt1, overt2);
-    this.gainNodes.push(fundGain, overt1Gain, overt2Gain, envGain);
+    fund.stop(startTime + duration + safetyMargin);
+    overt1.stop(startTime + duration + safetyMargin);
+    overt2.stop(startTime + duration + safetyMargin);
+    tremoloLFO.stop(startTime + duration + safetyMargin);
+
+    this.oscillators.push(fund, overt1, overt2, tremoloLFO);
+    this.gainNodes.push(fundGain, overt1Gain, overt2Gain, envGain, tremoloGain, tremoloDepth);
   }
 
   private playDrumSound(type: 'kick' | 'snare' | 'hihat', startTime: number) {
@@ -333,11 +361,13 @@ class MusicEngine {
 
       osc.type = 'sine';
       osc.frequency.setValueAtTime(85, startTime);
-      osc.frequency.exponentialRampToValueAtTime(45, startTime + 0.16);
+      // Sweep pitch faster (0.08s) and deeper (30Hz) to avoid hanging in the bass frequency range
+      osc.frequency.exponentialRampToValueAtTime(30, startTime + 0.08);
 
       oscGain.gain.setValueAtTime(0, startTime);
-      oscGain.gain.linearRampToValueAtTime(0.5, startTime + 0.008);
-      oscGain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.2);
+      oscGain.gain.linearRampToValueAtTime(0.5, startTime + 0.012);
+      // Shorter tail to clear the mud
+      oscGain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.16);
 
       const clickSrc = this.createNoiseSource();
       const clickGain = this.audioContext.createGain();
@@ -357,7 +387,7 @@ class MusicEngine {
       sumGain.connect(dest);
 
       osc.start(startTime);
-      osc.stop(startTime + 0.18);
+      osc.stop(startTime + 0.25);
 
       this.oscillators.push(osc);
       this.gainNodes.push(oscGain, sumGain);
@@ -401,7 +431,7 @@ class MusicEngine {
       sumGain.connect(dest);
 
       osc.start(startTime);
-      osc.stop(startTime + 0.11);
+      osc.stop(startTime + 0.20);
       this.oscillators.push(osc);
       this.gainNodes.push(oscGain, sumGain);
 
@@ -428,9 +458,10 @@ class MusicEngine {
       hp.frequency.setValueAtTime(hpCut, startTime);
       hp.Q.setValueAtTime(0.9, startTime);
 
-      gain.gain.setValueAtTime(0, startTime);
-      gain.gain.linearRampToValueAtTime(vel, startTime + 0.001);
+      gain.gain.setValueAtTime(0.0001, startTime);
+      gain.gain.exponentialRampToValueAtTime(vel, startTime + 0.003);
       gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.04);
+      gain.gain.setTargetAtTime(0.0001, startTime + 0.04, 0.01);
 
       pan.pan.setValueAtTime(panVal, startTime);
 
@@ -441,14 +472,15 @@ class MusicEngine {
       pan.connect(dest);
 
       noiseSrc.start(startTime);
-      noiseSrc.stop(startTime + 0.06);
+      // Give the tail enough time to fully decay (at least 5-6x time constants)
+      noiseSrc.stop(startTime + 0.15);
       this.bufferSources.push(noiseSrc);
       this.gainNodes.push(gain);
     }
   }
 
   // Play a simple pattern with looping
-  async playPattern(pattern: Array<{time: number, type: 'kick' | 'snare' | 'hihat' | 'note', freq?: number}>, bpm: number = 120, loop: boolean = true) {
+  async playPattern(pattern: Array<{ time: number, type: 'kick' | 'snare' | 'hihat' | 'note', freq?: number }>, bpm: number = 120, loop: boolean = true) {
     await this.init();
     if (!this.audioContext) return;
 
@@ -460,12 +492,12 @@ class MusicEngine {
     const patternDuration = Math.floor(maxTime) + 1; // in beats
     const patternDurationMs = patternDuration * beatDuration * 1000;
 
-      const playPatternOnce = () => {
+    const playPatternOnce = () => {
       const currentTime = this.audioContext!.currentTime;
 
       pattern.forEach(({ time, type, freq }) => {
         const startTime = currentTime + (time * beatDuration);
-        
+
         if (type === 'kick') {
           this.playDrumSound('kick', startTime);
         } else if (type === 'snare') {
@@ -488,7 +520,7 @@ class MusicEngine {
     // Set up looping if requested
     if (loop) {
       this.isLooping = true;
-      this.loopInterval = setInterval(() => {
+      this.loopInterval = window.setInterval(() => {
         if (this.isLooping) {
           playPatternOnce();
         }
@@ -538,13 +570,13 @@ class MusicEngine {
 const musicEngine = new MusicEngine();
 
 // Export simple functions for easy use
-export const playPattern = (pattern: Array<{time: number, type: 'kick' | 'snare' | 'hihat' | 'note', freq?: number}>, bpm?: number, loop?: boolean) => 
+export const playPattern = (pattern: Array<{ time: number, type: 'kick' | 'snare' | 'hihat' | 'note', freq?: number }>, bpm?: number, loop?: boolean) =>
   musicEngine.playPattern(pattern, bpm, loop);
 
-export const playNote = (frequency: number, duration?: number, type?: OscillatorType) => 
+export const playNote = (frequency: number, duration?: number, type?: OscillatorType) =>
   musicEngine.playNote(frequency, duration, type);
 
-export const playDrum = (type: 'kick' | 'snare' | 'hihat') => 
+export const playDrum = (type: 'kick' | 'snare' | 'hihat') =>
   musicEngine.playDrum(type);
 
 export const stopMusic = () => musicEngine.stop();
