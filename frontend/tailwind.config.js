@@ -30,10 +30,12 @@ module.exports = {
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
-        }
+        },
+
       },
       animation: {
-        'fade-in': 'fadeIn 40s forwards'
+        'fade-in': 'fadeIn 40s forwards',
+
       }
     },
   },
