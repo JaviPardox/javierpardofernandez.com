@@ -325,6 +325,11 @@ const InteractiveDashMesh: React.FC<Props> = ({
 
         handleResize();
 
+        // Safety check: Trigger resize again after a delay to handle production layout timing
+        const timeoutId = setTimeout(() => handleResize(), 100);
+        // Second check for slower devices/loading
+        const timeoutId2 = setTimeout(() => handleResize(), 500);
+
         // Use ResizeObserver for non-fullscreen mode
         let resizeObserver: ResizeObserver | null = null;
         if (!fullScreen && canvas.parentElement) {
@@ -342,6 +347,8 @@ const InteractiveDashMesh: React.FC<Props> = ({
         animationRef.current = requestAnimationFrame(animate);
 
         return () => {
+            clearTimeout(timeoutId);
+            clearTimeout(timeoutId2);
             if (resizeObserver) {
                 resizeObserver.disconnect();
             } else {
