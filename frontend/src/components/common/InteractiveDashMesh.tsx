@@ -117,9 +117,15 @@ const COLORS = [
 
 interface Props {
     dashSpacing?: number;
+    fullScreen?: boolean;
+    className?: string;
 }
 
-const InteractiveDashMesh: React.FC<Props> = ({ dashSpacing = 50 }) => {
+const InteractiveDashMesh: React.FC<Props> = ({
+    dashSpacing = 50,
+    fullScreen = true,
+    className = ""
+}) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const dashesRef = useRef<Dash[]>([]);
     const mouseRef = useRef({ x: -9999, y: -9999 });
@@ -297,32 +303,62 @@ const InteractiveDashMesh: React.FC<Props> = ({ dashSpacing = 50 }) => {
     const handleResize = useCallback(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+
+        if (fullScreen) {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        } else {
+            // For container-based resizing, we rely on ResizeObserver or simple parent size
+            const parent = canvas.parentElement;
+            if (parent) {
+                const rect = parent.getBoundingClientRect();
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+            }
+        }
         initDashes();
-    }, [initDashes]);
+    }, [initDashes, fullScreen]);
 
     useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+
         handleResize();
-        window.addEventListener('resize', handleResize);
+
+        // Use ResizeObserver for non-fullscreen mode
+        let resizeObserver: ResizeObserver | null = null;
+        if (!fullScreen && canvas.parentElement) {
+            resizeObserver = new ResizeObserver(() => handleResize());
+            resizeObserver.observe(canvas.parentElement);
+        } else {
+            window.addEventListener('resize', handleResize);
+        }
+
         window.addEventListener('mousemove', handleMouseMove);
+        // If not full screen, maybe scope events? 
+        // Actually for simplicity, we keep global mouse tracking but local coordinates in handleMouseMove
+
         document.body.addEventListener('mouseleave', handleMouseLeave);
         animationRef.current = requestAnimationFrame(animate);
 
         return () => {
-            window.removeEventListener('resize', handleResize);
+            if (resizeObserver) {
+                resizeObserver.disconnect();
+            } else {
+                window.removeEventListener('resize', handleResize);
+            }
             window.removeEventListener('mousemove', handleMouseMove);
             document.body.removeEventListener('mouseleave', handleMouseLeave);
             if (animationRef.current) {
                 cancelAnimationFrame(animationRef.current);
             }
         };
-    }, [handleResize, handleMouseMove, handleMouseLeave, animate]);
+    }, [handleResize, handleMouseMove, handleMouseLeave, animate, fullScreen]);
 
     return (
         <canvas
             ref={canvasRef}
-            className="fixed inset-0 pointer-events-none z-0"
+            className={fullScreen ? "fixed inset-0 pointer-events-none z-0" : `pointer-events-none absolute inset-0 ${className}`}
         />
     );
 };

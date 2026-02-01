@@ -3,6 +3,7 @@ import WhatIOfferList from "../components/home/offer/WhatIOfferList";
 import ExperienceSection from "../components/home/experience/Experience";
 import RecordsSection from "../components/home/records/Records";
 import Intro from "../components/home/intro/Intro";
+import CVDownloadSection from "../components/home/cv/CVDownloadSection";
 import TypingTitle from "../components/common/TypingTitle";
 import FadeOnScroll from "../components/common/FadeOnScroll";
 import ScrollSection from "../components/common/ScrollSection";
@@ -79,32 +80,7 @@ const Home = () => {
         parallaxStrength={0.1}
         enableScrolljack={true}
       >
-        <FadeOnScroll variant="pop" flashy>
-          <div className="text-center">
-            <p className="text-lg text-zinc-400 mb-4">
-              Need a CV? Don't worry, I've got you covered.
-            </p>
-            <a
-              className="rainbow-button inline-flex items-center justify-center rounded-md py-2 px-4 text-sm outline-offset-2 transition active:transition-none font-medium"
-              href="/files/cv.pdf"
-              download="Javier Pardo Fernández - CV.pdf"
-            >
-              <span className="rainbow-text">Download CV</span>
-              <svg
-                viewBox="0 0 16 16"
-                fill="none"
-                className="ml-1 h-4 w-4 stroke-zinc-400 transition group-hover:stroke-zinc-50 group-active:stroke-zinc-50"
-              >
-                <path
-                  d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                ></path>
-              </svg>
-            </a>
-          </div>
-        </FadeOnScroll>
+        <CVDownloadSection />
       </ScrollSection>
     </div>
   );
