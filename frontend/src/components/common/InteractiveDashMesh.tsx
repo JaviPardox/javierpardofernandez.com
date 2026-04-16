@@ -308,12 +308,14 @@ const InteractiveDashMesh: React.FC<Props> = ({
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         } else {
-            // For container-based resizing, we rely on ResizeObserver or simple parent size
             const parent = canvas.parentElement;
             if (parent) {
-                const rect = parent.getBoundingClientRect();
-                canvas.width = rect.width;
-                canvas.height = rect.height;
+                const w = parent.clientWidth;
+                const h = parent.clientHeight;
+                if (w > 0 && h > 0) {
+                    canvas.width = w;
+                    canvas.height = h;
+                }
             }
         }
         initDashes();
