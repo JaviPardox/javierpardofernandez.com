@@ -1,29 +1,29 @@
 # Javier Pardo Fernandez
 
-> Software engineer based in Oslo, Norway. Curious about how things work—from code to hardware. Enjoys building apps, scalable systems, high-performance computing, functional programming, and algorithms; connects ideas across software, hardware, and IoT. Outside of work: outdoors, sports, football, friends, food, travel, music. Open to consulting and freelance (system architecture, cloud, second opinions on code).
+> Software engineer based in Oslo, Norway. Curious about how things work, from code to hardware. Enjoys building apps, scalable systems, high-performance computing, functional programming, and algorithms; connects ideas across software, hardware, and IoT. Outside of work: outdoors, sports, football, friends, food, travel, music. Open to consulting and freelance (system architecture, cloud, second opinions on code).
 
 ## About
 
 **Tagline:** Software Engineer. Building Solutions That Work.
 
-Hey, I'm Javier — a Software Engineer based in Oslo, Norway, who loves figuring out how everything works. For a living, that curiosity takes me from the software we write to the hardware we use every day.
+Hey, I'm Javier, a Software Engineer based in Oslo, Norway, who loves figuring out how everything works. For a living, that curiosity takes me from the software we write to the hardware we use every day.
 
 I like building just about anything, with a special interest in apps, engineering scalable systems, tinkering with high-performance computing, functional programming, and designing algorithms. I enjoy connecting ideas across software, hardware, and IoT.
 
-I'm also available for consulting and freelance projects—whether you need help architecting a new system, optimizing cloud infrastructure, or a second pair of eyes on your code.
+I'm also available for consulting and freelance projects, whether you need help architecting a new system, optimizing cloud infrastructure, or a second pair of eyes on your code.
 
 ## What I offer
 
-- **Cloud & infrastructure** — Extensive experience with AWS and cloud infrastructure, improving system performance and cost-effectiveness through optimized solutions.
-- **Full-stack development** — Advanced proficiency in Python, JavaScript, React, and various frameworks; robust, scalable web applications.
-- **Testing & optimization** — Software testing, bug fixing, and performance optimization with a track record of meaningful efficiency gains.
-- **Project management** — Complex projects, best practices, and continuous improvement in development processes.
-- **Team collaboration** — Cross-team collaboration, code review, mentoring, knowledge sharing.
-- **Innovation** — Applying current technologies and methods to hard problems and business outcomes.
+- **Cloud & infrastructure** - Extensive experience with AWS and cloud infrastructure, improving system performance and cost-effectiveness through optimized solutions.
+- **Full-stack development** - Advanced proficiency in Python, JavaScript, React, and various frameworks; robust, scalable web applications.
+- **Testing & optimization** - Software testing, bug fixing, and performance optimization with a track record of meaningful efficiency gains.
+- **Project management** - Complex projects, best practices, and continuous improvement in development processes.
+- **Team collaboration** - Cross-team collaboration, code review, mentoring, knowledge sharing.
+- **Innovation** - Applying current technologies and methods to hard problems and business outcomes.
 
 ## Experience
 
-### Roadguard — Software Engineer — March 2025 – Present
+### Roadguard - Software Engineer - March 2025 - Present
 
 Focus: computer vision, edge AI, backend, DevOps, IoT, networks, video streaming, authentication.
 
@@ -34,58 +34,58 @@ Focus: computer vision, edge AI, backend, DevOps, IoT, networks, video streaming
 - CI/CD and monitoring: GitHub Actions, Azure Container Registry, custom dashboards; 99.9% uptime target for critical infrastructure (10K+ daily API requests).
 - Cross-functional work integrating machine vision with backend decisioning; nationwide rollout with Statens Vegvesen targeting fewer accidents (~15%) and less microplastic tire pollution (~30%).
 
-### Bio-Me — Software Engineer — October 2023 – March 2025
+### Bio-Me - Software Engineer - October 2023 - March 2025
 
-- Led architecture of the microbiome profiling platform: +20% pipeline throughput, −35% storage costs.
+- Led architecture of the microbiome profiling platform: +20% pipeline throughput, -35% storage costs.
 - Evolved LIMS for 5 regulatory workflows and 18+ clinical customers.
 - Mentored internships: 4 students, 16 production features.
-- Documentation and engineering practices: +12% release efficiency, −30% onboarding time.
+- Documentation and engineering practices: +12% release efficiency, -30% onboarding time.
 - Nine cross-functional roadmap initiatives delivered on schedule.
 
-### Bio-Me — Junior Software Engineer — October 2021 – October 2023
+### Bio-Me - Junior Software Engineer - October 2021 - October 2023
 
-- Microbiome platform: distributed pipelines +200% processing efficiency, −31% storage costs.
+- Microbiome platform: distributed pipelines +200% processing efficiency, -31% storage costs.
 - Computational workflows for species-specific genomic regions and qPCR; scalable LIMS features for clinical and commercial needs.
 - Automated testing and validation: +18% reliability.
 
-### Caltrans — Transportation Engineer Technician — September 2020 – March 2021
+### Caltrans - Transportation Engineer Technician - September 2020 - March 2021
 
 - Data analysis systems for infrastructure monitoring; automated compliance and QA across construction sites.
-- Technical documentation and analytics for construction oversight; −25% documentation processing time.
+- Technical documentation and analytics for construction oversight; -25% documentation processing time.
 - Data pipelines for materials, safety, and environmental metrics; digital contract and quality-control solutions.
 
-### California State University Chico — Electrical/Computer Engineering Tutor — August 2018 – December 2019
+### California State University Chico - Electrical/Computer Engineering Tutor - August 2018 - December 2019
 
 - Instruction in computer architecture, data structures, algorithms; +17% student performance metrics.
 - Workshops: embedded systems, DSP, computational methods; problem-solving in C++, Python, hardware.
 
-### AI Talentum — Software Engineer Internship — June 2016 – August 2016
+### AI Talentum - Software Engineer Internship - June 2016 - August 2016
 
 - Scalable Twitter data collection and analytics for ML; ETL, validation, and storage.
 
 ## Education
 
-- **Universitat de Barcelona** — MSc, Project Management — March 2023 – March 2024
-- **UC Berkeley** — Bootcamp, Data Science — November 2020 – June 2021
-- **California State University, Chico** — BSc, Computer Engineering — August 2015 – December 2019
+- **Universitat de Barcelona** - MSc, Project Management - March 2023 - March 2024
+- **UC Berkeley** - Bootcamp, Data Science - November 2020 - June 2021
+- **California State University, Chico** - BSc, Computer Engineering - August 2015 - December 2019
 
 ## Organizations
 
-- **Tau Beta Pi** (Alpha Alpha Chapter) — Corresponding Secretary (1 year): chapter communications.
-- **Tau Beta Pi** (Alpha Alpha Chapter) — IT Master (1 year): website and content.
-- **Tau Kappa Epsilon** (Theta Pi Chapter) — Founding Father (3 years): chapter formation.
+- **Tau Beta Pi** (Alpha Alpha Chapter) - Corresponding Secretary (1 year): chapter communications.
+- **Tau Beta Pi** (Alpha Alpha Chapter) - IT Master (1 year): website and content.
+- **Tau Kappa Epsilon** (Theta Pi Chapter) - Founding Father (3 years): chapter formation.
 
 ## Writing
 
-- *Blog Under Construction* (Feb 20, 2025) — Placeholder post; pipeline topics include engineering, markets, FC Barcelona, and more. Full post at `https://javierpardofernandez.com/articles/1`.
+- *Blog Under Construction* (Feb 20, 2025) - Placeholder post; pipeline topics include engineering, markets, FC Barcelona, and more. Full post at https://javierpardofernandez.com/articles/1
 
 ## Profiles & contact
 
-- GitHub: https://github.com/JaviPardox  
-- LinkedIn: https://www.linkedin.com/in/javier-pardo-fernandez/  
-- Homepage: https://javierpardofernandez.com/  
-- CV (PDF): https://javierpardofernandez.com/files/cv.pdf  
+- GitHub: https://github.com/JaviPardox
+- LinkedIn: https://www.linkedin.com/in/javier-pardo-fernandez/
+- Homepage: https://javierpardofernandez.com/
+- CV (PDF): https://javierpardofernandez.com/files/cv.pdf
 
 ## Maintenance
 
-Structured résumé data on the site is served from the API; the canonical JSON is under `backend/data/work_experience.json` and `backend/data/records.json`. If you change roles or education, update those files **and** this document so they stay aligned.
+Structured resume data on the site is served from the API; the canonical JSON is under `backend/data/work_experience.json` and `backend/data/records.json`. If you change roles or education, update those files **and** this document so they stay aligned.
