@@ -16,7 +16,7 @@ const Intro = () => {
       <div className="max-w-2xl" id="home">
         {/* Headline with word-by-word animation */}
         <AnimatedText
-          text="Software Engineer. Building Solutions That Work."
+          text="Software Engineer. Co-founder. Building Things That Work."
           as="h1"
           type="words"
           staggerDelay={0.04}
@@ -26,7 +26,7 @@ const Intro = () => {
 
         <FadeOnScroll variant="slide-up" delay={1.2} flashy>
           <p className="mt-6 text-base text-zinc-400 leading-relaxed leading-[1.78rem]">
-            Hey, I'm Javier — a Software Engineer based in Oslo, Norway, who loves figuring out how everything works. For a living, that curiosity takes me from the software we write to the hardware we use every day.
+            Hey, I'm Javier — a Software Engineer based in Oslo, Norway, who loves figuring out how everything works. For a living, that curiosity takes me from the software we write to the hardware we use every day. I'm also co-founder and CTO of Dalmar Ventures, where we're building Toorizta, an AI-powered travel platform.
           </p>
         </FadeOnScroll>
         <FadeOnScroll variant="slide-up" delay={1.3} flashy>
@@ -36,7 +36,7 @@ const Intro = () => {
         </FadeOnScroll>
         <FadeOnScroll variant="slide-up" delay={1.4} flashy>
           <p className="mt-6 text-base text-zinc-400 leading-relaxed leading-[1.78rem]">
-            I enjoy connecting ideas across software, hardware, and IoT.
+            I enjoy connecting ideas across software, hardware, and IoT. Lately a lot of that has gone into AI agents — I wrote SwarmEngine, an open-source multi-agent orchestrator, to find out how far you can push agents that plan and build software together.
           </p>
         </FadeOnScroll>
         <FadeOnScroll variant="slide-up" delay={1.5} flashy viewportMargin="0px 0px 600px 0px">
