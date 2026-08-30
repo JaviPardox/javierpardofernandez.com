@@ -25,7 +25,7 @@
           },
           {
             "content": "Next.js",
-            "iconClass": "devicon-nextjs-original"
+            "iconClass": "devicon-nextjs-plain"
           },
           {
             "content": "Node.js",
@@ -142,11 +142,15 @@
           },
           {
             "content": "Grafana",
-            "iconClass": "devicon-grafana-original"
+            "iconClass": "devicon-grafana-plain"
           },
           {
             "content": "Prometheus",
             "iconClass": "devicon-prometheus-original"
+          },
+          {
+            "content": "OpenTelemetry",
+            "iconClass": "devicon-opentelemetry-plain"
           },
           {
             "content": "Raspberry Pi",
