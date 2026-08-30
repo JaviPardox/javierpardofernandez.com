@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { trackEvent } from "../lib/analytics";
 
 const Sabios = () => {
   const [isCoverMounted, setIsCoverMounted] = useState(true);
@@ -63,6 +64,7 @@ const Sabios = () => {
     // Hide the cover and start playing music
     if (audioRef.current) {
       audioRef.current.play();
+      trackEvent("music_play", { track: audioTracks[currentTrackIndex] });
     }
     setCoverFadeOut(true);
     setTimeout(() => {

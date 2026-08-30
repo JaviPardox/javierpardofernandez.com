@@ -1,13 +1,22 @@
+import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Home from '../pages/Home';
 import BlogPost from './blog/BlogPost';
 import NotFoundPage from '../pages/NotFoundPage';
 import Sabios from '../pages/Sabios';
+import { trackPageView } from '../lib/analytics';
+import useScrollDepth from '../hooks/useScrollDepth';
 
 const AnimatedRouter = () => {
   const location = useLocation();
-  
+
+  useEffect(() => {
+    trackPageView(location.pathname);
+  }, [location.pathname]);
+
+  useScrollDepth(location.pathname);
+
   return (
     <AnimatePresence mode="wait">
       <motion.div

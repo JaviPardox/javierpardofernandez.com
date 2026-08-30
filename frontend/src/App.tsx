@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
@@ -7,9 +8,14 @@ import ResponsiveCenterLayout from './components/ResponsiveCenterLayout';
 import PageTransitions from './components/PageTransitions';
 import AnimatedRouter from './components/AnimatedRouter';
 import Footer from './components/Footer';
+import { initAnalytics } from './lib/analytics';
 
 
 const App = () => {
+  useEffect(() => {
+    initAnalytics();
+  }, []);
+
   return (
     <Provider store={store}>
       <PerformanceProvider>

@@ -1,5 +1,6 @@
 import FadeOnScroll from "../../common/FadeOnScroll";
 import InteractiveDashMesh from "../../common/InteractiveDashMesh";
+import { trackEvent } from "../../../lib/analytics";
 
 const CVDownloadSection = () => {
     return (
@@ -46,6 +47,7 @@ const CVDownloadSection = () => {
                 group-hover/cv:bg-zinc-800/80 group-hover/cv:text-white group-hover/cv:border-zinc-500
               "
                             href="/files/cv.pdf"
+                            onClick={() => trackEvent("cv_download")}
                             download="Javier Pardo Fernández - CV.pdf"
                         >
                             <span>Download CV</span>

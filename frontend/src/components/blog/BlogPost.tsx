@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../api/axios";
 import { BlogPost as BlogPostType, BlogContentBlock } from "../../types/index";
+import { trackEvent } from "../../lib/analytics";
 
 const BlogPost = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,6 +15,7 @@ const BlogPost = () => {
       try {
         const response = await api.get<BlogPostType>(`/blog/${id}`);
         setPost(response.data);
+        trackEvent("article_view", { article_id: id ?? "unknown" });
       } catch (err) {
         setError((err as Error).message);
       } finally {

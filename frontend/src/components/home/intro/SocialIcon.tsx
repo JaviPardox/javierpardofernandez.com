@@ -4,14 +4,16 @@ interface SocialIconProps {
   href: string;
   ariaLabel: string;
   iconPaths: { d: string; fillRule?: FillRule; clipRule?: FillRule }[];
+  onClick?: () => void;
 }
 
 const SocialIcon: React.FC<SocialIconProps> = ({
   href,
   ariaLabel,
   iconPaths,
+  onClick,
 }) => (
-  <a className="group -m-1 p-1" aria-label={ariaLabel} href={href}>
+  <a className="group -m-1 p-1" aria-label={ariaLabel} href={href} onClick={onClick}>
     <svg
       viewBox="0 0 24 24"
       aria-hidden="true"
