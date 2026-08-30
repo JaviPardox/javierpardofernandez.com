@@ -1,5 +1,5 @@
 import WhatIOfferListItem from './WhatIOfferListItem';
-import { FaCloud, FaCode, FaTools, FaChartLine, FaUsers, FaLightbulb } from 'react-icons/fa';
+import { FaCloud, FaCode, FaRobot, FaChartLine, FaUsers, FaMicrochip } from 'react-icons/fa';
 import FadeOnScroll from "../../common/FadeOnScroll";
 
 const WhatIOfferList = () => {
@@ -21,9 +21,9 @@ const WhatIOfferList = () => {
       </FadeOnScroll>
       <FadeOnScroll delay={0.2} variant="slide-up" flashy>
         <WhatIOfferListItem
-          icon={<FaTools className="w-5 h-5 text-zinc-100 group-hover:text-teal-500 transition-colors" />}
-          title="Testing & Optimization"
-          description="Strong focus on software testing, bug fixing, and performance optimization, with proven track record of significant efficiency improvements."
+          icon={<FaRobot className="w-5 h-5 text-zinc-100 group-hover:text-teal-500 transition-colors" />}
+          title="AI Agents & Automation"
+          description="Building with LLM agents in production — agent-callable APIs, autonomous workers, and SwarmEngine, my open-source multi-agent orchestrator."
         />
       </FadeOnScroll>
       <FadeOnScroll delay={0.3} variant="slide-up" flashy>
@@ -42,9 +42,9 @@ const WhatIOfferList = () => {
       </FadeOnScroll>
       <FadeOnScroll delay={0.5} variant="slide-up" flashy>
         <WhatIOfferListItem
-          icon={<FaLightbulb className="w-5 h-5 text-zinc-100 group-hover:text-teal-500 transition-colors" />}
-          title="Innovation Focus"
-          description="Passionate about leveraging cutting-edge technologies and methodologies to solve complex problems and drive business growth."
+          icon={<FaMicrochip className="w-5 h-5 text-zinc-100 group-hover:text-teal-500 transition-colors" />}
+          title="Edge, IoT & Embedded"
+          description="From microcontroller firmware and Linux kernel drivers to fleet provisioning and monitoring for devices deployed in the field."
         />
       </FadeOnScroll>
     </ul>
