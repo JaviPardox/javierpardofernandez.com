@@ -62,17 +62,15 @@
         ],
         "companyAndDateInfo": {
           "url": "https://toorizta.com",
-          "companyName": "Dalmar Ventures",
+          "companyName": "Toorizta",
           "date": "April 2026 - Present"
         },
         "jobPosition": "Co-founder & CTO",
         "jobDescription": [
-          "Co-founded Dalmar Ventures and set the technical direction for Toorizta, an AI-powered travel platform where travellers discover destinations and then book hotels, tours, transport and full itineraries in one place.",
-          "Own the platform architecture and security posture across a public storefront, an internal operations dashboard, and the services that connect them.",
-          "Built the payments and fulfilment path end to end: card payments with deposits and balance links, hotel and tour inventory from third-party providers, and automatic refund rollback when fulfilment fails.",
-          "Hardened the booking funnel with server-side price authority, rate limiting, content moderation guards and access controls on customer-facing endpoints.",
-          "Built the production release path: containerised deploys, CI/CD on merge to main, and per-developer preview environments seeded from live data.",
-          "Designed the platform so AI assistants can use it as easily as people can, with agent-callable APIs and autonomous agents working alongside the team on operations and marketing."
+          "Co-founded the company and lead the technical direction of Toorizta, an AI-powered travel platform that carries a traveller from discovering a place to booking and paying for the whole trip.",
+          "The platform books hotels, tours and experiences, transport and multi-day itineraries, wrapped in a discovery layer of destination guides, articles, events and group trips hosted by locals.",
+          "Behind it runs an internal operations platform where the team handles inventory, itineraries, reservations, finances and marketing, and where AI agents pick up and run work alongside people.",
+          "It is built so AI assistants can use the product as easily as a person can, with agent-callable APIs across discovery and booking."
         ]
       },
       {
