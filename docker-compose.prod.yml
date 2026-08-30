@@ -17,6 +17,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        - REACT_APP_GA_MEASUREMENT_ID=G-4TJST1117L
     container_name: react-frontend-prod
     restart: unless-stopped
     environment:

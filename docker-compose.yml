@@ -33,6 +33,8 @@ services:
       # These env variables don't need REACT_APP_ prefix, they are used by the create react app infrastructure itself
       - NODE_ENV=development
       - REACT_APP_API_URL=http://${NETWORK_IP}:8000 # Available to the network
+      - REACT_APP_GA_MEASUREMENT_ID=G-4TJST1117L
+      - REACT_APP_GA_DEBUG=false # true to send analytics from dev
       - WDS_SOCKET_PORT=0 # Use same port as the http server
       - HOST=0.0.0.0 # Tells the development server to listen on all network interfaces
       - CHOKIDAR_USEPOLLING=true # Enable polling for file watching on Windows

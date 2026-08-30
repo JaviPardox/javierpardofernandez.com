@@ -5,6 +5,9 @@ COPY package*.json ./
 RUN npm ci
 COPY . .
 
+# Inlined by CRA at build time, so it must be a build arg, not runtime env.
+ARG REACT_APP_GA_MEASUREMENT_ID
+
 ENV NODE_OPTIONS="--max-old-space-size=3072"
 ENV GENERATE_SOURCEMAP=false
 RUN npm run build
